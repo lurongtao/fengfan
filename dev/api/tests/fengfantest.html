@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<button onclick="useradd()">用户添加</button>
+</body>
+<script type="text/javascript">
+	function useradd() {
+		$.ajax({
+			url:"http://localhost/fengfan/api/users/add/",
+			type: "get",
+			data: {
+			  username: 'zhangsan', // [字符串：必填]
+			  password: 'abc123' // [字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+</script>
+</html>

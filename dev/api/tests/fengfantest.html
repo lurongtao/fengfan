@@ -16,6 +16,7 @@
 	</style>
 </head>
 <body>
+<h2>注册</h2>
 <div>
 	<button onclick="useradd()">用户添加</button>
 	<span>完成</span>
@@ -30,6 +31,16 @@
 </div>
 <div>
 	<button onclick="resetpwd()">重置密码</button>
+	<span class="todo">TODO 安全性需要考虑</span>
+</div>
+<hr/>
+<h2>视频</h2>
+<div>
+	<button onclick="videoadd()">添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="videodetail()">详情</button>
 	<span>完成</span>
 </div>
 </body>
@@ -86,5 +97,39 @@
 			}
 		})
 	}
+	function videoadd() {
+		$.ajax({
+			url:"../api/video/add/",
+			type: "post",
+			data: {
+			  title: "JavaScript", //标题 [字符串：必填]
+			  url: "http://www.codingke.com/v/111.mp4", //视频地址 [字符串：必填]
+			  summary: "JavaScript基础语法", //视频简介： [字符串：必填]
+			  category: { // 分类：[对象：必填]
+			    step: 1, // 阶段 [数值：必填]：1 第一阶段 2 第二阶段 3 第三阶段
+			    tag: "JavaScript" // 关键字分类 [字符串：必填]
+			  }
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
+	function videodetail() {
+		$.ajax({
+			url:"../api/video/detail/",
+			type: "get",
+			data: {
+			  id: 1
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
+
+
 </script>
 </html>

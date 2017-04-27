@@ -12,17 +12,13 @@ class Users extends FengfanController {
 
 		];
 
-		// 用户名校验
-		if(empty($username)) {
-			$result["errcode"] = -1;
-			$result["errmsg"] = "用户名不能为空";
-			return json($result);
-		}
-		// 密码校验
-		if(empty($password)) {
-			$result["errcode"] = -1;
-			$result["errmsg"] = "密码不能为空";
-			return json($result);
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"用户名" => $username,
+			"密码" => $password,
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
 		}
 
 		$user = new User;
@@ -31,7 +27,7 @@ class Users extends FengfanController {
 		if($rst) {
 			$result["errcode"] = -1;
 			$result["errmsg"] = "该用户已经存在。";
-			return json($result);
+			return $this->corsjson($result);
 		}
 
 		// 保存到数据库
@@ -57,17 +53,13 @@ class Users extends FengfanController {
 
 		];
 
-		// 用户名校验
-		if(empty($username)) {
-			$result["errcode"] = -1;
-			$result["errmsg"] = "用户名不能为空";
-			return json($result);
-		}
-		// 密码校验
-		if(empty($password)) {
-			$result["errcode"] = -1;
-			$result["errmsg"] = "密码不能为空";
-			return json($result);
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"用户名" => $username,
+			"密码" => $password,
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
 		}
 
 		$user = new User;
@@ -76,12 +68,12 @@ class Users extends FengfanController {
 		if(empty($rst)) {
 			$result["errcode"] = -1;
 			$result["errmsg"] = "用户名或者密码错误。";
-			return json($result);
+			return $this->corsjson($result);
 		}
 		if($rst["password"] != md5($password)) {
 			$result["errcode"] = -1;
 			$result["errmsg"] = "用户名或者密码错误。";
-			return json($result);
+			return $this->corsjson($result);
 		}
 
 		$result["data"]	= [ // 数据内容
@@ -101,17 +93,13 @@ class Users extends FengfanController {
 
 		];
 
-		// 用户名校验
-		if(empty($username)) {
-			$result["errcode"] = -1;
-			$result["errmsg"] = "用户名不能为空";
-			return json($result);
-		}
-		// 邮箱校验
-		if(empty($email)) {
-			$result["errcode"] = -1;
-			$result["errmsg"] = "邮箱不能为空";
-			return json($result);
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"用户名" => $username,
+			"邮箱" => $email,
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
 		}
 
 		$user = new User;
@@ -120,12 +108,12 @@ class Users extends FengfanController {
 		if(empty($rst)) {
 			$result["errcode"] = -1;
 			$result["errmsg"] = "用户不存在。";
-			return json($result);
+			return $this->corsjson($result);
 		}
 		if($rst["email"] != $email) {
 			$result["errcode"] = -1;
 			$result["errmsg"] = "您输入的邮箱不正确或者没有预留邮箱。";
-			return json($result);
+			return $this->corsjson($result);
 		}
 
 		// TODO发送邮件
@@ -145,17 +133,13 @@ class Users extends FengfanController {
 
 		];
 
-		// 用户名校验
-		if(empty($username)) {
-			$result["errcode"] = -1;
-			$result["errmsg"] = "用户名不能为空";
-			return json($result);
-		}
-		// 密码校验
-		if(empty($newpwd)) {
-			$result["errcode"] = -1;
-			$result["errmsg"] = "密码不能为空";
-			return json($result);
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"用户名" => $username,
+			"密码" => $newpwd,
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
 		}
 
 		$user = new User;
@@ -164,7 +148,7 @@ class Users extends FengfanController {
 		if(empty($rst)) {
 			$result["errcode"] = -1;
 			$result["errmsg"] = "该用户不存在。";
-			return json($result);
+			return $this->corsjson($result);
 		}
 
 		// 保存到数据库

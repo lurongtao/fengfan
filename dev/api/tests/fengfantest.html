@@ -4,18 +4,82 @@
 	<title></title>
 	<meta charset="utf-8">
 	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<style type="text/css">
+		div {
+			margin-top: 5px;
+		}
+		.todo {
+			background: pink;
+			color: #fff;
+			padding: 4px 8px;
+		}
+	</style>
 </head>
 <body>
-<button onclick="useradd()">用户添加</button>
+<div>
+	<button onclick="useradd()">用户添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="signin()">登录</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="forgotpwd()">忘记密码</button>
+	<span class="todo">TODO 发送邮件需要配置</span>
+</div>
+<div>
+	<button onclick="resetpwd()">重置密码</button>
+	<span>完成</span>
+</div>
 </body>
 <script type="text/javascript">
 	function useradd() {
 		$.ajax({
-			url:"http://localhost/fengfan/api/users/add/",
+			url:"../api/users/add/",
+			type: "post",
+			data: {
+			  username: 'zhangsan', // [字符串：必填]
+			  password: 'abc123' // [字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function signin() {
+		$.ajax({
+			url:"../api/users/signin/",
 			type: "get",
 			data: {
 			  username: 'zhangsan', // [字符串：必填]
 			  password: 'abc123' // [字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function forgotpwd() {
+		$.ajax({
+			url:"../api/users/forgotpwd/",
+			type: "post",
+			data: {
+			  username: 'zhangsan', // [字符串：必填]
+			  email: 'lurongtao@1000phone.com' // [字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function resetpwd() {
+		$.ajax({
+			url:"../api/users/resetpwd/",
+			type: "post",
+			data: {
+			  username: "zhangsan", //用户名 [字符串：必填]
+			  newpwd: "abcd" //新密码邮箱： [字符串：必填]
 			},
 			success: function(res) {
 				console.log(res);

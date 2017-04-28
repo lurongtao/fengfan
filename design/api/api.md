@@ -193,6 +193,7 @@
     GET
 #### 请求参数
     {
+      condition: "javascript", //查询条件，按照title模糊查询 [字符串：选填]
       start: 0, //记录开始值 [数值：必填]
       count: 10 //返回记录条数 [数值：必填]
     }
@@ -305,6 +306,7 @@
 #### 请求参数
     {
       uid: 4, // 用户ID [数值：必填]
+      category: "React", // 问题分类 [字符串：必填] html, css, 原生js, angular, vue,其他等等
       title: "React dangerouslySetInnerHTML 怎么用？", //标题 [字符串：必填]
       content: "我在网上查的用dangerouslySetInnerHTML,可是我不会用" //内容： [字符串：必填]" 
     }

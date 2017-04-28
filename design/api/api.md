@@ -8,7 +8,7 @@
     {
       username: "zhangsan", // [字符串：必填]
       password: "abc123", // [字符串：必填]
-      email: "abc123" // [字符串：选填]
+      email: "test@163.com" // [字符串：选填]
     }
 #### 返回数据
 	{

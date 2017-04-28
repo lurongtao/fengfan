@@ -7,7 +7,8 @@
 #### 请求参数
     {
       username: "zhangsan", // [字符串：必填]
-      password: "abc123" // [字符串：必填]
+      password: "abc123", // [字符串：必填]
+      email: "abc123" // [字符串：选填]
     }
 #### 返回数据
 	{
@@ -149,6 +150,7 @@
     POST
 #### 请求参数
     {
+      id: 123, //视频id [字符串：必填]
       title: "JavaScript", //标题 [字符串：必填]
       url: "http://www.codingke.com/v/111.mp4", //视频地址 [字符串：必填]
       summary: "JavaScript基础语法"， //视频简介： [字符串：必填]

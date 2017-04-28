@@ -2,6 +2,7 @@
 namespace app\common\controller;
 use think\Controller;
 use think\Response;
+use think\Db;
 
 class FengfanController extends Controller {
 	protected function corsjson($data) {
@@ -17,7 +18,7 @@ class FengfanController extends Controller {
 		];
 
 		foreach ($checkFilds as $key => $value) {
-			if(empty($value)) {
+			if(!isset($value) || $value == "") {
 				$result["errcode"] = -1;
 				$result["errmsg"] = $key . "不能为空";
 				return $result;
@@ -25,5 +26,32 @@ class FengfanController extends Controller {
 		}
 
 		return false;
+	}
+
+	// 添加用户浏览记录信息
+	protected function addViewHistory($uid, $type, $visited_id) {
+		$data = [
+			'uid' => $uid,
+			'type' => $type,
+			'visited_id' => $visited_id
+		];
+		Db::table("visit_history")->insert($data);
+	}
+
+	// 添加收藏
+	protected function addFavorite($uid, $type, $favorite_id) {
+		$data = [
+			'uid' => $uid,
+			'type' => $type,
+			'favorite_id' => $favorite_id
+		];
+
+		$rst = Db::table("favorite")->where($data)->find();
+		// 检查是否已经收藏了
+		if(!empty($rst)) {
+			return "您已经收藏过了。";
+		}
+
+		return Db::table("favorite")->insert($data);
 	}
 }

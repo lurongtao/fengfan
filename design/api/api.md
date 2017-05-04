@@ -308,7 +308,7 @@
       uid: 4, // 用户ID [数值：必填]
       tag: "React", // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
       title: "React dangerouslySetInnerHTML 怎么用？", //标题 [字符串：必填]
-      content: "我在网上查的用dangerouslySetInnerHTML,可是我不会用" //内容： [字符串：必填]" 
+      content: "我在网上查的用dangerouslySetInnerHTML,可是我不会用" //内容： [字符串：必填]"
     }
 #### 返回数据
 	{
@@ -452,7 +452,7 @@
     {
       uid: 4, // 用户ID [数值：必填]
       title: "React dangerouslySetInnerHTML 怎么用？", //标题 [字符串：必填]
-      content: "我在网上查的用dangerouslySetInnerHTML,可是我不会用" //内容： [字符串：必填]" 
+      content: "我在网上查的用dangerouslySetInnerHTML,可是我不会用" //内容： [字符串：必填]"
     }
 #### 返回数据
 	{
@@ -595,7 +595,7 @@
     {
       uid: 4, // 用户ID [数值：必填]
       title: "javascript 框架开发", //标题 [字符串：必填]
-      content: "有成熟框架开发经验" //内容： [字符串：必填]" 
+      content: "有成熟框架开发经验" //内容： [字符串：必填]"
     }
 #### 返回数据
 	{
@@ -763,7 +763,7 @@
                 ......
               ]
             },
-          
+
           'qanda': { // 数据内容
             start: 0, //记录开始值 [数值：必填]
             count: 10, //返回记录条数 [数值：必填]

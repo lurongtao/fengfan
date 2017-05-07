@@ -16,4 +16,6 @@ return [
     'api/users/:method' =>  ['api/users/:method', ['method' => 'get|post']],
     'api/video/list' =>  ['api/videos/videolist', ['method' => 'get|post']],
     'api/video/:method' =>  ['api/videos/:method', ['method' => 'get|post']],
+    'api/qanda/list' =>  ['api/qandA/questionList', ['method' => 'get|post']],
+    'api/qanda/:method' =>  ['api/qandA/:method', ['method' => 'get|post']],
 ];

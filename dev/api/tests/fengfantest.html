@@ -63,8 +63,29 @@
 	<button onclick="videoqanda()">问答</button>
 	<span>完成</span>
 </div>
+<hr/>
+<h2>问答</h2>
+<div>
+	<button onclick="qandaAdd()">添加</button>
+	<span>完成</span>
+</div>
 </body>
 <script type="text/javascript">
+	function qandaAdd() {
+		$.ajax({
+			url:"../api/qanda/add/",
+			type: "post",
+			data: {
+			  uid: 4, // 用户ID [数值：必填]
+			  tag: "React", // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
+			  title: "React dangerouslySetInnerHTML 怎么用？123123", //标题 [字符串：必填]
+			  content: "我在网上查的用dangerouslySetInnerHTML,可是我不会用" //内容： [字符串：必填]" 
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
 	function useradd() {
 		$.ajax({
 			url:"../api/users/add/",

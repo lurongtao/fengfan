@@ -1,0 +1,62 @@
+.m-video-list {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  min-width: 1140px;
+  .nav {
+    background: #fff;
+    box-sizing: border-box;
+    padding: 0 40px;
+    .cat {
+      border-bottom: dashed 1px #e5e5e5;
+      position: relative;
+      .title {
+        top: 34px;
+        position: absolute;
+        width: 100px;
+        color: #7f7f7f;
+        font-weight: normal;
+      }
+      .content {
+        line-height: 50px;
+        padding-left: 100px;
+      }
+    }
+    ul {
+      line-height: 104px;
+      li {
+        display: inline-block;
+        color: #7f7f7f;
+        width: 200px;
+        font-size: 24px;
+        text-align: center;
+        &.title {
+          text-align: left;
+          width: 100px;
+        }
+        i {
+          font-style: normal;
+          background: @base-color;
+          line-height: 104px;
+          padding: 10px 40px;
+          color: #fff;
+        }
+      }
+    }
+  }
+  .list {
+    background: #fff;
+    box-sizing: border-box;
+    margin-top: 20px;
+    .ant-tabs-nav {
+      margin: 12px 0 0 40px;
+      font-size: 22px;
+      .ant-tabs-tab-active {
+        color: #ff8a0c;
+      }
+      .ant-tabs-ink-bar {
+        background-color: #ff8a0c;
+      }
+    }
+  }
+}

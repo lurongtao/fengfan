@@ -3,6 +3,7 @@ namespace app\api\controller;
 use think\Db;
 use app\common\controller\FengfanController;
 use app\api\model\Question;
+use app\api\model\Answer;
 
 class QandA extends FengfanController {
     public function add($uid="", $tag="", $title="", $content="") {
@@ -73,27 +74,222 @@ class QandA extends FengfanController {
 			return $this->corsjson($checkresult);
 		}
 
-		$rst = Db::query("
-			select a.id,
-			        a.title,
-			        a.tag,
-			        c.username as author,   	        
-			        a.create_date as createDate,
-			        hits, ifnull(b.answers,0) as answers 
-			from qa_question as a left join (
-				select qid, count(1) as answers from qa_answer
-				group by qid
-			) as b
-			on a.id = b.qid,
-			users as c
-			where 
-			a.title like ?
-			and a.uid = c.id", ["%". $condition ."%"]);
+		$question = new Question;
+		$total = $question->where('title','like','%'. $condition .'%')->count();
+		$subjects = [];
+
+		if($total) {
+			$subjects = Db::query("
+				select a.id,
+				        a.title,
+				        a.tag,
+				        ifnull(c.username, '') as author,   	        
+				        a.create_date as createDate,
+				        a.hits, 
+				        ifnull(b.answers,0) as answers 
+				from qa_question as a left join (
+					select qid, count(1) as answers from qa_answer
+					group by qid
+				) as b
+				on a.id = b.qid
+				left join users as c
+				on a.uid = c.id
+				where 
+				a.title like ? order by a.create_date desc
+				limit ?, ?", ["%". $condition ."%", $start, $count]);
+		}
 
 		$result["data"]	= [ // 数据内容
-				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
-				"msg"=> '数据提交成功' // 附加信息：[字符串：选填]
+			"start" => $start, //记录开始值 [数值：必填]
+			"count" => $count, //返回记录条数 [数值：必填]
+			"total" => $total, //总记录条数 [数值：必填]
+			"subjects" => $subjects
 		];
+
+		return $this->corsjson($result);
+    }
+
+
+    public function detail($id="", $uid="") {
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"问答id" => $id,
+			"用户id" => $uid
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$question = new Question;
+
+		// 添加用户浏览记录
+		$this->addViewHistory($uid, "问答", $id);
+
+		// 取得数据
+		$data = Db::table("qa_question")->query("SELECT 
+				    a.id,
+				    a.title,
+				    a.content,
+				    a.hits,
+				    b.username AS author,
+				    a.create_date AS createDate
+				FROM
+				    qa_question AS a
+				        LEFT JOIN
+				    users AS b ON a.uid = b.id
+				WHERE
+				    a.id = ?", 
+			[$id]);
+
+		if(!empty($data) && sizeof($data) > 0) {
+			// 更新点击数
+			$question->save([
+			    'hits'  => $data[0]["hits"] + 1
+			],['id' => $id]);
+
+			$result["data"]	= $data[0];
+			// 答案
+			$answers = Db::table("qa_answer")->query("SELECT 
+					    a.id,
+					    a.content,
+					    b.username AS author,
+					    a.create_date AS createDate,
+					    a.bestAnswer
+					FROM
+					    qa_answer AS a
+					        LEFT JOIN
+					    users AS b ON a.uid = b.id
+					WHERE
+					    a.qid = ? order by a.create_date", 
+				[$id]);
+			$result["answers"] = $answers;
+		}
+
+		return $this->corsjson($result);
+    }
+
+
+    public function setbest($qid="", $aid="") {
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"问题id" => $qid,
+			"回答id" => $aid
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$answer = new Answer;
+		// 所有都清零
+		$answer->save([
+		    'bestAnswer'  => 0
+		],['qid' => $qid]);
+
+		// 设置最佳答案
+		$rst = $answer->save([
+		    'bestAnswer'  => 1
+		],['id' => $aid]);
+
+		if($rst) {
+			$result["data"]	= [ // 数据内容
+				"status" => "ok", // 存取状态：[字符串：必填] "ok" 成功 "fail" 失败
+	    		"msg" => "数据提交成功" // 附加信息：[字符串：选填]
+			];
+		} else {
+	    	$result =  [
+	    		"errcode"=> -1, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+				"errmsg"=> "数据保存失败", // 错误信息：[字符串：默认为空]
+			];
+		}
+
+		return $this->corsjson($result);
+    }
+
+    public function reply($uid="", $qid="", $content="") {
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"用户id" => $uid,
+			"问题id" => $qid,
+			"回帖内容" => $content
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$answer = new Answer;
+
+		// 保存回帖信息
+		$answer->data([
+		    'uid'  =>  $uid,
+		    'qid'  =>  $qid,
+		    'content'  =>  $content,
+		]);
+		$rst = $answer->save();
+
+		if($rst) {
+			$result["data"]	= [ // 数据内容
+				"status" => "ok", // 存取状态：[字符串：必填] "ok" 成功 "fail" 失败
+	    		"msg" => "数据提交成功" // 附加信息：[字符串：选填]
+			];
+		} else {
+	    	$result =  [
+	    		"errcode"=> -1, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+				"errmsg"=> "数据保存失败", // 错误信息：[字符串：默认为空]
+			];
+		}
+
+		return $this->corsjson($result);
+    }
+
+    public function favorite($id="", $uid="") {
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"问题id" => $id,
+			"用户id" => $uid
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		// 添加用户浏览记录
+		$rst= $this->addFavorite($uid, "问答", $id);
+
+		if($rst == "您已经收藏过了。") {
+			$result["data"] = [ // 数据内容
+			    "status" => "ok", // 存取状态：[字符串：必填] "ok" 成功 "fail" 失败
+			    "msg" => "您已经收藏过了。" // 附加信息：[字符串：选填]
+			];
+		} else if($rst) {
+			$result["data"] = [ // 数据内容
+			    "status" => "ok", // 存取状态：[字符串：必填] "ok" 成功 "fail" 失败
+			    "msg" => "收藏成功" // 附加信息：[字符串：选填]
+			];
+		} else {
+	    	$result =  [
+	    		"errcode"=> -1, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+				"errmsg"=> "收藏失败", // 错误信息：[字符串：默认为空]
+			];
+		}
 
 		return $this->corsjson($result);
     }

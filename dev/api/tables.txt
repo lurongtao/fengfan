@@ -65,3 +65,24 @@ CREATE TABLE `visit_history` (
   `visit_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `interview_answer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qid` int(11) NOT NULL COMMENT '问题id',
+  `uid` int(11) NOT NULL,
+  `content` varchar(200) NOT NULL,
+  `bestAnswer` tinyint(4) NOT NULL DEFAULT '0',
+  `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `interview_question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `tag` varchar(45) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `content` varchar(200) NOT NULL,
+  `hits` int(11) NOT NULL DEFAULT '0',
+  `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

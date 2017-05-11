@@ -89,8 +89,116 @@
 	<button onclick="qandafavorite()">收藏</button>
 	<span>完成</span>
 </div>
+<hr/>
+<h2>面试题</h2>
+<div>
+	<button onclick="interviewqAdd()">添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="interviewqlist()">列表</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="interviewqdetail()">详情</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="interviewqSetbest()">设置最佳答案</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="interviewqreply()">回帖</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="interviewqfavorite()">收藏</button>
+	<span>完成</span>
+</div>
 </body>
 <script type="text/javascript">
+	function interviewqfavorite() {
+		$.ajax({
+			url:"../api/interviewq/favorite/",
+			type: "post",
+			data: {
+			  uid: 2, // 用户ID [数值：必填]
+			  id: 23 // 视频ID [数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function interviewqreply() {
+		$.ajax({
+			url:"../api/interviewq/reply/",
+			type: "post",
+			data: {
+			  uid: 4,
+			  qid: 5, // 问题id：[数值：必填]
+			  content: "angular就这么用。" // 回帖内容：[字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function interviewqSetbest() {
+		$.ajax({
+			url:"../api/interviewq/setbest/",
+			type: "post",
+			data: {
+			  qid: 5, // 问题id：[数值：必填]
+			  aid: 2 // 回答id：[数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function interviewqdetail() {
+		$.ajax({
+			url:"../api/interviewq/detail/",
+			type: "post",
+			data: {
+			  uid: 4, // 用户ID [数值：必填] 用于记录浏览过
+			  id: 5 // 问答id：[数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function interviewqlist() {
+		$.ajax({
+			url:"../api/interviewq/list/",
+			type: "post",
+			data: {
+			  // condition: "react",
+			  start: 0, //记录开始值 [数值：必填]
+			  count: 10 //返回记录条数 [数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function interviewqAdd() {
+		$.ajax({
+			url:"../api/interviewq/add/",
+			type: "post",
+			data: {
+			  uid: 4, // 用户ID [数值：必填]
+			  tag: "angular",
+			  title: "angular  怎么用？", //标题 [字符串：必填]
+			  content: "我在网上查的用dangerouslySetInnerHTML,可是我不会用" //内容： [字符串：必填]"
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
 	function qandafavorite() {
 		$.ajax({
 			url:"../api/qanda/favorite/",

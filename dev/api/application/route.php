@@ -18,4 +18,6 @@ return [
     'api/video/:method' =>  ['api/videos/:method', ['method' => 'get|post']],
     'api/qanda/list' =>  ['api/qandA/questionList', ['method' => 'get|post']],
     'api/qanda/:method' =>  ['api/qandA/:method', ['method' => 'get|post']],
+    'api/interviewq/list' =>  ['api/interviewq/questionList', ['method' => 'get|post']],
+    'api/interviewq/:method' =>  ['api/interviewq/:method', ['method' => 'get|post']],
 ];

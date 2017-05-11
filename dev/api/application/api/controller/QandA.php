@@ -167,7 +167,7 @@ class QandA extends FengfanController {
 					WHERE
 					    a.qid = ? order by a.create_date", 
 				[$id]);
-			$result["answers"] = $answers;
+			$result["data"]["answers"] = $answers;
 		}
 
 		return $this->corsjson($result);

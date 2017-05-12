@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack-dev-server",
-    "pack": "webpack --progress --colors"
+    "pack": "webpack --progress --colors",
+    "db": "json-server src/mock/mock.js  -p 9000  --routes src/mock/routes.json"
   },
   "author": "",
   "license": "ISC",

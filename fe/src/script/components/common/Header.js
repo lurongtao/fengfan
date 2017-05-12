@@ -12,8 +12,8 @@ class Header extends Component {
         </div>
         <ul className="nav">
           <li>首页</li>
-          <li className="active">视频</li>
-          <li>问答</li>
+          <li >视频</li>
+          <li className="active">问答</li>
           <li>招聘</li>
         </ul>
         <div className="user">

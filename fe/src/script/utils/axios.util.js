@@ -11,6 +11,18 @@ const Axios = {
     .catch(function (error) {
       console.log(error);
     })
+  },
+
+  post: (uri, params, cb)=>{
+    axios.get(uri, {
+      params: params
+    })
+    .then(function (response) {
+      cb(response)
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 }
 

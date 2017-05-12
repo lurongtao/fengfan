@@ -1,0 +1,41 @@
+{
+  "errcode": 0,
+  "errmsg": "",
+  "data": {
+    "id": 10,
+    "title": "如何绘制一个精美的图标？",
+    "content": "超写实的图标，在设计中比较常见，案例中的写实图标，给初学者一个最好的借鉴。超写实的图标，在设计中比较常见，案例中的写实图标，给初学者一个最好的鉴。在设计中比较常见，案例中的写实。",
+  	"author": "橙色大海",
+  	"createDate": "2017.04.02  9:24",
+  	"answers": [
+  	  {
+  	    "id": 12,
+  	    "author": "橙色大海",
+  	    "createDate": "5分钟前",
+  	    "content": "我在网上查的用dangerouslySetInnerHTML,可是我不会用",
+  	    "bestAnswer": true
+  	  },
+      {
+  	    "id": 14,
+  	    "author": "小R",
+  	    "createDate": "8分钟前",
+  	    "content": "手绘中经常用到一些真实的照片场景。",
+  	    "bestAnswer": true
+  	  },
+      {
+  	    "id": 18,
+  	    "author": "小M",
+  	    "createDate": "15分钟前",
+  	    "content": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？该视频将完整的。",
+  	    "bestAnswer": true
+  	  },
+      {
+  	    "id": 29,
+  	    "author": "小S",
+  	    "createDate": "52分钟前",
+  	    "content": "不知道",
+  	    "bestAnswer": true
+  	  }
+  	]
+  }
+}

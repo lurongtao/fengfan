@@ -108,7 +108,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.ejs',
       filename: 'index.html',
-      title: '豆瓣电影',
+      title: '锋帆',
       name: 'kailong'
     }),
 

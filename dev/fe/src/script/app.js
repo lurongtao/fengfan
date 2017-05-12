@@ -15,8 +15,8 @@ ReactDOM.render((
   <Provider store={store().store}>
     <Router history={hashHistory}>
       <Route path="/" component={Index}>
+        <IndexRedirect to="/video/list" />
         <Route path="video">
-          <IndexRoute component={VideoList} />
           <Route path="list" component={VideoList}></Route>
         </Route>
       </Route>

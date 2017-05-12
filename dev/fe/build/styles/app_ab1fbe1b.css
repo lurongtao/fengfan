@@ -1,0 +1,436 @@
+@charset "UTF-8";
+body {
+  background: #f1f1f1;
+}
+.m-header {
+  height: 100px;
+  width: 100%;
+  min-width: 1140px;
+  background: #fff;
+}
+.m-header .logo {
+  float: left;
+  margin-right: 30px;
+}
+.m-header .nav {
+  float: left;
+}
+.m-header .nav li {
+  width: 95px;
+  height: 100%;
+  float: left;
+  line-height: 100px;
+  text-align: center;
+  font-size: 24px;
+  margin: 0 10px;
+  box-sizing: border-box;
+}
+.m-header .nav li.active {
+  border-top: solid 2px #49b0f7;
+  line-height: 96px;
+  color: #49b0f7;
+}
+.m-header .search {
+  width: 309px;
+  height: 100%;
+  float: right;
+  line-height: 100px;
+}
+.m-header .search .ant-input {
+  height: 49px;
+  border-radius: 25px;
+  font-size: 16px;
+}
+.m-header .search .ant-input-search-icon {
+  font-size: 26px;
+  color: #d1d1d1;
+  margin-right: 6px;
+}
+.m-header .user {
+  float: right;
+  height: 100%;
+  width: 110px;
+  line-height: 100px;
+}
+.m-header .user span {
+  display: block;
+  float: left;
+  line-height: 100px;
+  text-align: center;
+  font-size: 24px;
+  color: #49b0f7;
+}
+.m-header .user span img {
+  margin: 24px 10px 0 10px;
+}
+.m-footer {
+  height: 146px;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 20px;
+}
+.m-footer ul {
+  width: 100%;
+}
+.m-footer ul li {
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 16px;
+  height: 16px;
+  border-right: solid 1px #49b0f7;
+  line-height: 16px;
+  color: #49b0f7;
+}
+.m-footer ul li:first-child {
+  border: 0;
+  position: relative;
+  width: 100px;
+}
+.m-footer ul li:first-child img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.m-footer ul li:last-child {
+  border: 0;
+}
+.m-footer p {
+  margin-top: 20px;
+  font-size: 14px;
+}
+.m-video-list {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  min-width: 1140px;
+}
+.m-video-list .nav {
+  background: #fff;
+  box-sizing: border-box;
+  padding: 0 40px;
+}
+.m-video-list .nav .cat {
+  border-bottom: dashed 1px #e5e5e5;
+  position: relative;
+}
+.m-video-list .nav .cat .title {
+  top: 34px;
+  position: absolute;
+  width: 100px;
+  color: #7f7f7f;
+  font-weight: normal;
+}
+.m-video-list .nav .cat .content {
+  line-height: 50px;
+  padding-left: 100px;
+}
+.m-video-list .nav ul {
+  line-height: 104px;
+}
+.m-video-list .nav ul li {
+  display: inline-block;
+  color: #7f7f7f;
+  width: 200px;
+  font-size: 24px;
+  text-align: center;
+}
+.m-video-list .nav ul li.title {
+  text-align: left;
+  width: 100px;
+}
+.m-video-list .nav ul li i {
+  font-style: normal;
+  background: #49b0f7;
+  line-height: 104px;
+  padding: 10px 40px;
+  color: #fff;
+}
+.m-video-list .list {
+  background: #fff;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+.m-video-list .list .ant-tabs-nav {
+  margin: 12px 0 0 40px;
+  font-size: 22px;
+}
+.m-video-list .list .ant-tabs-nav .ant-tabs-tab-active {
+  color: #ff8a0c;
+}
+.m-video-list .list .ant-tabs-nav .ant-tabs-ink-bar {
+  background-color: #ff8a0c;
+}
+.m-list-content {
+  padding: 20px 20px 40px 40px;
+}
+.m-list-content ul li {
+  margin-right: 20px;
+  width: 325px;
+}
+.m-list-content ul li h1 {
+  font-size: 24px;
+  color: #7f7f7f;
+  font-weight: normal;
+  padding-bottom: 14px;
+}
+.m-list-content ul li h2 {
+  font-size: 24px;
+  color: #333333;
+  font-weight: normal;
+  margin-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.m-list-content ul li h3 {
+  font-size: 16px;
+  color: #9b9b9b;
+  font-weight: normal;
+  line-height: 30px;
+}
+.m-list-content ul li p {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.19px;
+  text-align: left;
+  line-height: 20px;
+  margin-top: 5px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.m-qanda-list {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  min-width: 1140px;
+}
+.m-qanda-list .nav {
+  background: #fff;
+  box-sizing: border-box;
+  padding: 0 40px;
+}
+.m-qanda-list .nav .cat {
+  border-bottom: dashed 1px #e5e5e5;
+  position: relative;
+}
+.m-qanda-list .nav .cat .title {
+  top: 34px;
+  position: absolute;
+  width: 100px;
+  color: #7f7f7f;
+  font-weight: normal;
+}
+.m-qanda-list .nav .cat .content {
+  line-height: 50px;
+  padding-left: 100px;
+}
+.m-qanda-list .nav ul {
+  line-height: 104px;
+}
+.m-qanda-list .nav ul li {
+  display: inline-block;
+  color: #7f7f7f;
+  width: 200px;
+  font-size: 24px;
+  text-align: center;
+}
+.m-qanda-list .nav ul li.title {
+  text-align: left;
+  width: 100px;
+}
+.m-qanda-list .nav ul li i {
+  font-style: normal;
+  background: #49b0f7;
+  line-height: 104px;
+  padding: 10px 40px;
+  color: #fff;
+}
+.m-qanda-list .list {
+  background: #fff;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+.m-qanda-list .list thead {
+  width: 1360px;
+  height: 80px;
+}
+.m-qanda-list .list thead th {
+  text-align: center;
+  color: #ffffff;
+  background-color: #71c5ff;
+  font-size: 20px;
+}
+.m-qanda-list .list tbody {
+  text-align: center;
+}
+.m-qanda-list .list tbody td {
+  font-size: 18px;
+}
+.m-qanda-detail {
+  width: 1440px;
+}
+.m-qanda-detail .photo {
+  position: absolute;
+  left: 668px;
+  top: 136px !important;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+}
+.m-qanda-detail .photo img {
+  width: 100%;
+}
+.m-qanda-detail .main {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  min-width: 1140px;
+  padding-top: 77px;
+}
+.m-qanda-detail .main .article {
+  background: #fff;
+  box-sizing: border-box;
+  padding: 0 40px;
+}
+.m-qanda-detail .main .article .author b {
+  font-family: PingFangSC-Medium;
+  font-size: 20px;
+  color: #ff8a0c;
+  letter-spacing: 0.24px;
+  line-height: 12px;
+  text-align: center;
+  display: block;
+  padding-top: 96px;
+}
+.m-qanda-detail .main .article .author i {
+  font-size: 18px;
+  margin-top: 10px;
+  padding: 10px;
+  color: #cccccc;
+  letter-spacing: 0.4px;
+  line-height: 12px;
+  text-align: center;
+  display: block;
+}
+.m-qanda-detail .main .article .title {
+  padding-top: 60px;
+}
+.m-qanda-detail .main .article .title div {
+  font-family: PingFangSC-Medium;
+  font-size: 20px;
+  color: #333333;
+  letter-spacing: 0.24px;
+  line-height: 36px;
+  text-align: left;
+  font-weight: bold;
+}
+.m-qanda-detail .main .article .title p {
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #7f7f7f;
+  letter-spacing: 0.26px;
+  line-height: 24px;
+  text-align: left;
+  padding-top: 6px;
+}
+.m-qanda-detail .main .article .content {
+  padding-top: 48px;
+  padding-bottom: 44px;
+}
+.m-qanda-detail .main .article .content div {
+  font-family: PingFangSC-Medium;
+  font-size: 20px;
+  color: #49b0f7;
+  letter-spacing: 0.24px;
+  line-height: 36px;
+  text-align: left;
+  font-weight: bold;
+}
+.m-qanda-detail .main .article .content p {
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #7f7f7f;
+  letter-spacing: 0.26px;
+  line-height: 24px;
+  padding-top: 6px;
+  text-align: left;
+}
+.m-qanda-detail .main .section {
+  background: #fff;
+  box-sizing: border-box;
+  margin-top: 20px;
+  width: 100%;
+  padding: 40px;
+  min-width: 1140px;
+}
+.m-qanda-detail .main .section p {
+  font-family: PingFangSC-Regular;
+  font-size: 24px;
+  color: #333333;
+  letter-spacing: 0.29px;
+  line-height: 36px;
+  text-align: left;
+  padding-top: 15px;
+}
+.m-qanda-detail .main .section .reply {
+  padding-top: 20px;
+  text-align: right;
+}
+.m-qanda-detail .main .section .reply .ant-btn {
+  margin-top: 20px;
+  width: 140px;
+  height: 44px;
+  font-size: 20px;
+}
+.m-qanda-detail .main .section .cat {
+  border-bottom: solid 1px #e5e5e5;
+  padding-top: 20px;
+}
+.m-qanda-detailContent {
+  font-size: 16px;
+  padding-top: 24px;
+}
+.m-qanda-detailContent .content .item {
+  display: flex;
+}
+.m-qanda-detailContent .content .item .uidPic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.m-qanda-detailContent .content .item .uidPic img {
+  width: 100%;
+}
+.m-qanda-detailContent .content .item .uidAnswer {
+  padding-left: 20px;
+  padding-top: 21px;
+}
+.m-qanda-detailContent .content .item .uidAnswer .title b {
+  font-family: PingFangSC-Medium;
+  font-size: 18px;
+  color: #ff8a0c;
+  letter-spacing: 0.24px;
+  text-align: left;
+}
+.m-qanda-detailContent .content .item .uidAnswer .title i {
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 20px;
+  color: #cccccc;
+  letter-spacing: 0.4px;
+  line-height: 12px;
+  text-align: center;
+}
+.m-qanda-detailContent .content .item .uidAnswer .answer {
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  color: #4a4a4a;
+  letter-spacing: 0.22px;
+  text-align: left;
+}
+.m-qanda-detailContent .content .uidcat {
+  border-bottom: solid 1px #e5e5e5;
+  padding-top: 30px;
+}

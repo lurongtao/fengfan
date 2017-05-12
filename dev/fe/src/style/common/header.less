@@ -1,0 +1,61 @@
+.m-header {
+  height: 100px;
+  width: 100%;
+  min-width: 1140px;
+  background: #fff;
+  .logo {
+    float: left;
+    margin-right: 30px;
+  }
+  .nav {
+    float: left;
+    li {
+      width: 95px;
+      height: 100%;
+      float: left;
+      line-height: 100px;
+      text-align: center;
+      font-size: 24px;
+      margin: 0 10px;
+      box-sizing: border-box;
+      &.active {
+        border-top: solid 2px @base-color;
+        line-height: 96px;
+        color: @base-color;
+      }
+    }
+  }
+  .search {
+    width: 309px;
+    height: 100%;
+    float: right;
+    line-height: 100px;
+    .ant-input {
+      height: 49px;
+      border-radius: 25px;
+      font-size: 16px;
+    }
+    .ant-input-search-icon {
+      font-size: 26px;
+      color: #d1d1d1;
+      margin-right: 6px;
+    }
+  }
+  .user {
+    float: right;
+    height: 100%;
+    width: 110px;
+    line-height: 100px;
+    span {
+      display: block;
+      float: left;
+      line-height: 100px;
+      text-align: center;
+      font-size: 24px;
+      color: @base-color;
+      img {
+        margin: 24px 10px 0 10px;
+      }
+    }
+  }
+}

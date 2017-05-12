@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<style type="text/css">
+		div {
+			margin-top: 5px;
+		}
+		.todo {
+			background: pink;
+			color: #fff;
+			padding: 4px 8px;
+		}
+	</style>
+</head>
+<body>
+<h2>注册</h2>
+<div>
+	<button onclick="useradd()">用户添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="signin()">登录</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="forgotpwd()">忘记密码</button>
+	<span class="todo">TODO 发送邮件需要配置</span>
+</div>
+<div>
+	<button onclick="resetpwd()">重置密码</button>
+	<span class="todo">TODO 安全性需要考虑</span>
+</div>
+<hr/>
+<h2>视频</h2>
+<div>
+	<button onclick="videoadd()">添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="videoupdate()">修改</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="videoremove()">删除</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="videolist()">列表</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="videodetail()">详情</button>
+	<span class="todo">QandA还没有处理</span>
+</div>
+<div>
+	<button onclick="videofavorite()">收藏</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="videoqanda()">问答</button>
+	<span>完成</span>
+</div>
+<hr/>
+<h2>问答</h2>
+<div>
+	<button onclick="qandaAdd()">添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="qandaList()">列表</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="qandaDetail()">详情</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="qandasetbest()">设置最佳答案</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="qandareply()">回帖</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="qandafavorite()">收藏</button>
+	<span>完成</span>
+</div>
+<hr/>
+<h2>面试题</h2>
+<div>
+	<button onclick="interviewqAdd()">添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="interviewqlist()">列表</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="interviewqdetail()">详情</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="interviewqSetbest()">设置最佳答案</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="interviewqreply()">回帖</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="interviewqfavorite()">收藏</button>
+	<span>完成</span>
+</div>
+</body>
+<script type="text/javascript">
+	function interviewqfavorite() {
+		$.ajax({
+			url:"../api/interviewq/favorite/",
+			type: "post",
+			data: {
+			  uid: 2, // 用户ID [数值：必填]
+			  id: 23 // 视频ID [数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function interviewqreply() {
+		$.ajax({
+			url:"../api/interviewq/reply/",
+			type: "post",
+			data: {
+			  uid: 4,
+			  qid: 5, // 问题id：[数值：必填]
+			  content: "angular就这么用。" // 回帖内容：[字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function interviewqSetbest() {
+		$.ajax({
+			url:"../api/interviewq/setbest/",
+			type: "post",
+			data: {
+			  qid: 5, // 问题id：[数值：必填]
+			  aid: 2 // 回答id：[数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function interviewqdetail() {
+		$.ajax({
+			url:"../api/interviewq/detail/",
+			type: "post",
+			data: {
+			  uid: 4, // 用户ID [数值：必填] 用于记录浏览过
+			  id: 5 // 问答id：[数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function interviewqlist() {
+		$.ajax({
+			url:"../api/interviewq/list/",
+			type: "post",
+			data: {
+			  // condition: "react",
+			  start: 0, //记录开始值 [数值：必填]
+			  count: 10 //返回记录条数 [数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function interviewqAdd() {
+		$.ajax({
+			url:"../api/interviewq/add/",
+			type: "post",
+			data: {
+			  uid: 4, // 用户ID [数值：必填]
+			  tag: "angular",
+			  title: "angular  怎么用？", //标题 [字符串：必填]
+			  content: "我在网上查的用dangerouslySetInnerHTML,可是我不会用" //内容： [字符串：必填]"
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function qandafavorite() {
+		$.ajax({
+			url:"../api/qanda/favorite/",
+			type: "post",
+			data: {
+			  uid: 2, // 用户ID [数值：必填]
+			  id: 23 // 视频ID [数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function qandareply() {
+		$.ajax({
+			url:"../api/qanda/reply/",
+			type: "post",
+			data: {
+			  uid: 34, // 用户ID [数值：必填]
+			  qid: 10, // 问题id：[数值：必填]
+			  content: "这个功能主要被用来与 DOM 字符串操作类库一起使用" // 回帖内容：[字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function qandasetbest() {
+		$.ajax({
+			url:"../api/qanda/setbest/",
+			type: "post",
+			data: {
+			  qid: 2, // 问题id：[数值：必填]
+			  aid: 1 // 回答id：[数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function qandaDetail() {
+		$.ajax({
+			url:"../api/qanda/detail/",
+			type: "post",
+			data: {
+			  uid: 34, // 用户ID [数值：必填] 用于记录浏览过
+			  id: 2 // 问答id：[数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function qandaList() {
+		$.ajax({
+			url:"../api/qanda/list/",
+			type: "post",
+			data: {
+			  condition: "react", //条件，按照标题模糊查询 [字符串：选填]
+			  start: 0, //记录开始值 [数值：必填]
+			  count: 10 //返回记录条数 [数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function qandaAdd() {
+		$.ajax({
+			url:"../api/qanda/add/",
+			type: "post",
+			data: {
+			  uid: 4, // 用户ID [数值：必填]
+			  tag: "React", // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
+			  title: "React dangerouslySetInnerHTML 怎么用？123123", //标题 [字符串：必填]
+			  content: "我在网上查的用dangerouslySetInnerHTML,可是我不会用" //内容： [字符串：必填]" 
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function useradd() {
+		$.ajax({
+			url:"../api/users/add/",
+			type: "post",
+			data: {
+			  username: 'zhangsan', // [字符串：必填]
+			  password: 'abc123' // [字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function signin() {
+		$.ajax({
+			url:"../api/users/signin/",
+			type: "get",
+			data: {
+			  username: 'zhangsan', // [字符串：必填]
+			  password: 'abc123' // [字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function forgotpwd() {
+		$.ajax({
+			url:"../api/users/forgotpwd/",
+			type: "post",
+			data: {
+			  username: 'zhangsan', // [字符串：必填]
+			  email: 'lurongtao@1000phone.com' // [字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function resetpwd() {
+		$.ajax({
+			url:"../api/users/resetpwd/",
+			type: "post",
+			data: {
+			  username: "zhangsan", //用户名 [字符串：必填]
+			  newpwd: "abcd" //新密码邮箱： [字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function videoadd() {
+		$.ajax({
+			url:"../api/video/add/",
+			type: "post",
+			data: {
+			  title: "JavaScript", //标题 [字符串：必填]
+			  url: "http://www.codingke.com/v/111.mp4", //视频地址 [字符串：必填]
+			  summary: "JavaScript基础语法", //视频简介： [字符串：必填]
+			  category: { // 分类：[对象：必填]
+			    step: 1, // 阶段 [数值：必填]：1 第一阶段 2 第二阶段 3 第三阶段
+			    tag: "JavaScript" // 关键字分类 [字符串：必填]
+			  }
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
+	function videoupdate() {
+		$.ajax({
+			url:"../api/video/update/",
+			type: "post",
+			data: {
+			  id: 2,
+			  title: "JavaScript new", //标题 [字符串：必填]
+			  url: "new http://www.codingke.com/v/111.mp4", //视频地址 [字符串：必填]
+			  summary: "new JavaScript基础语法", //视频简介： [字符串：必填]
+			  category: { // 分类：[对象：必填]
+			    step: 111, // 阶段 [数值：必填]：1 第一阶段 2 第二阶段 3 第三阶段
+			    tag: "new JavaScript" // 关键字分类 [字符串：必填]
+			  }
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
+	function videodetail() {
+		$.ajax({
+			url:"../api/video/detail/",
+			type: "get",
+			data: {
+			  id: 2,
+			  uid: 3
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
+	function videoremove() {
+		$.ajax({
+			url:"../api/video/remove/",
+			type: "post",
+			data: {
+			  id: 2
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
+	function videolist() {
+		$.ajax({
+			url:"../api/video/list/",
+			type: "get",
+			data: {
+			  condition: "php",
+			  start: 0, //记录开始值 [数值：必填]
+			  count: 10 //返回记录条数 [数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
+	function videofavorite() {
+		$.ajax({
+			url:"../api/video/favorite/",
+			type: "post",
+			data: {
+			  id: 222,
+			  uid: 3
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
+	function videoqanda() {
+		$.ajax({
+			url:"../api/video/qanda/",
+			type: "post",
+			data: {
+			  uid: 2, // 用户ID [数值：必填]
+			  id: 23, // 视频ID [数值：必填]
+			  title: "CSS是什么???", // 标题 [字符串：必填]
+			  content: "CSS是什么，全称是什么" // [字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
+</script>
+</html>

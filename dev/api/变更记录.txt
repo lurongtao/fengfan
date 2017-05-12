@@ -1,0 +1,9 @@
+1. 添加用户API：增加一个email参数，用来找回密码。
+2. 视频修改API：请求参数增加视频id，用来确定需要更新的数据
+3. 视频列表API：增加查询条件字段condition，按照title模糊查询，选填
+4. 问答的添加API： 请求参数增加分类字段tag，方便用户选择问题的分类，比如html, css, 原生js, angular, vue其他等等
+5. 问答列表API：增加查询条件字段condition，按照title模糊查询，选填
+6. 问答回帖API：请求参数增加用户id(uid)，必填
+7. 面试题添加API：增加参数tag(标签)
+8. 面试题列表API：增加查询条件字段condition，按照title模糊查询，选填
+9. 面试题回帖API：请求参数增加用户id(uid)，必填

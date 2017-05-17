@@ -75,6 +75,12 @@ class Job extends FengfanController {
 			return $this->corsjson($checkresult);
 		}
 
+		$result["data"]	= $this->search($condition, $start, $count);
+
+		return $this->corsjson($result);
+    }
+
+    public function search($condition="", $start="", $count="") {
 		$job = new JobM;
 		$total = $job->where('title','like','%'. $condition .'%')->where('close_flag',0)->count();
 		$subjects = [];
@@ -102,16 +108,13 @@ class Job extends FengfanController {
 				limit ?, ?", ["%". $condition ."%", $start, $count]);
 		}
 
-		$result["data"]	= [ // 数据内容
+		return [ // 数据内容
 			"start" => $start, //记录开始值 [数值：必填]
 			"count" => $count, //返回记录条数 [数值：必填]
 			"total" => $total, //总记录条数 [数值：必填]
 			"subjects" => $subjects
 		];
-
-		return $this->corsjson($result);
     }
-
 
     public function detail($id="", $uid="") {
     	$result =  [

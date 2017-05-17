@@ -58,7 +58,7 @@ class QandA extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function questionList($condition="", $start="", $count="") {
+    public function questionList($condition="", $start=0, $count=10) {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -74,6 +74,11 @@ class QandA extends FengfanController {
 			return $this->corsjson($checkresult);
 		}
 
+		$result["data"]	= $this->search($condition, $start, $count);
+		return $this->corsjson($result);
+    }
+
+    public function search($condition="", $start=0, $count=10) {
 		$question = new Question;
 		$total = $question->where('title','like','%'. $condition .'%')->count();
 		$subjects = [];
@@ -99,14 +104,12 @@ class QandA extends FengfanController {
 				limit ?, ?", ["%". $condition ."%", $start, $count]);
 		}
 
-		$result["data"]	= [ // 数据内容
+		return [ // 数据内容
 			"start" => $start, //记录开始值 [数值：必填]
 			"count" => $count, //返回记录条数 [数值：必填]
 			"total" => $total, //总记录条数 [数值：必填]
 			"subjects" => $subjects
 		];
-
-		return $this->corsjson($result);
     }
 
 

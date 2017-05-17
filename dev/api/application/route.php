@@ -22,4 +22,5 @@ return [
     'api/interviewq/:method' =>  ['api/interviewq/:method', ['method' => 'get|post']],
     'api/job/list' =>  ['api/job/jobList', ['method' => 'get|post']],
     'api/job/:method' =>  ['api/job/:method', ['method' => 'get|post']],
+    'api/search' =>  ['api/search/search', ['method' => 'get|post']],
 ];

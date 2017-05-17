@@ -53,7 +53,7 @@
 </div>
 <div>
 	<button onclick="videodetail()">详情</button>
-	<span class="todo">QandA还没有处理</span>
+	<span>完成</span>
 </div>
 <div>
 	<button onclick="videofavorite()">收藏</button>
@@ -141,8 +141,28 @@
 	<button onclick="jobClose()">设置关闭状态</button>
 	<span>完成</span>
 </div>
+<hr/>
+<h2>招聘</h2>
+<div>
+	<button onclick="search()">查询</button>
+	<span>完成</span>
+</div>
 </body>
 <script type="text/javascript">
+	function search() {
+		$.ajax({
+			url:"../api/search/",
+			type: "post",
+			data: {
+			  q: 'react', //搜索关键字：[字符串：必填]
+			  start: 0, //记录开始值 [数值：必填]
+			  count: 10 //返回记录条数 [数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
 	function jobReply() {
 		$.ajax({
 			url:"../api/job/reply/",

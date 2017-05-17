@@ -137,7 +137,7 @@ class Videos extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function videolist($condition="", $start=0, $count=10) {
+    public function videolist($condition="", $start="", $count="") {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -152,6 +152,12 @@ class Videos extends FengfanController {
 			return $this->corsjson($checkresult);
 		}
 
+		$result["data"]	= $this->search($condition, $start, $count);
+
+		return $this->corsjson($result);
+    }
+
+    public function search($condition="", $start="", $count="") {
 		$video = new Video;
 
 		$total = 0;
@@ -167,13 +173,12 @@ class Videos extends FengfanController {
 			$subjects = Db::table("videos")->query("select title, COLUMN_JSON(category) as category, createDate from videos where title like ? limit ?,?", 
 				['%'.$condition.'%', $start, $count]);
 		}
-
-		$result["start"] = $start;
-		$result["count"] = sizeof($subjects);
-		$result["total"] = $total;
-		$result["subjects"] = $subjects;
-
-		return $this->corsjson($result);
+		return [ // 数据内容
+			"start" => $start, //记录开始值 [数值：必填]
+			"count" => $count, //返回记录条数 [数值：必填]
+			"total" => $total, //总记录条数 [数值：必填]
+			"subjects" => $subjects
+		];
     }
 
     public function detail($id="", $uid="") {

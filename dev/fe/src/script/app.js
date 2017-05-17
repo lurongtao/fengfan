@@ -17,8 +17,6 @@ import QandaAdd from './components/qanda/qandaAdd'
 import JobList from './components/job/jobList'
 // import QandaDetail from './components/qanda/qandaDetail'
 
-
-
 ReactDOM.render((
   <Provider store={store().store}>
     <Router history={hashHistory}>
@@ -36,6 +34,7 @@ ReactDOM.render((
           <Route path="detail/:id" component={QandaDetail}></Route>
           <Route path="add" component={QandaAdd}></Route>
         </Route>
+        
         {/* 招聘 job*/}
         <Route path="job">
           <Route path="list" component={JobList}></Route>

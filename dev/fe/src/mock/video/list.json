@@ -7,34 +7,40 @@
       "total": 120,
       "subjects": [
         {
-          "title": "JavaScript基础语法",
+          "title": "场景的真实云彩手绘化",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
           "category": {
             "step": 1,
             "tag": "JavaScript",
             "hot": 0,
             "new": 0
           },
-          "createDate": "5分钟前"
+          "createDate": "2017.04.02"
         },
         {
-          "title": "JavaScript基础语法",
+          "title": "场景的真实云彩手绘化",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
           "category": {
             "step": 1,
             "tag": "JavaScript",
             "hot": 0,
             "new": 0
           },
-          "createDate": "5分钟前"
+          "createDate": "2017.04.02"
         },
         {
-          "title": "JavaScript基础语法",
+          "title": "场景的真实云彩手绘化",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
           "category": {
             "step": 1,
             "tag": "JavaScript",
             "hot": 0,
             "new": 0
           },
-          "createDate": "5分钟前"
+          "createDate": "2017.04.02"
         }
       ]
     }

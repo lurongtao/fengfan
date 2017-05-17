@@ -3,5 +3,4 @@
   "/api/qanda/list": "/qandalist",
   "/api/qanda/detail": "/qandadetail",
   "/api/qanda/reply": "/qandareply"
-
 }

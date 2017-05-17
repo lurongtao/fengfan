@@ -20,4 +20,6 @@ return [
     'api/qanda/:method' =>  ['api/qandA/:method', ['method' => 'get|post']],
     'api/interviewq/list' =>  ['api/interviewq/questionList', ['method' => 'get|post']],
     'api/interviewq/:method' =>  ['api/interviewq/:method', ['method' => 'get|post']],
+    'api/job/list' =>  ['api/job/jobList', ['method' => 'get|post']],
+    'api/job/:method' =>  ['api/job/:method', ['method' => 'get|post']],
 ];

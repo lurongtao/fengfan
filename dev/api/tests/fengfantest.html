@@ -60,7 +60,7 @@
 	<span>完成</span>
 </div>
 <div>
-	<button onclick="videoqanda()">问答</button>
+	<button onclick="videoqanda()">留言</button>
 	<span>完成</span>
 </div>
 <hr/>
@@ -115,8 +115,102 @@
 	<button onclick="interviewqfavorite()">收藏</button>
 	<span>完成</span>
 </div>
+<hr/>
+<h2>招聘</h2>
+<div>
+	<button onclick="jobAdd()">添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="jobList()">列表</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="jobDetail()">详情</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="jobReply()">回帖</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="jobClose()">设置关闭状态</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="jobClose()">设置关闭状态</button>
+	<span>完成</span>
+</div>
 </body>
 <script type="text/javascript">
+	function jobReply() {
+		$.ajax({
+			url:"../api/job/reply/",
+			type: "post",
+			data: {
+			  uid: 5, // 用户ID
+			  jid: 2, // 职位id：[数值：必填]
+			  content: "我也去过，公司很不错!!" // 回帖内容：[字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function jobClose() {
+		$.ajax({
+			url:"../api/job/setstatus/",
+			type: "post",
+			data: {
+			  jid: 2 // 职位id：[数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function jobDetail() {
+		$.ajax({
+			url:"../api/job/detail/",
+			type: "post",
+			data: {
+			  uid: 34, // 用户ID [数值：必填] 用于记录浏览过
+			  id: 2 // 职位id：[数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function jobList() {
+		$.ajax({
+			url:"../api/job/list/",
+			type: "post",
+			data: {
+		      condition: "javascript", //查询条件，按照title模糊查询 [字符串：选填]
+		      start: 0, //记录开始值 [数值：必填]
+		      count: 10 //返回记录条数 [数值：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function jobAdd() {
+		$.ajax({
+			url:"../api/job/add/",
+			type: "post",
+			data: {
+		      uid: 4, // 用户ID [数值：必填]
+		      title: "javascript 框架开发2", //标题 [字符串：必填]
+		      city: "Beijing", // 城市：[字符串：必填]
+		      content: "有成熟框架开发经验" //内容： [字符串：必填]"
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
 	function interviewqfavorite() {
 		$.ajax({
 			url:"../api/interviewq/favorite/",
@@ -137,7 +231,7 @@
 			data: {
 			  uid: 4,
 			  qid: 5, // 问题id：[数值：必填]
-			  content: "angular就这么用。" // 回帖内容：[字符串：必填]
+			  content: "angular就这么用?????" // 回帖内容：[字符串：必填]
 			},
 			success: function(res) {
 				console.log(res);
@@ -219,7 +313,7 @@
 			data: {
 			  uid: 34, // 用户ID [数值：必填]
 			  qid: 10, // 问题id：[数值：必填]
-			  content: "这个功能主要被用来与 DOM 字符串操作类库一起使用" // 回帖内容：[字符串：必填]
+			  content: "这个功能主要被用来与 DOM 字符串操作类库一起使用!!!" // 回帖内容：[字符串：必填]
 			},
 			success: function(res) {
 				console.log(res);
@@ -377,7 +471,7 @@
 			url:"../api/video/detail/",
 			type: "get",
 			data: {
-			  id: 2,
+			  id: 3,
 			  uid: 3
 			},
 			success: function(res) {

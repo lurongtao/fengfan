@@ -153,8 +153,6 @@ class Videos extends FengfanController {
 		}
 
 		$video = new Video;
-		$whereSQL = " where title like'%?%' ";
-
 
 		$total = 0;
 		$subjects = [];
@@ -205,6 +203,22 @@ class Videos extends FengfanController {
 		if(!empty($data) && sizeof($data) > 0) {
 			$data[0]["category"] = json_decode($data[0]["category"]);
 			$result["data"]	= $data[0];
+
+			$qandA = Db::table("video_qanda")->query("SELECT 
+					    a.id,
+					    b.username AS author,
+					    a.title,
+					    a.content,
+					    a.create_date
+					FROM
+					    video_qanda AS a
+					        LEFT JOIN
+					    users AS b ON a.uid = b.id
+					WHERE
+					    a.vid = ?
+					ORDER BY a.create_date", 
+				[$id]);
+			$result["data"]["QandA"] = $qandA;
 		}
 
 		return $this->corsjson($result);

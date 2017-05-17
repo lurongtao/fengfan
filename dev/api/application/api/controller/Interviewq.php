@@ -233,6 +233,17 @@ class Interviewq extends FengfanController {
 
 		$answer = new InterviewAnswer;
 
+		$rst = $answer->where([
+		    'uid'  =>  $uid,
+		    'qid'  =>  $qid,
+		    'content'  =>  $content,
+		])->find();
+		if($rst) {
+			$result["errcode"] = -1;
+			$result["errmsg"] = "您已经回过这个帖子了。";
+			return $this->corsjson($result);
+		}
+
 		// 保存回帖信息
 		$answer->data([
 		    'uid'  =>  $uid,

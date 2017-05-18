@@ -1,6 +1,7 @@
 <?php
 namespace app\api\controller;
 use think\Db;
+use think\Session;
 use app\common\controller\FengfanController;
 use app\api\model\User;
 
@@ -50,7 +51,6 @@ class Users extends FengfanController {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
-
 		];
 
 		// 必须输入校验
@@ -82,6 +82,9 @@ class Users extends FengfanController {
 		    "auth" => [], // 权限信息 `待完善`
 		    "msg" => "用户登录成功" // 附加信息：[字符串：选填]
 		];
+
+		// session_start();
+		Session::set('username',$rst["username"]);
 
 		return $this->corsjson($result);
     }

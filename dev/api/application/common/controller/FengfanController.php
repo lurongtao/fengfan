@@ -3,8 +3,31 @@ namespace app\common\controller;
 use think\Controller;
 use think\Response;
 use think\Db;
+use think\Session;
+use app\common\exception\TimeoutException;
 
 class FengfanController extends Controller {
+    protected $beforeActionList = [
+        'userCheck',
+    ];
+
+	protected function userCheck() {
+		// 不需要做session校验的地址
+		$exceptUrl = [
+			"api/users/add",
+			"api/users/signin",
+			"api/users/forgotpwd",
+			"api/users/resetpwd",
+		];
+		$urlpath = request()->path();
+		if(!in_array($urlpath, $exceptUrl) && config("session_check")) {
+			// 如果session不存在
+			if(empty(Session::get('username'))) {
+				throw new TimeoutException();
+			}
+		}
+	}
+
 	protected function corsjson($data) {
 		// response()->header("Access-Control-Allow-Origin", "*");
 		$header = ["Access-Control-Allow-Origin" => "*"];
@@ -53,5 +76,11 @@ class FengfanController extends Controller {
 		}
 
 		return Db::table("favorite")->insert($data);
+	}
+
+	// 添加收藏
+	public function Sessioncheck() {
+		echo "session check";
+		return false;
 	}
 }

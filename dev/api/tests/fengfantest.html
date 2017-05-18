@@ -151,7 +151,7 @@
 <script type="text/javascript">
 	function search() {
 		$.ajax({
-			url:"../api/search/",
+			url:"../api/search",
 			type: "post",
 			data: {
 			  q: 'react', //搜索关键字：[字符串：必填]
@@ -165,7 +165,7 @@
 	}
 	function jobReply() {
 		$.ajax({
-			url:"../api/job/reply/",
+			url:"../api/job/reply",
 			type: "post",
 			data: {
 			  uid: 5, // 用户ID
@@ -179,7 +179,7 @@
 	}
 	function jobClose() {
 		$.ajax({
-			url:"../api/job/setstatus/",
+			url:"../api/job/setstatus",
 			type: "post",
 			data: {
 			  jid: 2 // 职位id：[数值：必填]
@@ -191,7 +191,7 @@
 	}
 	function jobDetail() {
 		$.ajax({
-			url:"../api/job/detail/",
+			url:"../api/job/detail",
 			type: "post",
 			data: {
 			  uid: 34, // 用户ID [数值：必填] 用于记录浏览过
@@ -204,7 +204,7 @@
 	}
 	function jobList() {
 		$.ajax({
-			url:"../api/job/list/",
+			url:"../api/job/list",
 			type: "post",
 			data: {
 		      condition: "javascript", //查询条件，按照title模糊查询 [字符串：选填]
@@ -218,7 +218,7 @@
 	}
 	function jobAdd() {
 		$.ajax({
-			url:"../api/job/add/",
+			url:"../api/job/add",
 			type: "post",
 			data: {
 		      uid: 4, // 用户ID [数值：必填]
@@ -233,7 +233,7 @@
 	}
 	function interviewqfavorite() {
 		$.ajax({
-			url:"../api/interviewq/favorite/",
+			url:"../api/interviewq/favorite",
 			type: "post",
 			data: {
 			  uid: 2, // 用户ID [数值：必填]
@@ -246,7 +246,7 @@
 	}
 	function interviewqreply() {
 		$.ajax({
-			url:"../api/interviewq/reply/",
+			url:"../api/interviewq/reply",
 			type: "post",
 			data: {
 			  uid: 4,
@@ -260,7 +260,7 @@
 	}
 	function interviewqSetbest() {
 		$.ajax({
-			url:"../api/interviewq/setbest/",
+			url:"../api/interviewq/setbest",
 			type: "post",
 			data: {
 			  qid: 5, // 问题id：[数值：必填]
@@ -273,7 +273,7 @@
 	}
 	function interviewqdetail() {
 		$.ajax({
-			url:"../api/interviewq/detail/",
+			url:"../api/interviewq/detail",
 			type: "post",
 			data: {
 			  uid: 4, // 用户ID [数值：必填] 用于记录浏览过
@@ -286,7 +286,7 @@
 	}
 	function interviewqlist() {
 		$.ajax({
-			url:"../api/interviewq/list/",
+			url:"../api/interviewq/list",
 			type: "post",
 			data: {
 			  // condition: "react",
@@ -300,7 +300,7 @@
 	}
 	function interviewqAdd() {
 		$.ajax({
-			url:"../api/interviewq/add/",
+			url:"../api/interviewq/add",
 			type: "post",
 			data: {
 			  uid: 4, // 用户ID [数值：必填]
@@ -315,7 +315,7 @@
 	}
 	function qandafavorite() {
 		$.ajax({
-			url:"../api/qanda/favorite/",
+			url:"../api/qanda/favorite",
 			type: "post",
 			data: {
 			  uid: 2, // 用户ID [数值：必填]
@@ -328,7 +328,7 @@
 	}
 	function qandareply() {
 		$.ajax({
-			url:"../api/qanda/reply/",
+			url:"../api/qanda/reply",
 			type: "post",
 			data: {
 			  uid: 34, // 用户ID [数值：必填]
@@ -342,7 +342,7 @@
 	}
 	function qandasetbest() {
 		$.ajax({
-			url:"../api/qanda/setbest/",
+			url:"../api/qanda/setbest",
 			type: "post",
 			data: {
 			  qid: 2, // 问题id：[数值：必填]
@@ -355,7 +355,7 @@
 	}
 	function qandaDetail() {
 		$.ajax({
-			url:"../api/qanda/detail/",
+			url:"../api/qanda/detail",
 			type: "post",
 			data: {
 			  uid: 34, // 用户ID [数值：必填] 用于记录浏览过
@@ -368,7 +368,7 @@
 	}
 	function qandaList() {
 		$.ajax({
-			url:"../api/qanda/list/",
+			url:"../api/qanda/list",
 			type: "post",
 			data: {
 			  condition: "react", //条件，按照标题模糊查询 [字符串：选填]
@@ -382,7 +382,7 @@
 	}
 	function qandaAdd() {
 		$.ajax({
-			url:"../api/qanda/add/",
+			url:"../api/qanda/add",
 			type: "post",
 			data: {
 			  uid: 4, // 用户ID [数值：必填]
@@ -397,10 +397,10 @@
 	}
 	function useradd() {
 		$.ajax({
-			url:"../api/users/add/",
+			url:"../api/users/add",
 			type: "post",
 			data: {
-			  username: 'zhangsan', // [字符串：必填]
+			  username: 'zhangsan123', // [字符串：必填]
 			  password: 'abc123' // [字符串：必填]
 			},
 			success: function(res) {
@@ -410,10 +410,10 @@
 	}
 	function signin() {
 		$.ajax({
-			url:"../api/users/signin/",
+			url:"../api/users/signin",
 			type: "get",
 			data: {
-			  username: 'zhangsan', // [字符串：必填]
+			  username: 'zhangsan123', // [字符串：必填]
 			  password: 'abc123' // [字符串：必填]
 			},
 			success: function(res) {
@@ -423,7 +423,7 @@
 	}
 	function forgotpwd() {
 		$.ajax({
-			url:"../api/users/forgotpwd/",
+			url:"../api/users/forgotpwd",
 			type: "post",
 			data: {
 			  username: 'zhangsan', // [字符串：必填]
@@ -436,7 +436,7 @@
 	}
 	function resetpwd() {
 		$.ajax({
-			url:"../api/users/resetpwd/",
+			url:"../api/users/resetpwd",
 			type: "post",
 			data: {
 			  username: "zhangsan", //用户名 [字符串：必填]
@@ -449,7 +449,7 @@
 	}
 	function videoadd() {
 		$.ajax({
-			url:"../api/video/add/",
+			url:"../api/video/add",
 			type: "post",
 			data: {
 			  title: "JavaScript", //标题 [字符串：必填]
@@ -468,7 +468,7 @@
 
 	function videoupdate() {
 		$.ajax({
-			url:"../api/video/update/",
+			url:"../api/video/update",
 			type: "post",
 			data: {
 			  id: 2,
@@ -488,7 +488,7 @@
 
 	function videodetail() {
 		$.ajax({
-			url:"../api/video/detail/",
+			url:"../api/video/detail",
 			type: "get",
 			data: {
 			  id: 3,
@@ -502,7 +502,7 @@
 
 	function videoremove() {
 		$.ajax({
-			url:"../api/video/remove/",
+			url:"../api/video/remove",
 			type: "post",
 			data: {
 			  id: 2
@@ -515,7 +515,7 @@
 
 	function videolist() {
 		$.ajax({
-			url:"../api/video/list/",
+			url:"../api/video/list",
 			type: "get",
 			data: {
 			  condition: "php",
@@ -530,7 +530,7 @@
 
 	function videofavorite() {
 		$.ajax({
-			url:"../api/video/favorite/",
+			url:"../api/video/favorite",
 			type: "post",
 			data: {
 			  id: 222,
@@ -544,7 +544,7 @@
 
 	function videoqanda() {
 		$.ajax({
-			url:"../api/video/qanda/",
+			url:"../api/video/qanda",
 			type: "post",
 			data: {
 			  uid: 2, // 用户ID [数值：必填]

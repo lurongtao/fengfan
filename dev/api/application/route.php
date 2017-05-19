@@ -13,6 +13,7 @@ return [
     '__pattern__' => [
         'name' => '\w+',
     ],
+    'users/reset/:token' =>  ['api/users/reset', ['method' => 'get|post']],
     'api/users/:method' =>  ['api/users/:method', ['method' => 'get|post']],
     'api/video/list' =>  ['api/videos/videolist', ['method' => 'get|post']],
     'api/video/:method' =>  ['api/videos/:method', ['method' => 'get|post']],

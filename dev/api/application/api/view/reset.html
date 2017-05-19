@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>重置密码</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<h1>重置密码</h1>
+	{notempty name="errorMsg"}
+		{$errorMsg}
+	{else /}
+		<span>新密码：</span>
+		<input type="password" id="psw1" /><br/>
+		<span>重复密码：</span>
+		<input type="password" id="psw2" /><br/>
+		<input type="button" onclick="resetPsw()" value="重置密码" />
+	{/notempty}
+</body>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+	function resetPsw() {
+		var psw1 = document.getElementById("psw1");
+		var psw2 = document.getElementById("psw2");
+		if(psw1.value == "" || psw2.value == "") {
+			alert("密码不能为空");
+			return;
+		}
+		if(psw1.value != psw2.value) {
+			alert("两次输入的密码不同。请重新输入");
+			return;
+		}
+		$.ajax({
+			url: "{$resetUrl}",
+			type: "post",
+			data: {
+				username: "{$username}",
+				token: "{$token}",
+				newpwd: psw1.value
+			},
+			success: function(data) {
+				console.log(data);
+			}
+		})
+	}
+</script>
+</html>

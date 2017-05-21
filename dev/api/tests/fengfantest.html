@@ -471,7 +471,7 @@
 			url:"../api/video/update",
 			type: "post",
 			data: {
-			  id: 2,
+			  id: 25,
 			  title: "JavaScript new", //标题 [字符串：必填]
 			  url: "new http://www.codingke.com/v/111.mp4", //视频地址 [字符串：必填]
 			  summary: "new JavaScript基础语法", //视频简介： [字符串：必填]
@@ -491,7 +491,7 @@
 			url:"../api/video/detail",
 			type: "get",
 			data: {
-			  id: 3,
+			  id: 26,
 			  uid: 3
 			},
 			success: function(res) {
@@ -505,7 +505,7 @@
 			url:"../api/video/remove",
 			type: "post",
 			data: {
-			  id: 2
+			  id: 25
 			},
 			success: function(res) {
 				console.log(res);
@@ -518,7 +518,7 @@
 			url:"../api/video/list",
 			type: "get",
 			data: {
-			  condition: "php",
+			  condition: "JavaScript",
 			  start: 0, //记录开始值 [数值：必填]
 			  count: 10 //返回记录条数 [数值：必填]
 			},

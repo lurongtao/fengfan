@@ -247,7 +247,7 @@ return [
         'email_from_username'  => 'qf_admin@163.com', //发件人EMAIL
         'email_from_name'   => '锋帆系统管理员', //发件人名称
         'email_subject'   => '千锋锋帆系统密码找回邮件', //邮件标题
-        'email_content'   => '<b>亲爱的%s，您好！</b><br/>><br/>
+        'email_content'   => '<b>亲爱的%s，您好！</b><br/><br/>
 您在%s通过邮箱申请重置千锋-锋帆系统的密码。<br/>
 修改密码请点击:<br/>
 <a href="%s">%s</a><br/>', //邮件正文

@@ -5,7 +5,7 @@ export default ()=>{
   // Map Redux states to components props
   let mapStateToProps = (state)=>{
     return {
-      title: state.title
+      id: state.id
     }
   }
 
@@ -13,7 +13,7 @@ export default ()=>{
   // Map Redux actions to components props
   let mapDispatchToProps = (dispatch)=>{
     return {
-      onChangeTitle: (action)=>dispatch(action)
+      onChangeId: (action)=>dispatch(action)
     }
   }
 
@@ -28,9 +28,19 @@ export default ()=>{
         return state
     }
   }
+  let changers = (state={id: ''}, action)=>{
+    switch (action.type) {
+      case 'SETTITLE':
+        return {
+          title: action.title
+        }
+      default:
+        return state
+    }
+  }
 
   // 创建store
-  const store = createStore(changer)
+  const store = createStore(changers)
 
   return {
     mapStateToProps,

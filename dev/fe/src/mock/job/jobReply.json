@@ -1,0 +1,12 @@
+{
+    "errcode": 0,
+    "errmsg": "",
+    "data": {
+      "status":"ok",
+      "uid": 2,
+      "id": 23,
+      "title": "工作是什么",
+      "content": "工作是什么么",
+      "createDate": "5分钟前"
+    }
+}

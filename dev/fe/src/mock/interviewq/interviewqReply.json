@@ -1,0 +1,12 @@
+{
+    "errcode": 0,
+    "errmsg": "",
+    "data": {
+      "status":"ok",
+      "uid": 2,
+      "id": 23,
+      "title": "面试是什么",
+      "content": "面试是什么么",
+      "createDate": "5分钟前"
+    }
+}

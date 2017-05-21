@@ -1,0 +1,12 @@
+{
+    "errcode": 0,
+    "errmsg": "",
+    "data": {
+      "status":"ok",
+      "uid": 2,
+      "id": 23,
+      "title": "CSS是什么",
+      "content": "CSS是什么，全称是什么",
+      "createDate": "5分钟前"
+    }
+}

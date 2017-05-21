@@ -1,0 +1,185 @@
+.m-admin{
+  min-width: @min-width;
+  .adList{
+    padding:20px;
+    margin: 0 auto;
+    .listContainer{
+      background:#fff;
+      padding:35px 0 0 40px;
+      .tit{
+        width: 312px;
+        height: 36px;
+        font-size:20px;
+        color:#71c5ff;
+        letter-spacing:0.24px;
+        line-height:36px;
+        text-align:left;
+        margin-bottom: 24px;
+      }
+      .ant-table{
+        border-radius:0;
+        .ant-table-body{
+          width: 1010px;
+          table{
+            // width: 1010px;
+            border-radius:0;
+            text-align: center;
+            .ant-table-thead{
+              tr{
+                th{
+                  // &:nth-child(1){
+                  //     margin-left: 96px;
+                  // }
+                  height: 80px;
+                  background:#71c5ff;
+                  font-size:20px;
+                  color:#ffffff;
+                  letter-spacing:0.24px;
+                  text-align:center;
+                }
+              }
+            }
+          }
+        }
+        .ant-table-tbody{
+          tr{
+            td{
+              font-size:18px;
+              color:#4a4a4a;
+              &:nth-child(1){
+                a{
+                  display: block;
+                  width: 305px;
+                  overflow: hidden;
+                  text-overflow:ellipsis;
+                  white-space: nowrap;
+                }
+              }
+              &:nth-child(3){
+                a{
+                  display: inline-block;
+                  border:1px solid #cccccc;
+                  border-radius:4px;
+                  width:74px;
+                  height:34px;
+                  line-height: 34px;
+                }
+              }
+              a{
+                font-size:18px;
+                color:#4a4a4a;
+              }
+              .update{
+                margin-right: 10px;
+              }
+              .delete{
+
+              }
+            }
+          }
+        }
+      }
+      .ant-pagination{
+        float: none;
+        margin-left: 657px;
+      }
+    }
+  }
+
+  .add,.m-update{
+    padding:20px;
+    margin: 0 auto;
+    .container{
+      background:#fff;
+      padding:35px 0 67px 40px;
+      .tit{
+        width: 312px;
+        height: 36px;
+        font-size:20px;
+        color:#71c5ff;
+        letter-spacing:0.24px;
+        line-height:36px;
+        text-align:left;
+        margin-bottom: 19px;
+      }
+      .title{
+        width: 900px;
+        height: 35px;
+        border-bottom:1px solid #e5e5e5;
+        margin-bottom: 16px;
+        input{
+          width: 100%;
+          height: 29px;
+          line-height: 29px;
+          outline: none;
+          border: 0;
+          font-size:18px;
+          color:#9b9b9b;
+          letter-spacing:0.26px;
+        }
+      }
+      .classify,.city{
+        width: 300px;
+        height: 43px;
+        line-height: 43px;
+        text-align: center;
+        .ant-select-selection{
+          display: inline-block;
+          width: 300px;
+          font-size:18px;
+          color:#9b9b9b;
+          letter-spacing:0.26px;
+          outline: none;
+        }
+      }
+      .txt{
+        textarea{
+          width: 900px;
+          height: 200px;
+          outline: none;
+        }
+      }
+      button{
+        border-radius: 0;
+        width: 144px;
+        height: 49px;
+        border:2px solid #e0e0e0;
+        margin-top: 40px;
+        background:#f3f3f3;
+        span{
+          display: inline-block;
+          font-size:20px;
+          color:#4a4a4a;
+          letter-spacing:0.29px;
+          line-height:28px;
+        }
+      }
+    }
+  }
+
+  .subBtn{
+    margin-top: 31px;
+    border-radius:0;
+    border:none;
+    background:#49b0f7;
+    width:144px;
+    height:48px;
+    font-size:20px;
+    letter-spacing:0.29px;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+  }
+
+}
+.ant-message-notice-content{
+  padding:40px 50px;
+  .ant-message-custom-content{
+    .anticon{
+     font-size: 25px;
+    }
+    span{
+      font-size: 25px;
+    }
+  }
+}

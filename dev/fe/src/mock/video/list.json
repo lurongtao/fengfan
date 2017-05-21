@@ -7,38 +7,226 @@
       "total": 120,
       "subjects": [
         {
-          "title": "场景的真实云彩手绘化",
+          "id":1,
+          "title": "(JS第一阶段new1 hot4)",
           "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
           "img": "./images/img.png",
+          "url": "http://www.codingke.com/v/111.mp4",
           "category": {
             "step": 1,
-            "tag": "JavaScript",
-            "hot": 0,
-            "new": 0
+            "tag": "JS",
+            "hot": 4,
+            "new": 1
           },
           "createDate": "2017.04.02"
         },
         {
-          "title": "场景的真实云彩手绘化",
+          "id":2,
+          "title": "(JS第二阶段 new2 hot3)",
           "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
           "img": "./images/img.png",
+          "url": "http://www.codingke.com/v/111.mp4",
           "category": {
-            "step": 1,
-            "tag": "JavaScript",
-            "hot": 0,
-            "new": 0
+            "step": 2,
+            "tag": "JS",
+            "hot": 3,
+            "new": 2
           },
           "createDate": "2017.04.02"
         },
         {
-          "title": "场景的真实云彩手绘化",
+          "id":3,
+          "title": "(JS第三阶段 new3 hot2)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 3,
+            "tag": "JS",
+            "hot": 3,
+            "new": 2
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":4,
+          "title": "(JS第一阶段new4 hot1)",
           "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
           "img": "./images/img.png",
           "category": {
             "step": 1,
-            "tag": "JavaScript",
-            "hot": 0,
-            "new": 0
+            "tag": "JS",
+            "hot": 1,
+            "new": 4
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":5,
+          "title": "(HTML5第一阶段)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 1,
+            "tag": "HTML5",
+            "hot": 1,
+            "new": 4
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":6,
+          "title": "(HTML5第二阶段)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 2,
+            "tag": "HTML5",
+            "hot": 2,
+            "new": 3
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":7,
+          "title": "(HTML5第三阶段)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 3,
+            "tag": "HTML5",
+            "hot": 3,
+            "new": 2
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":8,
+          "title": "(HTML5第一阶段)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 1,
+            "tag": "HTML5",
+            "hot": 4,
+            "new": 1
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":9,
+          "title": "(PHP第一阶段)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 1,
+            "tag": "PHP",
+            "hot": 1,
+            "new": 4
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":10,
+          "title": "(PHP第二阶段)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 2,
+            "tag": "PHP",
+            "hot": 2,
+            "new": 3
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":11,
+          "title": "(PHP第三阶段)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 3,
+            "tag": "PHP",
+            "hot": 3,
+            "new": 2
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":12,
+          "title": "(PHP第一阶段)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 1,
+            "tag": "PHP",
+            "hot": 4,
+            "new": 1
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":13,
+          "title": "(VUE第一阶段hot1)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 1,
+            "tag": "VUE",
+            "hot": 1,
+            "new": 4
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":14,
+          "title": "(VUE第二阶段ho2)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 2,
+            "tag": "VUE",
+            "hot": 2,
+            "new": 3
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":15,
+          "title": "(VUE第三阶段hot3)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 3,
+            "tag": "VUE",
+            "hot": 3,
+            "new": 2
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":16,
+          "title": "(VUE第一阶段hot6 new5)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "category": {
+            "step": 1,
+            "tag": "VUE",
+            "hot": 6,
+            "new": 5
+          },
+          "createDate": "2017.04.02"
+        },
+        {
+          "id":16,
+          "title": "(VUE第一阶段hot5 new 6)",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "img": "./images/img.png",
+          "url": "http://www.codingke.com/v/111.mp4",
+          "category": {
+            "step": 1,
+            "tag": "VUE",
+            "hot": 5,
+            "new": 6
           },
           "createDate": "2017.04.02"
         }

@@ -5,30 +5,10 @@ import Axios from '../../utils/axios.util';
 
 
 class qandaDetailContent extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      // columns: [],
-      content: [],
-    };
-
-    // 获取数据
-    // this.getData();
-  };
-
-  getData() {
-    Axios.get('/api/qanda/detail', {
-      // uid: 34,
-      // id: this.props.params.id
-    }, (res)=>{
-      console.log(res.data.data);
-
-      this.setState({
-        // detailData: detailData
-      });
-    })
-  };
+  setBestAnswer(){
+    console.log(1)
+  }
 
   render() {
     return (
@@ -49,6 +29,9 @@ class qandaDetailContent extends React.Component {
             </div>
           </div>
           <div className="uidcat"></div>
+        </div>
+        <div className="bestAnswer" onClick={this.setBestAnswer.bind(this)}>
+        <span>设为最佳回帖</span>
         </div>
       </div>
     )

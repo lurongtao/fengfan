@@ -10,18 +10,23 @@
   .nav {
     float: left;
     li {
-      width: 95px;
-      height: 100%;
       float: left;
-      line-height: 100px;
-      text-align: center;
-      font-size: 24px;
-      margin: 0 10px;
-      box-sizing: border-box;
-      &.active {
-        border-top: solid 2px @base-color;
-        line-height: 96px;
-        color: @base-color;
+      a{
+        color:#333;
+        text-decoration:none;
+        display:inline-block;
+        width: 95px;
+        height: 100%;
+        line-height: 100px;
+        text-align: center;
+        font-size: 24px;
+        margin: 0 10px;
+        box-sizing: border-box;
+        &.active {
+          border-top: solid 2px @base-color;
+          line-height: 96px;
+          color: @base-color;
+        }
       }
     }
   }

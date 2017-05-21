@@ -1,0 +1,48 @@
+{
+  "errcode": 0,
+  "errmsg": "",
+  "data": {
+    "id": 10,
+    "title": "在面对考官的时候，你应该准备些什么",
+    "content": "面试题啊，面试题啊，面试题啊，下功夫。努力学好每一个知识点，有很强的自学能力，下功夫。努力学好每一个知识点，有很强的自学能力，下功夫。努力学好每一个知识点，有很强的自学能力，下功夫。",
+  	"author": "挂不挂科",
+  	"createDate": "2017.04.02  9:24",
+  	"answers": [
+  	  {
+  	    "id": 12,
+  	    "author": "小斌子面试把把过",
+  	    "createDate": "5分钟前",
+  	    "content": "我在网上查的用dangerouslySetInnerHTML,可是我不会用",
+  	    "bestAnswer": true
+  	  },
+      {
+  	    "id": 14,
+  	    "author": "小著子面试一百分",
+  	    "createDate": "8分钟前",
+  	    "content": "手绘中经常用到一些真实的照片场景。",
+  	    "bestAnswer": true
+  	  },
+      {
+  	    "id": 18,
+  	    "author": "小腰子",
+  	    "createDate": "15分钟前",
+  	    "content": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？该视频将完整的。",
+  	    "bestAnswer": true
+  	  },
+      {
+  	    "id": 29,
+  	    "author": "大S",
+  	    "createDate": "52分钟前",
+  	    "content": "不知道",
+  	    "bestAnswer": true
+  	  },
+      {
+        "id": 30,
+        "author": "小S",
+        "createDate": "52分钟前",
+        "content": "不知道",
+        "bestAnswer": true
+      }
+  	]
+  }
+}

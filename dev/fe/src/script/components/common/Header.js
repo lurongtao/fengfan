@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router'
+import { connect } from 'react-redux'
+import store from '../../redux/store'
 
 import { Input } from 'antd'
 const Search = Input.Search
 
 class Header extends Component {
+
   render() {
     return (
       <div className="m-header">
@@ -11,10 +15,10 @@ class Header extends Component {
           <img src="./images/logo.png" alt="锋帆logo"/>
         </div>
         <ul className="nav">
-          <li>首页</li>
-          <li >视频</li>
-          <li className="active">问答</li>
-          <li>招聘</li>
+          <li><Link to="/index/list" activeClassName="active">首页</Link></li>
+          <li><Link to="/video" activeClassName="active">视频</Link></li>
+          <li><Link to="/qanda" activeClassName="active">问答</Link></li>
+          <li><Link to={"/job"||"/interviewq"} activeClassName="active">招聘</Link></li>
         </ul>
         <div className="user">
           <span>
@@ -22,15 +26,24 @@ class Header extends Component {
           </span>
           <span>3</span>
         </div>
-        <div className="search">
+        <a className="search">
           <Search
+            ref="input"
             placeholder="请输入关键字"
-            onSearch={value => console.log(value)}
+            onSearch={value => this.props.link(value,this)}
             />
-        </div>
+        </a>
       </div>
     )
   }
+  componentDidUpdate(){
+    // console.log(this.refs.input.input.refs.input.value)
+
+
+  }
 }
 
-export default Header
+export default connect(
+  store().mapStateToProps,
+  store().mapDispatchToProps
+)(Header)

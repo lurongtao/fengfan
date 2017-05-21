@@ -3,10 +3,17 @@
   box-sizing: border-box;
   padding: 20px;
   min-width: 1140px;
+  .go-q{
+    img{
+      width:100%;
+      height:100%;
+    }
+  }
   .nav {
     background: #fff;
     box-sizing: border-box;
     padding: 0 40px;
+    margin-top:20px;
     .cat {
       border-bottom: dashed 1px #e5e5e5;
       position: relative;
@@ -15,7 +22,8 @@
         position: absolute;
         width: 100px;
         color: #7f7f7f;
-        font-weight: normal;
+        font-style:normal;
+        font-size:24px;
       }
       .content {
         line-height: 50px;
@@ -36,33 +44,61 @@
         }
         i {
           font-style: normal;
-          background: @base-color;
           line-height: 104px;
           padding: 10px 40px;
-          color: #fff;
+          cursor:pointer;
+          &.active{
+            background: @base-color;
+            color: #fff;
+          }
         }
+
       }
     }
   }
   .list {
-    background: #fff;
     box-sizing: border-box;
-    margin-top: 20px;
-    thead {
-      width:1360px;
-      height:80px;
-      th {
+    .ant-table{
+      background: #fff;
+      padding-left:40px;
+      padding-right:38px;
+    }
+    table{
+      border-left:1px solid #d3d9dd;
+      border-right:1px solid #d3d9dd;
+      margin-bottom:42px;
+      thead {
+        width:1360px;
+        height:80px;
+        th {
+          text-align: center;
+          color: #ffffff;
+          background-color: #71c5ff;
+          font-size: 20px;
+          height:80px;
+        }
+      }
+      tbody {
         text-align: center;
-        color: #ffffff;
-        background-color: #71c5ff;
-        font-size: 20px;
+        td{
+          font-size: 18px;
+          height:80px;
+        }
       }
     }
-    tbody {
-      text-align: center;
-      td{
-        font-size: 18px;
-
+    ul{
+      width:100%;
+      text-align:center;
+      margin:32px 0;
+      li{
+        background:#f1f1f1;
+        &.ant-pagination-item-active{
+          background-color:#71c5ff;
+          border-color:#71c5ff;
+        }
+        &:hover{
+          border-color:#71c5ff;
+        }
       }
     }
   }

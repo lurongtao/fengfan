@@ -3,8 +3,10 @@ namespace app\api\controller;
 use think\Db;
 use app\common\controller\FengfanController;
 use app\api\model\Video;
+use app\api\model\VideoCategory;
 
 class Videos extends FengfanController {
+	protected $toJsonSQL = "concat('{\"step\":\"', b.step ,'\",\"tag\":\"', b.tag, '\",\"hot\":\"', b.hot, '\",\"new\":\"', b.new, '\"}')";
     public function add($title="", $url="", $summary="", $category="") {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
@@ -26,21 +28,24 @@ class Videos extends FengfanController {
 
 		$video = new Video;
 
+		$video->data([
+			"title" => $title,
+			"url" => $url,
+			"summary" => $summary,
+		]);
+		$video->save();
 
-		// 保存到数据库
-		$cnt = Db::table("videos")->execute("INSERT INTO `videos`
+		$cnt = Db::table("video_category")->execute("INSERT INTO `video_category`
 			(
-			`title`,
-			`url`,
-			`summary`,
-			`category`)
+			`vid`,
+			`step`,
+			`tag`)
 			VALUES
 			(
 			?,
 			?,
-			?,
-			COLUMN_CREATE('step', ?, 'tag', ?))", 
-			[$title, $url, $summary, $category["step"], $category["tag"]]);
+			?)", 
+			[$video->id, $category["step"], $category["tag"]]);
 
 		$result["data"]	= [ // 数据内容
 				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
@@ -85,10 +90,16 @@ class Videos extends FengfanController {
 			SET
 			`title` = ?,
 			`url` = ?,
-			`summary` = ?,
-			category = COLUMN_ADD(category, 'step', ?, 'tag', ?)
+			`summary` = ?
 			WHERE `id` = ?", 
-			[$title, $url, $summary, $category["step"], $category["tag"], $id]);
+			[$title, $url, $summary, $id]);
+
+		$cnt = Db::table("video_category")->execute("UPDATE `video_category`
+			SET
+			`step` = ?,
+			`tag` = ?
+			WHERE `vid` = ?", 
+			[$category["step"], $category["tag"], $id]);
 
 		$result["data"]	= [ // 数据内容
 				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
@@ -121,6 +132,9 @@ class Videos extends FengfanController {
 
 		$video = new Video;
 		$cnt = $video->where('id', $id)->delete();
+
+		$videoCtg = new VideoCategory;
+		$cnt = $videoCtg->where('vid', $id)->delete();
 
 		$result["data"]	= [ // 数据内容
 				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
@@ -165,14 +179,20 @@ class Videos extends FengfanController {
 		if(empty($condition)) {
 			$total = $video->count();
 			// 取得数据
-			$subjects = Db::table("videos")->query("select title, COLUMN_JSON(category) as category, createDate from videos limit ?, ?", 
+			$subjects = Db::query("select a.title, " . $this->toJsonSQL . " as category, a.createDate from videos as a, video_category as b where a.id = b.vid  limit ?, ?", 
 				[$start, $count]);
 		} else {
 			$total = $video->where('title','like','%'. $condition .'%')->count();
 			// 取得数据
-			$subjects = Db::table("videos")->query("select title, COLUMN_JSON(category) as category, createDate from videos where title like ? limit ?,?", 
+			$subjects = Db::query("select a.title, " . $this->toJsonSQL . "  as category, a.createDate from videos as a, video_category as b where a.title like ? and a.id = b.vid limit ?,?", 
 				['%'.$condition.'%', $start, $count]);
 		}
+
+		// 处理category,category转为对象
+		foreach ($subjects as $key=>$st) {
+			$subjects[$key]["category"] = json_decode($st["category"]);
+		}
+
 		return [ // 数据内容
 			"start" => $start, //记录开始值 [数值：必填]
 			"count" => $count, //返回记录条数 [数值：必填]
@@ -202,10 +222,18 @@ class Videos extends FengfanController {
 		$this->addViewHistory($uid, "视频", $id);
 
 		// 取得数据
-		$data = Db::table("videos")->query("select title, COLUMN_JSON(category) as category, createDate from videos where id=?", 
+		$data = Db::table("videos")->query("select a.title, " . $this->toJsonSQL . " as category, a.createDate from videos as a, video_category as b where a.id=? and a.id=b.vid", 
 			[$id]);
 
 		if(!empty($data) && sizeof($data) > 0) {
+			// 热度+1
+			$cnt = Db::table("video_category")->execute("UPDATE `video_category`
+				SET
+				`hot` =  `hot` + 1
+				WHERE `vid` = ?", 
+				[$id]);
+
+
 			$data[0]["category"] = json_decode($data[0]["category"]);
 			$result["data"]	= $data[0];
 

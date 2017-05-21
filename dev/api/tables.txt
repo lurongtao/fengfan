@@ -86,3 +86,13 @@ CREATE TABLE `interview_question` (
   `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `video_category` (
+  `vid` int(11) NOT NULL,
+  `step` int(11) NOT NULL,
+  `tag` varchar(200) NOT NULL,
+  `hot` int(11) NOT NULL DEFAULT '0',
+  `new` int(11) NOT NULL,
+  `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`vid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

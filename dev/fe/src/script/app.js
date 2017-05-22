@@ -44,6 +44,7 @@ import Search from './components/search/search'
 //job 招聘
 import JobList from './components/job/jobList'
 import JobDetail from './components/job/JobDetail'
+import interviewqDetail from './components/job/interviewqDetail'
 // import QandaDetail from './components/qanda/qandaDetail'
 
 import Users from './components/users/Users'
@@ -90,11 +91,11 @@ ReactDOM.render((
         </Route>
 
         {/* 面试题 interview*/}
-        {/* <Route path="interviewq"> */}
-          {/* <IndexRedirect to="/job/list" /> */}
-          {/* <Route path="detail/:id" component={interviewqDetail}></Route> */}
+        <Route path="interviewq">
+          <IndexRedirect to="/job/list" />
+          <Route path="detail/:id" component={interviewqDetail}></Route>
           {/* <Route path="job/:id" component={QandaDetail}></Route> */}
-        {/* </Route> */}
+        </Route>
 
         {/* 搜索 search*/}
         <Route path="search">

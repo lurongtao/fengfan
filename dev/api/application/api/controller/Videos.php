@@ -7,7 +7,7 @@ use app\api\model\VideoCategory;
 
 class Videos extends FengfanController {
 	protected $toJsonSQL = "concat('{\"step\":\"', b.step ,'\",\"tag\":\"', b.tag, '\",\"hot\":\"', b.hot, '\",\"new\":\"', b.new, '\"}')";
-    public function add($title="", $url="", $summary="", $category="") {
+    public function add($title="", $url="", $img="", $summary="", $category="") {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -17,6 +17,7 @@ class Videos extends FengfanController {
 		$checkresult = $this->requiredCheck([
 			"标题" => $title,
 			"视频地址" => $url,
+			"视频缩略图URL" => $img,
 			"视频简介" => $summary,
 			"分类" => $category,
 			"阶段" => $category["step"],
@@ -27,10 +28,20 @@ class Videos extends FengfanController {
 		}
 
 		$video = new Video;
+		$rst = $video->where([
+			"title" => $title,
+			"url" => $url,
+		])->find();
+		if($rst) {
+			$result["errcode"] = -1;
+			$result["errmsg"] = "这个视频已经存在了，请查询一下看看。";
+			return $this->corsjson($result);
+		}
 
 		$video->data([
 			"title" => $title,
 			"url" => $url,
+			"img" => $img,
 			"summary" => $summary,
 		]);
 		$video->save();
@@ -62,7 +73,7 @@ class Videos extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function update($id="", $title="", $url="", $summary="", $category="") {
+    public function update($id="", $title="", $url="", $img="", $summary="", $category="") {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -73,6 +84,7 @@ class Videos extends FengfanController {
 			"视频id" => $id,
 			"标题" => $title,
 			"视频地址" => $url,
+			"视频缩略图URL" => $img,
 			"视频简介" => $summary,
 			"分类" => $category,
 			"阶段" => $category["step"],
@@ -90,9 +102,10 @@ class Videos extends FengfanController {
 			SET
 			`title` = ?,
 			`url` = ?,
+			`img` = ?,
 			`summary` = ?
 			WHERE `id` = ?", 
-			[$title, $url, $summary, $id]);
+			[$title, $url, $img, $summary, $id]);
 
 		$cnt = Db::table("video_category")->execute("UPDATE `video_category`
 			SET
@@ -179,12 +192,12 @@ class Videos extends FengfanController {
 		if(empty($condition)) {
 			$total = $video->count();
 			// 取得数据
-			$subjects = Db::query("select a.title, " . $this->toJsonSQL . " as category, a.createDate from videos as a, video_category as b where a.id = b.vid  limit ?, ?", 
+			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . " as category, a.createDate from videos as a, video_category as b where a.id = b.vid  limit ?, ?", 
 				[$start, $count]);
 		} else {
 			$total = $video->where('title','like','%'. $condition .'%')->count();
 			// 取得数据
-			$subjects = Db::query("select a.title, " . $this->toJsonSQL . "  as category, a.createDate from videos as a, video_category as b where a.title like ? and a.id = b.vid limit ?,?", 
+			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . "  as category, a.createDate from videos as a, video_category as b where a.title like ? and a.id = b.vid limit ?,?", 
 				['%'.$condition.'%', $start, $count]);
 		}
 
@@ -222,7 +235,7 @@ class Videos extends FengfanController {
 		$this->addViewHistory($uid, "视频", $id);
 
 		// 取得数据
-		$data = Db::table("videos")->query("select a.title, " . $this->toJsonSQL . " as category, a.createDate from videos as a, video_category as b where a.id=? and a.id=b.vid", 
+		$data = Db::table("videos")->query("select a.title, a.img, a.url, " . $this->toJsonSQL . " as category, a.createDate from videos as a, video_category as b where a.id=? and a.id=b.vid", 
 			[$id]);
 
 		if(!empty($data) && sizeof($data) > 0) {

@@ -155,6 +155,7 @@
       id: 123, //视频id [字符串：必填]
       title: "JavaScript", //标题 [字符串：必填]
       url: "http://www.codingke.com/v/111.mp4", //视频地址 [字符串：必填]
+      img: "http://www.codingke.com/files/course/2016/08-11/1638328100cc487429.jpg?1.1.3", //视频缩略图URL [字符串：必填]
       summary: "JavaScript基础语法"， //视频简介： [字符串：必填]
       category：{ // 分类：[对象：必填]
         step: 1, // 阶段 [数值：必填]：1 第一阶段 2 第二阶段 3 第三阶段
@@ -474,7 +475,7 @@
     POST
 #### 请求参数
     {
-      uid: 4, // 用户ID [数值：必填]
+      id: 23, // 面试题id [数值：必填]
       tag: "HTML5", // 标签：[字符串：必填]
       title: "React dangerouslySetInnerHTML 怎么用？", //标题 [字符串：必填]
       content: "我在网上查的用dangerouslySetInnerHTML,可是我不会用" //内容： [字符串：必填]"
@@ -629,6 +630,7 @@
     {
       uid: 4, // 用户ID [数值：必填]
       title: "javascript 框架开发", //标题 [字符串：必填]
+      tag: "HTML5", // 标签：[字符串：必填]
       city: "Beijing", // 城市：[字符串：必填]
       content: "有成熟框架开发经验" //内容： [字符串：必填]"
     }
@@ -648,8 +650,9 @@
     POST
 #### 请求参数
     {
-      uid: 4, // 用户ID [数值：必填]
+      id: 4, // 招聘id [数值：必填]
       title: "javascript 框架开发", //标题 [字符串：必填]
+      tag: "HTML5", // 标签：[字符串：必填]
       city: "Beijing", // 城市：[字符串：必填]
       content: "有成熟框架开发经验" //内容： [字符串：必填]"
     }
@@ -706,6 +709,7 @@
           {
             title: "javascript框架开发"， //主题： [字符串：必填]
             city: "Beijing", // 城市：[字符串：必填]
+            tag: "HTML5", // 标签：[字符串：必填]
             author: "小Q", // 作者：[字符串：必填]      	        createDate: "5分钟前", // 创建时间：[字符串：必填]
             hits: 45, // 点击数 [字符串：必填]
             answers: 34 // 回复数 [字符串：必填]
@@ -731,6 +735,7 @@
       "data": { // 数据内容
         id: 10, // 问题id：[数值：必填]
         title: "JavaScript框架开发工程师"， // 职位标题： [字符串：必填]
+        tag: "HTML5", // 标签：[字符串：必填]
         content: "精通JavaScript", // 职位描述： [字符串：必填]"
       	author: "小Q", // 问题作者：[字符串：必填]
       	createDate: "5分钟前", // 创建时间：[字符串：必填]

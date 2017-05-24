@@ -32,7 +32,7 @@ class Interviewq extends FengfanController {
 		])->find();
 		if($rst) {
 			$result["errcode"] = -1;
-			$result["errmsg"] = "这个面试题已经提存在了，请查询一下看看。";
+			$result["errmsg"] = "这个面试题已经存在了，请查询一下看看。";
 			return $this->corsjson($result);
 		}
 
@@ -54,6 +54,50 @@ class Interviewq extends FengfanController {
 				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
 				"msg"=> '数据提交成功' // 附加信息：[字符串：选填]
 		];
+
+		return $this->corsjson($result);
+    }
+
+    public function update($id="", $tag="", $title="", $content="") {
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"面试题id" => $id,
+			"标签" => $tag,
+			"标题" => $title,
+			"内容" => $content,
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$question = new InterviewQuestion;
+
+		// 保存到数据库
+		$cnt = Db::table("qa_question")->execute("UPDATE `qa_question`
+			SET
+			`tag` = ?,
+			`title` = ?,
+			`content` = ?
+			WHERE `id` = ?", 
+			[$tag, $title, $content, $id]);
+
+		$result["data"]	= [ // 数据内容
+				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
+				"msg"=> '数据修改成功' // 附加信息：[字符串：选填]
+		];
+
+		if(!$cnt) {
+	    	$result =  [
+	    		"errcode"=> -1, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+				"errmsg"=> "DB修改失败", // 错误信息：[字符串：默认为空]
+			];
+		}
 
 		return $this->corsjson($result);
     }
@@ -109,6 +153,37 @@ class Interviewq extends FengfanController {
 		return $this->corsjson($result);
     }
 
+    public function remove($id="") {
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"面试题id" => $id
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$question = new InterviewQuestion;
+		$cnt = $question->where('id', $id)->delete();
+
+		$result["data"]	= [ // 数据内容
+				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
+				"msg"=> '数据删除成功' // 附加信息：[字符串：选填]
+		];
+
+		if(!$cnt) {
+	    	$result =  [
+	    		"errcode"=> -1, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+				"errmsg"=> "DB删除失败", // 错误信息：[字符串：默认为空]
+			];
+		}
+
+		return $this->corsjson($result);
+    }
 
     public function detail($id="", $uid="") {
     	$result =  [
@@ -134,6 +209,7 @@ class Interviewq extends FengfanController {
 		$data = Db::table("interview_question")->query("SELECT 
 				    a.id,
 				    a.title,
+				    a.tag,
 				    a.content,
 				    a.hits,
 				    b.username AS author,

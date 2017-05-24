@@ -24,4 +24,10 @@ return [
     'api/job/list' =>  ['api/job/jobList', ['method' => 'get|post']],
     'api/job/:method' =>  ['api/job/:method', ['method' => 'get|post']],
     'api/search' =>  ['api/search/search', ['method' => 'get|post']],
+    'api/classify/list' =>  ['api/classify/classifyList', ['method' => 'get|post']],
+    'api/classify/:method' =>  ['api/classify/:method', ['method' => 'get|post']],
+    'api/stage/list' =>  ['api/stage/stageList', ['method' => 'get|post']],
+    'api/stage/:method' =>  ['api/stage/:method', ['method' => 'get|post']],
+    'api/city/list' =>  ['api/city/cityList', ['method' => 'get|post']],
+    'api/city/:method' =>  ['api/city/:method', ['method' => 'get|post']],
 ];

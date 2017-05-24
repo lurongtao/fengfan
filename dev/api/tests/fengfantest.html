@@ -137,18 +137,167 @@
 	<button onclick="jobClose()">设置关闭状态</button>
 	<span>完成</span>
 </div>
-<div>
-	<button onclick="jobClose()">设置关闭状态</button>
-	<span>完成</span>
-</div>
 <hr/>
-<h2>招聘</h2>
+<h2>查询</h2>
 <div>
 	<button onclick="search()">查询</button>
 	<span>完成</span>
 </div>
+<hr/>
+<h2>视频分类管理</h2>
+<div>
+	<button onclick="classifyAdd()">分类添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="classifylist()">分类列表</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="classifyremove()">分类删除</button>
+	<span>完成</span>
+</div>
+<hr/>
+<h2>阶段管理</h2>
+<div>
+	<button onclick="stageAdd()">阶段添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="stagelist()">阶段列表</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="stageremove()">阶段删除</button>
+	<span>完成</span>
+</div>
+<hr/>
+<h2>城市管理</h2>
+<div>
+	<button onclick="cityAdd()">城市添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="citylist()">城市列表</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="cityremove()">城市删除</button>
+	<span>完成</span>
+</div>
 </body>
 <script type="text/javascript">
+	function cityremove() {
+		$.ajax({
+			url:"../api/city/remove",
+			type: "post",
+			data: {
+      			"id": 3, 
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function citylist() {
+		$.ajax({
+			url:"../api/city/list",
+			type: "post",
+			// data: {
+   //    			"city": 'JavaScript', //分类名：[字符串：必填]
+			// },
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function cityAdd() {
+		$.ajax({
+			url:"../api/city/add",
+			type: "post",
+			data: {
+      			"city": '大连', //分类名：[字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
+	function stageremove() {
+		$.ajax({
+			url:"../api/stage/remove",
+			type: "post",
+			data: {
+      			"id": 3, 
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function stagelist() {
+		$.ajax({
+			url:"../api/stage/list",
+			type: "post",
+			// data: {
+   //    			"stage": 'JavaScript', //分类名：[字符串：必填]
+			// },
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function stageAdd() {
+		$.ajax({
+			url:"../api/stage/add",
+			type: "post",
+			data: {
+      			"stage": 'stage1', //分类名：[字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
+
+	function classifyremove() {
+		$.ajax({
+			url:"../api/classify/remove",
+			type: "post",
+			data: {
+      			"id": 1, 
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function classifylist() {
+		$.ajax({
+			url:"../api/classify/list",
+			type: "post",
+			// data: {
+   //    			"classify": 'JavaScript', //分类名：[字符串：必填]
+			// },
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function classifyAdd() {
+		$.ajax({
+			url:"../api/classify/add",
+			type: "post",
+			data: {
+      			"classify": 'JavaScript', //分类名：[字符串：必填]
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
 	function search() {
 		$.ajax({
 			url:"../api/search",
@@ -182,7 +331,7 @@
 			url:"../api/job/setstatus",
 			type: "post",
 			data: {
-			  jid: 2 // 职位id：[数值：必填]
+			  jid: 1 // 职位id：[数值：必填]
 			},
 			success: function(res) {
 				console.log(res);
@@ -222,6 +371,7 @@
 			type: "post",
 			data: {
 		      uid: 4, // 用户ID [数值：必填]
+		      tag: "html5!!!",
 		      title: "javascript 框架开发2", //标题 [字符串：必填]
 		      city: "Beijing", // 城市：[字符串：必填]
 		      content: "有成熟框架开发经验" //内容： [字符串：必填]"
@@ -277,7 +427,7 @@
 			type: "post",
 			data: {
 			  uid: 4, // 用户ID [数值：必填] 用于记录浏览过
-			  id: 5 // 问答id：[数值：必填]
+			  id: 1 // 问答id：[数值：必填]
 			},
 			success: function(res) {
 				console.log(res);
@@ -454,6 +604,7 @@
 			data: {
 			  title: "JavaScript", //标题 [字符串：必填]
 			  url: "http://www.codingke.com/v/111.mp4", //视频地址 [字符串：必填]
+			  img: "http://www.codingke.com/files/course/2016/08-11/1638328100cc487429.jpg?1.1.3", //视频缩略图URL [字符串：必填]
 			  summary: "JavaScript基础语法", //视频简介： [字符串：必填]
 			  category: { // 分类：[对象：必填]
 			    step: 1, // 阶段 [数值：必填]：1 第一阶段 2 第二阶段 3 第三阶段

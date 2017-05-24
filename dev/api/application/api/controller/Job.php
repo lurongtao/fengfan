@@ -6,7 +6,7 @@ use app\api\model\JobM;
 use app\api\model\JobAnswer;
 
 class Job extends FengfanController {
-    public function add($uid="", $city="", $title="", $content="") {
+    public function add($uid="", $city="", $tag="", $title="", $content="") {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -17,6 +17,7 @@ class Job extends FengfanController {
 		$checkresult = $this->requiredCheck([
 			"用户id" => $uid,
 			"城市" => $city,
+			"标签" => $tag,
 			"标题" => $title,
 			"内容" => $content,
 		]);
@@ -29,6 +30,7 @@ class Job extends FengfanController {
 		$rst = $job->where([
 			"title" => $title,
 			"city" => $city,
+			"tag" => $tag,
 			"content" => $content,
 		])->find();
 		if($rst) {
@@ -40,8 +42,9 @@ class Job extends FengfanController {
 		// 保存到数据库
 		$job->data([
 			"uid" => $uid,
-			"city" => $city,
 			"title" => $title,
+			"city" => $city,
+			"tag" => $tag,
 			"content" => $content,
 		]);
 		$rst = $job->save();
@@ -55,6 +58,84 @@ class Job extends FengfanController {
 				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
 				"msg"=> '数据提交成功' // 附加信息：[字符串：选填]
 		];
+
+		return $this->corsjson($result);
+    }
+
+   public function update($id="", $city="", $tag="", $title="", $content="") {
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"招聘id" => $id,
+			"城市" => $city,
+			"标签" => $tag,
+			"标题" => $title,
+			"内容" => $content,
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$job = new JobM;
+
+		// 保存到数据库
+		$cnt = Db::table("job")->execute("UPDATE `job`
+			SET
+			`city` = ?,
+			`tag` = ?,
+			`title` = ?,
+			`content` = ?
+			WHERE `id` = ?", 
+			[$city, $tag, $title, $content, $id]);
+
+		$result["data"]	= [ // 数据内容
+				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
+				"msg"=> '数据修改成功' // 附加信息：[字符串：选填]
+		];
+
+		if(!$cnt) {
+	    	$result =  [
+	    		"errcode"=> -1, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+				"errmsg"=> "DB修改失败", // 错误信息：[字符串：默认为空]
+			];
+		}
+
+		return $this->corsjson($result);
+    }
+
+    public function remove($id="") {
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"招聘id" => $id
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$jobM = new JobM;
+		$cnt = $jobM->where('id', $id)->delete();
+
+		$result["data"]	= [ // 数据内容
+				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
+				"msg"=> '数据删除成功' // 附加信息：[字符串：选填]
+		];
+
+		if(!$cnt) {
+	    	$result =  [
+	    		"errcode"=> -1, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+				"errmsg"=> "DB删除失败", // 错误信息：[字符串：默认为空]
+			];
+		}
 
 		return $this->corsjson($result);
     }
@@ -89,6 +170,7 @@ class Job extends FengfanController {
 			$subjects = Db::query("
 				select a.id,
 				        a.title,
+				        a.tag,
 				        a.city,
 				        ifnull(c.username, '') as author,   	        
 				        a.create_date as createDate,
@@ -140,6 +222,7 @@ class Job extends FengfanController {
 		$data = Db::table("job")->query("SELECT 
 				    a.id,
 				    a.title,
+				    a.tag,
 				    a.content,
 				    a.city,
 				    a.hits,

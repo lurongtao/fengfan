@@ -6,7 +6,9 @@ use app\api\model\JobM;
 use app\api\model\JobAnswer;
 
 class Job extends FengfanController {
-    public function add($uid="", $city="", $tag="", $title="", $content="") {
+    public function add($city="", $tag="", $title="", $content="") {
+    	$uid = $this->uid();
+
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -198,7 +200,9 @@ class Job extends FengfanController {
 		];
     }
 
-    public function detail($id="", $uid="") {
+    public function detail($id="") {
+    	$uid = $this->uid();
+
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -308,7 +312,9 @@ class Job extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function reply($uid="", $jid="", $content="") {
+    public function reply($jid="", $content="") {
+    	$uid = $this->uid();
+
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -360,7 +366,9 @@ class Job extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function favorite($id="", $uid="") {
+    public function favorite($id="") {
+    	$uid = $this->uid();
+
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]

@@ -6,12 +6,14 @@ use app\api\model\Question;
 use app\api\model\Answer;
 
 class QandA extends FengfanController {
-    public function add($uid="", $tag="", $title="", $content="") {
+    public function add($tag="", $title="", $content="") {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
 
 		];
+
+		$uid = $this->uid();
 
 		// 必须输入校验
 		$checkresult = $this->requiredCheck([
@@ -113,7 +115,9 @@ class QandA extends FengfanController {
     }
 
 
-    public function detail($id="", $uid="") {
+    public function detail($id="") {
+    	$uid = $this->uid();
+
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -218,7 +222,9 @@ class QandA extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function reply($uid="", $qid="", $content="") {
+    public function reply($qid="", $content="") {
+    	$uid = $this->uid();
+
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -270,7 +276,9 @@ class QandA extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function favorite($id="", $uid="") {
+    public function favorite($id="") {
+    	$uid = $this->uid();
+
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]

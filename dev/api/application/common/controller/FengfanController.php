@@ -28,6 +28,10 @@ class FengfanController extends Controller {
 		}
 	}
 
+	protected function uid() {
+		return Session::get('uid');
+	}
+
 	protected function corsjson($data) {
 		// response()->header("Access-Control-Allow-Origin", "*");
 		$header = ["Access-Control-Allow-Origin" => "*"];
@@ -78,7 +82,7 @@ class FengfanController extends Controller {
 		return Db::table("favorite")->insert($data);
 	}
 
-	// 添加收藏
+	// 检查session
 	public function Sessioncheck() {
 		echo "session check";
 		return false;

@@ -85,6 +85,7 @@ class Users extends FengfanController {
 
 		// session_start();
 		Session::set('username',$rst["username"]);
+		Session::set('uid',$rst["id"]);
 
 		return $this->corsjson($result);
     }

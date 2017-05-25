@@ -17,7 +17,7 @@ return [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
-    'app_debug'              => true,
+    'app_debug'              => false,
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
@@ -237,7 +237,7 @@ return [
         'list_rows' => 15,
     ],
     // 是否做session校验
-    "session_check" => false,
+    "session_check" => true,
     // 发送邮件配置
     'THINK_EMAIL' => [
         'email_smtp'   => 'smtp.163.com', //SMTP服务器

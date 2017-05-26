@@ -1,5 +1,3 @@
-
-
 var videoDetail = require('./video/videoDetails.json');
 var videoQanda = require('./video/videoqanda.json');
 
@@ -7,7 +5,6 @@ var videoList = require('./video/list.json')
 var videoAdd = require('./video/videoAdd.json')
 var videoRemove = require('./video/videoRemove.json')
 var videoUpdate = require('./video/videoUpdate.json')
-
 
 var qandaList = require('./qanda/qandaList.json');
 var qandaDetail = require('./qanda/qandaDetail.json')
@@ -17,8 +14,6 @@ var jobList = require('./job/jobList.json')
 var jobAdd = require('./job/jobAdd.json')
 var jobRemove = require('./job/jobRemove.json')
 var jobUpdate = require('./job/jobUpdate.json')
-
-
 
 var jobDetail = require('./job/jobDetail.json');
 var jobReply = require('./job/jobReply.json');

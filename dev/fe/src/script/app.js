@@ -10,15 +10,19 @@ import { Provider } from 'react-redux'
 
 //index.js
 import Index from './components/Index'
+
 //index 主页面
 import IndexList from './components/index/indexList'
+
 //video 视频
 import VideoList from './components/video/List'
 import VideoDetail from './components/video/VideoDetail'
+
 //qanda 问答
 import QandaList from './components/qanda/qandaList'
 import QandaDetail from './components/qanda/qandaDetail'
 import QandaAdd from './components/qanda/qandaAdd'
+
 //admin 后台
 import Admin from './components/admin/admin'
 
@@ -66,7 +70,6 @@ ReactDOM.render((
           <Route path="list" component={IndexList}></Route>
         </Route>
 
-
         {/* 视频  video*/}
         <Route path="video">
           <IndexRedirect to="/video/list"/>
@@ -103,10 +106,10 @@ ReactDOM.render((
         </Route>
       </Route>
 
-
       {/* 后台管理 admin*/}
       <Router path="admin" component={Admin}>
         <IndexRedirect to="/admin/video" />
+
         {/* 视频管理 */}
         <Route path="video">
           <IndexRedirect to="/admin/video/classify" />
@@ -117,6 +120,7 @@ ReactDOM.render((
           <Route path="add" component={Vadd}></Route>
           <Route path="update/:id" component={Vupdate}></Route>
         </Route>
+
         {/* 招聘管理 */}
         <Route path="job">
           <IndexRedirect to="/admin/job/list" />
@@ -124,6 +128,7 @@ ReactDOM.render((
           <Route path="add" component={JAdd}></Route>
           <Route path="update/:id" component={JobUpdate}></Route>
         </Route>
+
         {/* 面试题管理 */}
         <Route path="interviewq">
           <IndexRedirect to="/admin/interviewq/list" />
@@ -133,7 +138,7 @@ ReactDOM.render((
         </Route>
       </Router>
 
-       {/* 登录 users*/}
+      {/* 登录 users*/}
       <Route path="/users" component={Users}>
         <IndexRedirect to="signin" />
         <Route path="signin" component={Signin}></Route>

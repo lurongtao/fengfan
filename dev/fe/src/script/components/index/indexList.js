@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import IndexBanner from './indexbanner'
+import IndexBanner from './indexBanner'
 import IndexVideo from './indexVideo'
 import IndexNews from './indexNews'
 

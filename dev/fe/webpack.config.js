@@ -27,9 +27,9 @@ module.exports = {
     proxy: {
       '/api': {
         //  target: 'http://quanzs.xicp.net/',
-        // target: 'http://localhost:9000',
-        target: 'http://fengfan.applinzi.com',
-         changeOrigin: true
+        target: 'http://localhost:9000',
+        // target: 'http://fengfan.applinzi.com',
+        changeOrigin: true
       },
       '/mock': {
         target: 'http://localhost:9000',
@@ -116,14 +116,14 @@ module.exports = {
     }),
 
     // 3: 压缩代码
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      output: {
-        comments: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   },
+    //   output: {
+    //     comments: false
+    //   }
+    // }),
 
     // 4: 自动打开浏览器
     new OpenBrowserPlugin({

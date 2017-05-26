@@ -6,7 +6,6 @@ import { Pagination } from 'antd';
 import Axios from '../../utils/axios.util';
 import tagFilter from '../../utils/tagFilter';
 
-
 class qandaList extends React.Component {
   constructor(props) {
     super(props);
@@ -38,8 +37,8 @@ class qandaList extends React.Component {
         title: '点击/回帖',
         dataIndex: 'action',
         key: 'action',
-      }
-    ],
+      }],
+      tagData: []
     };
 
     //调用方法获取数据
@@ -103,20 +102,19 @@ class qandaList extends React.Component {
 //分页更换数据
   pageChange(page){
     this.getData({
-      start:page*this.state.count,
-      count:this.state.count
+      start: page*this.state.count,
+      count: this.state.count
     })
     this.setState({
       current:page
     })
   }
 
-
   render() {
-    let tagData = [{id:0,tag:"所有标签"},{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JS"}]
-    let tagList = tagData.map((item,index)=>{
+    // let tagData = [{id:0,tag:"所有标签"},{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JS"}]
+    let tagList = this.state.tagData.map((item,index)=>{
       return (
-        <li><i id={index} className={this.state.curTag==item.tag?"active":""} onClick={this.changeTag.bind(this,item.tag,index)}>{item.tag}</i></li>
+        <li><i id={index} className={this.state.curTag==item.title?"active":""} onClick={this.changeTag.bind(this,item.title,index)}>{item.title}</i></li>
       )
     })
 
@@ -129,6 +127,7 @@ class qandaList extends React.Component {
           <div className="cat">
             <h1 className="title">标签</h1>
             <ul className="content">
+              <li><i id={0} className={this.state.curTag=='所有标签'?"active":""} onClick={this.changeTag.bind(this,'所有标签',0)}>{'所有标签'}</i></li>
               {tagList}
             </ul>
           </div>
@@ -145,6 +144,20 @@ class qandaList extends React.Component {
     // console.log(key);
   }
 
+  componentDidMount() {
+    let that = this
+    Axios.get('/api/classify/list', {
+      method: 'get',
+      data: {
+        start: 0,
+        count: 10
+      }
+    }, function (res) {
+      that.setState({
+        tagData: res.data.data.subjects
+      })
+    })
+  }
 
 }
 

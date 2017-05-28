@@ -4,6 +4,7 @@ use think\Db;
 use think\Session;
 use app\common\controller\FengfanController;
 use app\api\model\User;
+use app\common\exception\TimeoutException;
 
 class Users extends FengfanController {
     public function add($username="", $password="", $email="") {
@@ -78,7 +79,7 @@ class Users extends FengfanController {
 
 		$result["data"]	= [ // 数据内容
 		  	"uid"=> $rst["id"], // 用户ID [数值：必填]
-		    "username" => $rst["username"], // 用户名：[字符串：必填] "zhangsan" 成功 ""         失败        
+		    "username" => $rst["username"], // 用户名：[字符串：必填] "zhangsan" 成功 "失败"                 
 		    "auth" => [], // 权限信息 `待完善`
 		    "msg" => "用户登录成功" // 附加信息：[字符串：选填]
 		];
@@ -86,6 +87,7 @@ class Users extends FengfanController {
 		// session_start();
 		Session::set('username',$rst["username"]);
 		Session::set('uid',$rst["id"]);
+		Session::set('roles',$rst["roles"]);
 
 		return $this->corsjson($result);
     }
@@ -269,6 +271,99 @@ class Users extends FengfanController {
 		$result["data"]	= [ // 数据内容
 				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
 				"msg"=> '密码已修改，请重新登录' // 附加信息：[字符串：选填]
+		];
+
+		return $this->corsjson($result);
+    }
+
+    public function hassignin() {
+		$result	= [
+		  "errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+		  "errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+		// 没有登录的场合
+		if(empty(Session::get('username'))) {
+			$result	= [
+			  "errcode"=> -1, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			  "errmsg"=> "您没有登录或登录超时，请重新登录。", // 错误信息：[字符串：默认为空]
+			];
+			$result["data"] = [ // 数据内容
+				"status"=> "not", // 登录状态：[字符串：必填] "has" 有session已登录 "not" 无session未登录
+			];
+			return $this->corsjson($result);
+		}
+
+		$result["data"] = [ // 数据内容
+			"username"=> Session::get('username'), //用户名 [字符串：必填]
+			"roles"=> Session::get('roles'), // 用户角色[字符串：必填]
+			"status"=> "has", // 登录状态：[字符串：必填] "has" 有session已登录 "not" 无session未登录
+			"msg"=> "用户已经登陆" // 附加信息：[字符串：选填]
+		];
+
+		return $this->corsjson($result);
+    }
+
+    public function signout() {
+		$result	= [
+		  "errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+		  "errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		Session::clear();
+
+		$result["data"] = [ // 数据内容
+		    "status"=>"ok", // 是否成功退出：[字符串：必填] "ok" 成功 "fail" 失败
+		    "msg"=> "已退出登录，请重新登录" // 附加信息：[字符串：选填]
+		];
+
+		return $this->corsjson($result);
+    }
+
+    public function favorite() {
+		$result	= [
+		  "errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+		  "errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		$uid = Session::get("uid");
+		if(empty($uid)) {
+			throw new TimeoutException();
+		}
+
+		$data = Db::query("SELECT 
+			    *
+			FROM
+			    (SELECT 
+			        b.id, b.title, a.type, b.createDate
+			    FROM
+			        favorite AS a, videos AS b
+			    WHERE
+			        a.uid = ? AND a.type='视频' AND a.favorite_id = b.id 
+				UNION ALL SELECT 
+			        b.id, b.title, a.type, b.create_date AS createDate
+			    FROM
+			        favorite AS a, qa_question AS b
+			    WHERE
+			        a.uid = ? AND a.type='问答' AND a.favorite_id = b.id 
+			    UNION ALL 
+			    SELECT 
+			        b.id, b.title, a.type, b.create_date AS createDate
+			    FROM
+			        favorite AS a, interview_question AS b
+			    WHERE
+			        a.uid = ? AND a.type='面试题' AND a.favorite_id = b.id 
+			    UNION ALL 
+			    SELECT 
+			        b.id, b.title, a.type, b.create_date AS createDate
+			    FROM
+			        favorite AS a, job AS b
+			    WHERE
+			        a.uid = ? AND a.type='招聘' AND a.favorite_id = b.id) AS main
+			ORDER BY createDate DESC", [$uid, $uid, $uid, $uid]);
+
+		$result["data"] = [ // 数据内容
+			"total"=> sizeof($data), //总记录条数 [数值：必填]
+		    "subjects" => $data
 		];
 
 		return $this->corsjson($result);

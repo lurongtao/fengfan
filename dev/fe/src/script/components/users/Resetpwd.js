@@ -1,54 +1,59 @@
 import React, {Component} from 'react'
 
+import utilAxios from "../../utils/axios.util.js"
+
+import { message } from 'antd'
+
+import {hashHistory} from 'react-router'
 
 export default class Resetpwd extends Component {
 	constructor(props) {
-    	super(props)
- 	 }
-	//重置密码功能
+    super(props)
+ 	}
+
+	//修改密码功能
 	repwd(){
 		let newpwd = this.refs.newpwd.value
-		//username先写固定的，后续从localStorage里面取出来
-		let data = {
-			username:"zhangsan",
-			newpwd:newpwd
+		let confirmpwd = this.refs.confirmpwd.value
+
+		if (newpwd != '' && newpwd == confirmpwd) {
+			let data = {
+				newpwd: newpwd
+			}
+
+			utilAxios.post(
+				'/api/users/resetpwd',
+				{
+					// username: 'zhangsan',
+					newpwd: data.newpwd
+					// token: "98bba7193f200ad4ed247a28311e3b08" // TODO 前端如何取，需要确认
+				},
+				function (res) {
+					if(res.data.errcode == -1){
+						message.info(res.data.errmsg)
+					} else {
+						//跳转登录页
+						hashHistory.push("/users/signin")
+					}
+				}
+			)
+		} else {
+			message.info('新密码不能为空 或 两次输入不一致')
 		}
-		//目前接口有问题，只是做了逻辑的处理
-		utilAxios.lgypost({
-        url: '/api/users/resetpwd',
-        method: 'post',
-//      data: `username=${this.username}&password=${this.password}`,
-				data:JSON.stringify(data),
-        callback: function (res) {
-        	console.log(res)
-        	if(res.errcode){
-        		//成功的情况下，密码已修改，请重新登录
-        		console.log(res.data.msg)
-        		 //跳转重置密码
-        		 hashHistory.push("/users/signin")
-        	}else{
-        		//打印错误信息
-        		console.log(res.errmsg)
-        	}
-        }
-      })		
+
 	}
-	
-	
-	
+
   render() {
     return (
       <div className="resetpwd">
-      	<p>重置密码</p>
+      	<p>修改密码</p>
       	<input type="password" ref="newpwd" placeholder="请输入新密码"/>
       	<span className="signin_xian"></span>
-      	<input type="password" ref="confirmpwd" placeholder="请确认新密码"/>
+      	<input type="password" ref="confirmpwd" placeholder="重新输入新密码"/>
       	<span className="signin_xian"></span>
       	<input type="button" className="resetpwd_btn" onClick={this.repwd.bind(this)} value="确认" />
       </div>
     )
   }
 
-
 }
-

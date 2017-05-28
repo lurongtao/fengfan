@@ -35,7 +35,7 @@ export default class Forgotpwd extends Component {
 				if(res.data.errcode == -1){
 					message.info(res.data.errmsg)
       	} else {
-					//跳转首页
+					//跳转登录页
 					hashHistory.push("/users/signin")
       	}
       }

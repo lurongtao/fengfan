@@ -49,6 +49,7 @@
   "/api/search":"/search",
 
   "/api/users/hassignin": "/hassignin",
-  "/api/users/signout": "/signout"
+  "/api/users/signout": "/signout",
+  "/api/users/favorite": "/favorite"
 
 }

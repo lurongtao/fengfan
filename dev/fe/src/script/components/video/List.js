@@ -194,8 +194,6 @@ class List extends Component {
     )
   }
 
-
-
   componentDidMount() {
     this.getList({
       condition:this.props.tag,

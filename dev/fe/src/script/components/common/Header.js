@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import store from '../../redux/store'
 
 import Axios from '../../utils/axios.util'
+import { message } from 'antd'
+import {hashHistory} from 'react-router'
 
 import { Input, Popover } from 'antd'
 const Search = Input.Search
@@ -42,7 +44,7 @@ class Header extends Component {
           <Search
             ref="input"
             placeholder="请输入关键字"
-            onSearch={value => this.props.link(value,this)}
+            onSearch={value => this.props.link(value, this)}
             />
         </a>
       </div>
@@ -94,7 +96,21 @@ class Header extends Component {
   }
 
   signout() {
-    console.log('signout');
+    Axios.get(
+      '/mock/signout', {},
+      function (res) {
+      	if(res.data.errcode == -1){
+					message.info(res.data.errmsg)
+      	} else {
+          if (res.data.data.status == 'ok') {
+            //跳转登录页
+            hashHistory.push("/users/signin")
+          } else {
+            message.info(res.data.data.msg)
+          }
+      	}
+      }
+    )
   }
 
   componentDidUpdate(){

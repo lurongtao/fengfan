@@ -14,31 +14,31 @@ const TabPane = Tabs.TabPane;
 class SearchList extends Component{
   constructor(props){
     super(props)
-    this.state={
-      searchBody:this.props.params.id,
-      searchData:{}
+    this.state = {
+      searchBody: this.props.params.id,
+      searchData: {}
     }
   }
   getId(){
-      let id= this.refs.input.input.refs.input.value
-      hashHistory.push(`/search/list/${id}`)
-      this.setState({
-        searchBody:this.props.params.id
-      })
-      this.getSearchData(id)
+    let id = this.refs.input.input.refs.input.value
+    hashHistory.push(`/search/list/${id}`)
+    this.setState({
+      searchBody: this.props.params.id
+    })
+    this.getSearchData(id)
   }
   getSearchData(id){
     let that = this
-    axios.lgypost(
+    axios.all(
       {
-        url:'/mock/api/search',
-        method:'get',
-        data:{
+        url: '/mock/api/search',
+        method: 'get',
+        data: {
           query:id,
           start:0,
           count:10
         },
-        callback:function(res){
+        callback: function(res){
 
           //total 总共内容数量的变化
 
@@ -63,7 +63,7 @@ class SearchList extends Component{
           // })
           // console.log(video)
           that.setState({
-            searchData:res
+            searchData: res
           })
           // console.log(that.state.searchData)
 
@@ -99,9 +99,7 @@ class SearchList extends Component{
 
   }
   componentWillMount(){
-    // console.log(this)
     this.getSearchData(this.props.params.id)
-    // console.log(this.state.searchData)
   }
 }
 export default SearchList

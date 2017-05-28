@@ -2,12 +2,12 @@ import React,{Component} from 'react'
 import { Table, Icon } from 'antd'
 
 class SearchQanda extends Component{
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state={
-      Data:{},
-      columns:[{}],
-      data:[{}]
+    this.state = {
+      Data: {},
+      columns: [{}],
+      data: [{}]
     }
   }
   render(){
@@ -60,8 +60,7 @@ class SearchQanda extends Component{
     // },10)
 
     let title = this.props.title
-    if(title=='视频')
-    {
+    if(title=='视频'){
 
     }
     else {

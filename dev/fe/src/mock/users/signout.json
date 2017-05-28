@@ -1,0 +1,8 @@
+{
+  "errcode": 0,
+  "errmsg": "",
+  "data": {
+    "status": "ok",
+    "msg": "用户已经退出登陆"
+  }
+}

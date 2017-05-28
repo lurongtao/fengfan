@@ -14,9 +14,7 @@ const Axios = {
   },
 
   post: (uri, params, cb)=>{
-    axios.post(uri, {
-      data: params
-    })
+    axios.post(uri, params)
     .then(function (response) {
       cb(response)
     })

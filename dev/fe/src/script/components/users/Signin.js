@@ -6,6 +6,8 @@ import utilAxios from "../../utils/axios.util.js"
 
 import {hashHistory} from 'react-router'
 
+import { message } from 'antd'
+
 export default class Signin extends Component {
 	constructor(props) {
     super(props)
@@ -20,40 +22,19 @@ export default class Signin extends Component {
 			password: password
 		}
 
-		// utilAxios.post({
-    //   url: '/api/users/signin',
-    //   method: 'get',
-		// 	data: JSON.stringify(data),
-    //   callback: function (res) {
-    //   	if(!res.errcode){
-    //   		 //存储
-    //   		 localStorage.setItem('username', res.data.data.username)
-    //   		 //跳转首页
-    //   		 hashHistory.push("/")
-    //   	}else{
-    //   		//打印错误信息
-    //   		console.log(res.errmsg)
-    //   	}
-    //   }
-    // })
-
-		utilAxios.post(
+		utilAxios.get(
       '/api/users/signin',
 			{
 				username: data.username,
 				password: data.password
 			},
       function (res) {
-				console.log(res);
-      	// if(!res.errcode){
-      	// 	 //存储
-      	// 	 localStorage.setItem('username', res.data.data.username)
-      	// 	 //跳转首页
-      	// 	 hashHistory.push("/")
-      	// }else{
-      	// 	//打印错误信息
-      	// 	console.log(res.errmsg)
-      	// }
+      	if(res.data.errcode == -1){
+					message.info(res.data.errmsg)
+      	} else {
+					//跳转首页
+					hashHistory.push("/")
+      	}
       }
     )
 	}
@@ -67,9 +48,13 @@ export default class Signin extends Component {
       	<span className="signin_xian"></span>
       	<input type="button" className="signin_login" onClick={this.signin.bind(this)} value="登录" />
       	<b></b>
-      	<Link to="/users/forgotpwd">忘记密码</Link>
+      	<div onClick={this.gotoForgot.bind(this)}>忘记密码</div>
       </div>
     )
   }
+
+	gotoForgot() {
+		this.props.router.push(`/users/forgotpwd?username=${this.refs.username.value}`);
+	}
 
 }

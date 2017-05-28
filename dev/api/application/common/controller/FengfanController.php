@@ -13,19 +13,27 @@ class FengfanController extends Controller {
 
 	protected function userCheck() {
 		// 不需要做session校验的地址
-		$exceptUrl = [
-			"api/users/add",
-			"api/users/signin",
-			"api/users/forgotpwd",
-			"api/users/resetpwd",
+		$exceptUrls = [
+			'/api\\/users/'
 		];
 		$urlpath = request()->path();
-		if(!in_array($urlpath, $exceptUrl) && config("session_check")) {
+		if(!$this->isMatchInArray($urlpath, $exceptUrls) && config("session_check")) {
 			// 如果session不存在
 			if(empty(Session::get('username'))) {
 				throw new TimeoutException();
 			}
 		}
+	}
+
+	// 使用正则表达式对target进行检查.
+	protected function isMatchInArray($target, $checkArray) {
+		foreach ($checkArray as $pattern) {
+			$checkRst = preg_match($pattern, $target) ? true : false;
+			if($checkRst) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	protected function uid() {

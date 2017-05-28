@@ -78,3 +78,7 @@ input[type=password] {
 h4 {
 	font-size: 14px;
 }
+
+#message {
+	display: none;
+}

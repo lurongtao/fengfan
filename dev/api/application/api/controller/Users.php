@@ -96,7 +96,6 @@ class Users extends FengfanController {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
-
 		];
 
 		// 必须输入校验
@@ -122,20 +121,7 @@ class Users extends FengfanController {
 			return $this->corsjson($result);
 		}
 
-		// 生成认证用token，有效时间30分钟。
-		$expire_date = date("y-m-d H:i:s",strtotime("+30 minutes"));
-		$token = md5($username . $expire_date);
-		Db::execute('INSERT INTO reset_psw_token
-			        ( username, token, expire_date)
-			VALUES 
-			        ( ?,
-			        ?,
-			        ?)
-			    ON DUPLICATE KEY UPDATE
-			        username = ?,
-			        token = ?,
-			        expire_date = ?',
-		[$username, $token, $expire_date, $username, $token, $expire_date]);
+		$token = $this->makeToken($username);
 
 		// 发送邮件
 		$rst = $this->sendEmail($username, $email, $token);
@@ -151,6 +137,29 @@ class Users extends FengfanController {
 		];
 
 		return $this->corsjson($result);
+    }
+
+    // 生成token
+    protected function makeToken($username) {
+		// 删除所有的过期token
+		Db::execute('DELETE FROM reset_psw_token WHERE username=?', [$username]);
+
+		// 生成认证用token，有效时间30分钟。
+		$expire_date = date("y-m-d H:i:s",strtotime("+30 minutes"));
+		$token = md5($username . $expire_date);
+		Db::execute('INSERT INTO reset_psw_token
+			        ( username, token, expire_date)
+			VALUES 
+			        ( ?,
+			        ?,
+			        ?)
+			    ON DUPLICATE KEY UPDATE
+			        username = ?,
+			        token = ?,
+			        expire_date = ?',
+		[$username, $token, $expire_date, $username, $token, $expire_date]);
+
+		return $token;
     }
 
     protected function sendEmail($username, $email, $token) {
@@ -210,6 +219,9 @@ class Users extends FengfanController {
     	if($data && sizeof($data) > 0) {
     		if(strtotime($data[0]["expire_date"]) - strtotime("now") < 0) {
     			$this->assign('errorMsg','您的链接已过期，请重新找回密码。');
+	    		$this->assign('resetUrl',"");
+	    		$this->assign('username',"");
+	    		$this->assign('token',"");
     		} else {
     			$this->assign('username',$data[0]["username"]);
     			$this->assign('token',$token);
@@ -217,6 +229,11 @@ class Users extends FengfanController {
 		    	$resetUrl = preg_replace("/users\/reset.*/is", "api/users/resetpwd/", $resetUrl);
 		    	$this->assign('resetUrl',$resetUrl);
     		}
+    	} else {
+    		$this->assign('errorMsg','您的链接已过期，请重新找回密码。');
+    		$this->assign('resetUrl',"");
+    		$this->assign('username',"");
+    		$this->assign('token',"");
     	}
     	return $this->fetch('/reset');
     }
@@ -364,6 +381,37 @@ class Users extends FengfanController {
 		$result["data"] = [ // 数据内容
 			"total"=> sizeof($data), //总记录条数 [数值：必填]
 		    "subjects" => $data
+		];
+
+		return $this->corsjson($result);
+    }
+
+    public function getresettoken() {
+    	// 检查用户是否登录
+		$uid = Session::get("uid");
+		if(empty($uid)) {
+			throw new TimeoutException();
+		}
+
+		$username = Session::get("username");
+
+		$user = new User;
+		$rst = $user->where('username', $username)->find();
+		if(empty($rst)) {
+			$result["errcode"] = -1;
+			$result["errmsg"] = "用户不存在。";
+			return $this->corsjson($result);
+		}
+
+		$token = $this->makeToken($username);
+
+		$result	= [
+		  "errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+		  "errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+		$result["data"]	= [ // 数据内容
+		    "status" => "ok", // 存取状态：[字符串：必填] "ok" 成功 "fail" 失败
+		    "token" => $token // 附加信息：[字符串：选填]
 		];
 
 		return $this->corsjson($result);

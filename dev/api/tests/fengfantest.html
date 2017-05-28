@@ -45,6 +45,10 @@
 	<button onclick="usersfavorite()">我的收藏</button>
 	<span>完成</span>
 </div>
+<div>
+	<button onclick="getresettoken()">取得密码重置用token</button>
+	<span>完成</span>
+</div>
 <hr/>
 <h2>视频</h2>
 <div>
@@ -199,6 +203,16 @@
 </div>
 </body>
 <script type="text/javascript">
+	function getresettoken() {
+		$.ajax({
+			url:"../api/users/getresettoken",
+			type: "post",
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+
 	function usersfavorite() {
 		$.ajax({
 			url:"../api/users/favorite",

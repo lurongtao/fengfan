@@ -24,7 +24,7 @@ class Index extends Component {
   render() {
     return (
       <div className="m-index">
-        <Header link={this.linkTo.bind(this)}/>
+        <Header parent={this} link={this.linkTo.bind(this)}/>
         {this.props.children}
         <Footer />
       </div>

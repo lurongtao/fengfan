@@ -12,7 +12,7 @@ class Header extends Component {
     return (
       <div className="m-header">
         <div className="logo">
-          <img src="./images/logo.png" alt="锋帆logo"/>
+          <img src="./images/logo.png" alt="锋帆"/>
         </div>
         <ul className="nav">
           <li><Link to="/index/list" activeClassName="active">首页</Link></li>
@@ -20,11 +20,10 @@ class Header extends Component {
           <li><Link to="/qanda" activeClassName="active">问答</Link></li>
           <li><Link to={"/job"||"/interviewq"} activeClassName="active">招聘</Link></li>
         </ul>
-        <div className="user">
+        <div className="user" onClick={this.signin.bind(this)}>
           <span>
             <img src="./images/user-icon.png" />
           </span>
-          <span>3</span>
         </div>
         <a className="search">
           <Search
@@ -36,9 +35,12 @@ class Header extends Component {
       </div>
     )
   }
-  componentDidUpdate(){
-    // console.log(this.refs.input.input.refs.input.value)
 
+  signin() {
+    this.props.parent.props.router.push('/users/signin')
+  }
+
+  componentDidUpdate(){
 
   }
 }

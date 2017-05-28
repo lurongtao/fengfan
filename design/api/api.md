@@ -134,7 +134,7 @@
       "data": { // 数据内容
         username: 'zhangsan', //用户名 [字符串：必填]
         roles: "0", // 用户角色[字符串：必填]
-        status："ok", // 存取状态：[字符串：必填] "ok" 有session已登录 "fail" 无session未登录
+        status："ok", // 登录状态：[字符串：必填] "ok" 有session已登录 "fail" 无session未登录
         msg: "用户已经登陆" // 附加信息：[字符串：选填]
       }
 	}

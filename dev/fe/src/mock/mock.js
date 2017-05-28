@@ -41,6 +41,8 @@ var cityRemove = require('./city/cityRemove.json')
 
 var searchList = require('./search/searchList.json')
 
+var hassignin = require('./users/hassignin.json')
+
 module.exports = function () {
 
   return {
@@ -87,7 +89,9 @@ module.exports = function () {
     'cityadd':cityAdd,
     'cityremove':cityRemove,
 
-    'search':searchList
+    'search':searchList,
+
+    'hassignin': hassignin
 
   }
 }

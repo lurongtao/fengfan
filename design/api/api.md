@@ -124,7 +124,7 @@
 #### 请求地址
     /api/users/hassignin
 #### 请求方式
-    POST
+    GET
 #### 请求参数
     无
 #### 返回数据

@@ -1,0 +1,10 @@
+{
+  "errcode": 0,
+  "errmsg": "",
+  "data": {
+    "username": "zhangsan",
+    "roles": "0",
+    "status": "has",
+    "msg": "用户已经登陆"
+  }
+}

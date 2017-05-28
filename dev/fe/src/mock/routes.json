@@ -46,6 +46,8 @@
   "/api/city/add":"/cityadd",
   "/api/city/remove":"/cityremove",
 
-  "/api/search":"/search"
+  "/api/search":"/search",
+
+  "/api/users/hassignin": "/hassignin"
 
 }

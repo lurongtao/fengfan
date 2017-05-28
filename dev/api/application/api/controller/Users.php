@@ -155,8 +155,8 @@ class Users extends FengfanController {
 
     protected function sendEmail($username, $email, $token) {
     	$config = config("THINK_EMAIL");
-	    require './thinkPHP/library/Org/Nx/class.phpmailer.php';
-	    require './thinkPHP/library/Org/Nx/class.smtp.php';
+	    require './thinkphp/library/Org/Nx/class.phpmailer.php';
+	    require './thinkphp/library/Org/Nx/class.smtp.php';
 	    $phpmailer=new \Phpmailer();
 	    // 设置PHPMailer使用SMTP服务器发送Email
 	    $phpmailer->IsSMTP();

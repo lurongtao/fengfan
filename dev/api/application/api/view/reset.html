@@ -3,24 +3,31 @@
 <head>
 	<title>重置密码</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/public/static/css/reset_psw.css">
 </head>
 <body>
-	<h1>重置密码</h1>
-	{notempty name="errorMsg"}
-		{$errorMsg}
-	{else /}
-		<span>新密码：</span>
-		<input type="password" id="psw1" /><br/>
-		<span>重复密码：</span>
-		<input type="password" id="psw2" /><br/>
-		<input type="button" onclick="resetPsw()" value="重置密码" />
-	{/notempty}
+	<div class="wrapper">
+		<div class="logo"></div>
+		<h1 class="title"></h1>
+		<h4>重置密码</h4>
+		<div id="message"><h1>重置密码成功。</h1></div>
+		{notempty name="errorMsg"}
+			{$errorMsg}
+		{else /}
+		<div id="input_area">
+			<input type="password" id="psw1" placeholder="请输入新密码" /><br/>
+			<input type="password" id="psw2" placeholder="请确认新密码" /><br/>
+			<input type="button" onclick="resetPsw()" id="resetBtn" value="确认" />
+		</div>
+		{/notempty}
+	</div>
 </body>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
 	function resetPsw() {
 		var psw1 = document.getElementById("psw1");
 		var psw2 = document.getElementById("psw2");
+		$("#message").hide();
 		if(psw1.value == "" || psw2.value == "") {
 			alert("密码不能为空");
 			return;
@@ -39,6 +46,13 @@
 			},
 			success: function(data) {
 				console.log(data);
+				if(data.errcode == "0") {
+					$("#message h1").text(data.data.msg);
+					$("#input_area").hide();
+				} else {
+					$("#message h1").text(data.errmsg);
+				}
+				$("#message").fadeIn();
 			}
 		})
 	}

@@ -21,22 +21,28 @@ export default class Resetpwd extends Component {
 				newpwd: newpwd
 			}
 
-			utilAxios.post(
-				'/api/users/resetpwd',
-				{
-					// username: 'zhangsan',
-					newpwd: data.newpwd
-					// token: "98bba7193f200ad4ed247a28311e3b08" // TODO 前端如何取，需要确认
-				},
-				function (res) {
-					if(res.data.errcode == -1){
-						message.info(res.data.errmsg)
-					} else {
-						//跳转登录页
-						hashHistory.push("/users/signin")
-					}
+			utilAxios.post('/api/users/getresettoken', {}, function (res) {
+				let data = res.data.data
+				if (res.data.errcode != -1 && data.status == 'ok') {
+					let token = data.token
+					utilAxios.post(
+						'/api/users/resetpwd',
+						{
+							newpwd: data.newpwd,
+							token: token
+						},
+						function (res) {
+							if(res.data.errcode == -1){
+								message.info(res.data.errmsg)
+							} else {
+								//跳转登录页
+								hashHistory.push("/users/signin")
+							}
+						}
+					)
 				}
-			)
+			})
+
 		} else {
 			message.info('新密码不能为空 或 两次输入不一致')
 		}

@@ -50,6 +50,7 @@
 
   "/api/users/hassignin": "/hassignin",
   "/api/users/signout": "/signout",
-  "/api/users/favorite": "/favorite"
+  "/api/users/favorite": "/favorite",
+  "/api/users/getresettoken": "/getresettoken"
 
 }

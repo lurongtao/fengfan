@@ -49,6 +49,10 @@
 	<button onclick="getresettoken()">取得密码重置用token</button>
 	<span>完成</span>
 </div>
+<div>
+	<button onclick="userlist()">用户列表</button>
+	<span>完成</span>
+</div>
 <hr/>
 <h2>视频</h2>
 <div>
@@ -203,6 +207,20 @@
 </div>
 </body>
 <script type="text/javascript">
+
+	function userlist() {
+		$.ajax({
+			url:"../api/users/list",
+			type: "post",
+			data: {
+				start: 0,
+				count: 10
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
 	function getresettoken() {
 		$.ajax({
 			url:"../api/users/getresettoken",

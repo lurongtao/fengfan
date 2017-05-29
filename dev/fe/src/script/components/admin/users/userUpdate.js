@@ -56,7 +56,7 @@ class UserUpdate extends Component{
     if(!pwd){
       message.warning('请填写完整')
     }else{
-        axios.lgypost(params)
+        axios.all(params)
     }
   }
 

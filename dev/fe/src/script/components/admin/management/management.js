@@ -63,7 +63,7 @@ class Management extends Component{
     }
 
     if(classify){
-      axios.lgypost(params)
+      axios.all(params)
     }else{
       message.warning('分类不能为空')
     }

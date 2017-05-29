@@ -70,7 +70,7 @@ class UserAdd extends Component{
       }else if(isHas){
         message.warning('用户名已存在')
       }else{
-          axios.lgypost(params)
+          axios.all(params)
       }
     }
     axios.get(uri,pas,cb)

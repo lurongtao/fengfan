@@ -7,7 +7,9 @@
 5. 用户添加，修改API：添加角色
 6. 添加判断用户是否登录接口 /api/users/hassignin
 7. 重置密码不用用户名，用uid
-8. 添加退出登录接口 /api/usres/signout
+8. 添加退出登录接口 /api/users/signout
+9. 添加获取收藏接口 /api/users/favorite
+10. 添加显示用户列表的接口 /api/users/list
 
 问题：
 1. 视频接口有点问题

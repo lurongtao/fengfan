@@ -94,8 +94,8 @@ class interviewq extends React.Component {
   //分页更换数据
     pageChange(page){
       this.getData({
-        start:page*this.state.count,
-        count:this.state.count
+        start: page*this.state.count,
+        count: this.state.count
       })
     }
 

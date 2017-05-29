@@ -43,6 +43,8 @@ var searchList = require('./search/searchList.json')
 
 var hassignin = require('./users/hassignin.json')
 var signout = require('./users/signout.json')
+var favorite = require('./users/favorite.json')
+var getresettoken = require('./users/getresettoken.json')
 
 module.exports = function () {
 
@@ -93,7 +95,10 @@ module.exports = function () {
     'search':searchList,
 
     'hassignin': hassignin,
-    'signout': signout
+    'signout': signout,
+
+    'favorite': favorite,
+    'getresettoken': getresettoken
 
   }
 }

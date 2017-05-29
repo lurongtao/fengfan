@@ -55,6 +55,7 @@ import Users from './components/users/Users'
 import Signin from './components/users/Signin'
 import Forgotpwd from './components/users/Forgotpwd'
 import Resetpwd from './components/users/Resetpwd'
+import Favorite from './components/users/Favorite'
 
 //console.log(Users)
 
@@ -104,6 +105,10 @@ ReactDOM.render((
         <Route path="search">
           <Route path="list(/:id)" component={Search}></Route>
         </Route>
+
+        {/* 用户收藏 */}
+        <Route path="favorite" component={Favorite}></Route>
+
       </Route>
 
       {/* 后台管理 admin*/}

@@ -97,7 +97,7 @@ class Header extends Component {
 
   signout() {
     Axios.get(
-      '/mock/signout', {},
+      '/api/users/signout', {},
       function (res) {
       	if(res.data.errcode == -1){
 					message.info(res.data.errmsg)

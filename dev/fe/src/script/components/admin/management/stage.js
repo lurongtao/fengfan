@@ -14,9 +14,9 @@ class Stage extends Component{
       info:{
         title:"视频管理/阶段管理",
         tip:"阶段添加",
-        listUri:"/api/stage/list",
-        addUri:"/api/stage/add",
-        removeUri:"/api/stage/remove"
+        listUri:"/mock/api/stage/list",
+        addUri:"/mock/api/stage/add",
+        removeUri:"/mock/api/stage/remove"
       }
     }
   }

@@ -30,7 +30,7 @@
   "/api/job/update": "/jobupdate",
 
   "/api/interviewq/list": "/interviewqlist",
-  "/api/interviewq/remove":"/interviewremove",
+  "/api/interviewq/remove":"/interviewqremove",
   "/api/interviewq/add":"/interviewqadd",
   "/api/interviewq/update":"/interviewqupdate",
 
@@ -51,6 +51,11 @@
   "/api/users/hassignin": "/hassignin",
   "/api/users/signout": "/signout",
   "/api/users/favorite": "/favorite",
-  "/api/users/getresettoken": "/getresettoken"
+  "/api/users/getresettoken": "/getresettoken",
+
+  "/api/users/add":"/usersadd",
+  "/api/users/list":"/userslist",
+  "/api/users/remove":"/usersremove",
+  "/api/users/update":"/usersupdate"
 
 }

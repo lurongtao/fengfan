@@ -6,7 +6,7 @@ const confirm = Modal.confirm
 
 
 export default {
-  //请求分类列表,阶段列表,招聘管理列表,面试题管理列表数据
+  //请求分类列表,阶段列表,城市列表数据
   list:(uri,that)=>{
     let callback = (res)=>{
           let subjects = res.data.data.subjects
@@ -22,16 +22,22 @@ export default {
             })
           })
     }
-    let params={}
+    let params={
+      start:0,
+      count:10
+    }
     axios.get(uri,params,callback)
   },
   //请求列表数据
   videoList:(uri,callback)=>{
-    let params={}
+    let params={
+      start:0,
+      count:6
+    }
     axios.get(uri,params,callback)
   },
   //删除操作
-  delete:(id,uri)=>{
+  delete:(id,uri,tag)=>{
     let callback = (res)=>{
           let data = res.data.data
           if(data.status == "ok"){
@@ -42,12 +48,23 @@ export default {
             message.success('删除失败，请重试');
           }
         }
-    let params = {
-      url:uri,
-      method:'post',
-      data:`id=${id}`,
-      callback:callback
+    let params
+    if(tag == 'users'){
+      params = {
+        url:uri,
+        method:'post',
+        data:`uid=${id}`,
+        callback:callback
+      }
+    }else{
+      params = {
+        url:uri,
+        method:'post',
+        data:`id=${id}`,
+        callback:callback
+      }
     }
+
     confirm({
       title: '是否删除此项?',
       content: '确认请点击确认,否则请点击取消',
@@ -123,14 +140,6 @@ export default {
       that.setState({
         data:data
       })
-    }
-    let params = {}
-    axios.get(uri,params,callback)
-  },
-  //add 招聘管理,面试题管理内容添加操作
-  add:(uri)=>{
-    let callback=(res)=>{
-      console.log(res)
     }
     let params = {}
     axios.get(uri,params,callback)

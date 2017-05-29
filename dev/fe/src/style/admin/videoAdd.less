@@ -1,4 +1,4 @@
-.m-adVideoAdd{
+.m-adVideoAdd,.m-userAdd{
   padding:20px;
   margin: 0 auto;
   .container{
@@ -15,7 +15,7 @@
       margin-bottom: 26px;
     }
     .addCon{
-      .addTitle{
+      .addTitle,.addName{
         width: 601px;
         padding-bottom: 6px;
         border-bottom: 1px solid #e5e5e5;
@@ -31,11 +31,14 @@
           border: 0;
         }
       }
-      .classify,.stage{
+      .user{
+        margin-top: 20px;
+      }
+      .classify,.stage,.user{
         width: 300px;
         height: 43px;
         line-height: 43px;
-        text-align: center;
+        text-align: left;
         .ant-select-selection{
           display: inline-block;
           width: 300px;
@@ -57,7 +60,7 @@
           border-radius:0;
         }
       }
-      .imgUrl,.videoUrl{
+      .imgUrl,.videoUrl,.password,.email{
         width: 600px;
         height: 35px;
         border-bottom:1px solid #e5e5e5;
@@ -67,7 +70,6 @@
           height: 28px;
           font-size:18px;
           color:#9b9b9b;
-          padding-left:20px;
           letter-spacing:0.26px;
           line-height:28px;
           border: 0;

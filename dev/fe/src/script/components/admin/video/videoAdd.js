@@ -37,11 +37,13 @@ class VideoAdd extends Component{
       let data = res.data.data
       if(data.status == "ok"){
         //提交成功
-        message.success(data.msg)
-        this.refs.title.value = ''
-        this.refs.desc.refs.input.value = '',
-        this.refs.imgUrl.value = '',
-        this.refs.videoUrl.value = ''
+        message.success(data.msg,1,()=>{
+          this.refs.title.value = ''
+          this.refs.desc.refs.input.value = '',
+          this.refs.imgUrl.value = '',
+          this.refs.videoUrl.value = ''
+          this.props.router.push("/admin/video/list")
+        })
       }else{
         //提交失败
         message.error('提交失败，请重试')

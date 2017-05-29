@@ -15,8 +15,8 @@ var jobAdd = require('./job/jobAdd.json')
 var jobRemove = require('./job/jobRemove.json')
 var jobUpdate = require('./job/jobUpdate.json')
 
-var jobDetail = require('./job/jobDetail.json');
-var jobReply = require('./job/jobReply.json');
+var jobDetail = require('./job/jobDetail.json')
+var jobReply = require('./job/jobReply.json')
 
 var interviewqList = require('./interviewq/interviewqList.json')
 var interviewqDetail = require('./interviewq/interviewqDetail.json')
@@ -45,6 +45,11 @@ var hassignin = require('./users/hassignin.json')
 var signout = require('./users/signout.json')
 var favorite = require('./users/favorite.json')
 var getresettoken = require('./users/getresettoken.json')
+
+var usersAdd = require('./users/usersAdd.json')
+var usersList = require('./users/usersList.json')
+var usersRemove = require('./users/usersRemove.json')
+var usersUpdate = require('./users/usersUpdate.json')
 
 module.exports = function () {
 
@@ -98,7 +103,12 @@ module.exports = function () {
     'signout': signout,
 
     'favorite': favorite,
-    'getresettoken': getresettoken
+    'getresettoken': getresettoken,
+
+    'usersadd':usersAdd,
+    'userslist':usersList,
+    'usersremove':usersRemove,
+    'usersupdate':usersUpdate
 
   }
 }

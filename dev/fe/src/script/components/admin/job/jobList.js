@@ -36,7 +36,8 @@ class recruitList extends Component{
         ),
         }
       ],
-      data:[]
+      data:[],
+      total:0
     }
   }
 
@@ -50,23 +51,20 @@ class recruitList extends Component{
   //招聘管理删除操作
   delete(id){
     let uri = '/api/job/remove'
-    adminCommon.delete(id,uri)
+    let tag = 'job'
+    adminCommon.delete(id,uri,job)
   }
 
 
   render(){
     return (
-      <div className="m-recruitList adList">
-        <List columns={this.state.columns} data={this.state.data} title={this.state.title}></List>
+      <div className="m-jobList adList">
+        <List columns={this.state.columns} uri={"/api/job/list"} title={this.state.title}
+        total={this.state.total} tag={"job"}></List>
       </div>
     )
   }
 
-  componentDidMount(){
-    //请求招聘管理列表数据
-    let uri='/api/job/list'
-    adminCommon.list(uri,this)
-  }
 }
 
 export default recruitList

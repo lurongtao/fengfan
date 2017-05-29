@@ -14,8 +14,7 @@ class Update extends Component{
       },
       classify:[],
       city:[],
-      classifyValue:'',
-      cityValue:''
+      chooseValue:''
     }
   }
 
@@ -27,13 +26,13 @@ class Update extends Component{
   }
 
 
-  handleCityChange(value){
+  handleChooseChange(value){
 
-    //城市
-    this.state.cityValue = value
+    this.state.chooseValue = value
+
   }
 
-  //添加操作
+  //修改操作
   update(){
     let id = this.props.id
     let title = this.refs.title.value
@@ -44,17 +43,18 @@ class Update extends Component{
       let data = res.data.data
       if(data.status == "ok"){
         message.success(data.msg,1,()=>{
-            this.props.jumpHandle()
+          this.props.jumpHandle()
         })
-        this.refs.title.value = ''
-        this.refs.txt.refs.input.value = ''
       }else{
         message.error('提交失败，请重试')
       }
     }
 
 
-    let params = {}
+    let params = {
+      start:0,
+      count:10
+    }
     if(tag == "job"){
       params = {
         url:uri,
@@ -63,7 +63,7 @@ class Update extends Component{
           id:id,
           uid: 4,
           title: title,
-          city: this.state.cityValue,
+          city: this.state.chooseValue,
           content: txt,
         },
         callback:callback
@@ -76,14 +76,13 @@ class Update extends Component{
           id:id,
           uid: 4,
           title: title,
-          tag: this.state.classifyValue,
+          tag: this.state.chooseValue,
           content: txt
         },
         callback:callback
       }
     }
-    console.log(params)
-    if(!title || !txt){
+    if(!title || !txt || !this.state.chooseValue){
       message.warning('请填写完整')
     }else{
       axios.lgypost(params)
@@ -101,7 +100,7 @@ class Update extends Component{
             ref="select"
             size={this.state.size}
             defaultValue="添加城市"
-            onChange={this.handleCityChange.bind(this)}
+            onChange={this.handleChooseChange.bind(this)}
             style={{ width: 300 }}
           >
           {this.state.city}
@@ -115,7 +114,7 @@ class Update extends Component{
             ref="classify"
             size={this.state.size}
             defaultValue="添加分类"
-            onChange={this.handleClassifyChange.bind(this)}
+            onChange={this.handleChooseChange.bind(this)}
             style={{ width: 300 }}
           >
           {this.state.classify}
@@ -156,17 +155,15 @@ class Update extends Component{
     let title = this.refs.title
     let txt = this.refs.txt.refs.input
     let id = this.props.id
-    let uri = this.props.uriList
-    let params = {}
+    let uri = this.props.uriDetail
+    let params = {
+      uid:4,
+      id:id
+    }
     let callback = (res)=>{
-      let data = res.data.data.subjects
-      let arr={}
-      data.map((value,index)=>{
-        if(id == value.id){
-          arr = value
-        }
-      })
-      title.value = arr.title
+      let data = res.data.data
+      title.value = data.title
+      txt.value = data.content
     }
     axios.get(uri,params,callback)
   }

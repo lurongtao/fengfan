@@ -9,12 +9,15 @@ class InterviewqAdd extends Component{
     }
   }
 
-
+  jump(){
+    //跳转操作
+    this.props.router.push("/admin/interviewq/list")
+  }
 
   render(){
     return (
       <div className="m-interviewqAdd add">
-        <Add title={this.state.title} uri={"/api/interviewq/add"} tag={"interviewq"}></Add>
+        <Add title={this.state.title} uri={"/api/interviewq/add"} tag={"interviewq"} jumpHandle={this.jump.bind(this)}></Add>
       </div>
     )
   }

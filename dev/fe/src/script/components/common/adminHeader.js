@@ -5,9 +5,7 @@ import {Link} from 'react-router'
 
 
 class AdminHeader extends Component{
-  handleClick = (e) => {
-   console.log('click ', e)
-  }
+
 
   render(){
     return (
@@ -16,6 +14,13 @@ class AdminHeader extends Component{
           <img src="./images/logo.png" alt="锋帆logo"/>
         </div>
         <ul className="adminNav">
+          <li>
+            <Link to="/admin/users" activeClassName="active">用户管理</Link>
+              <ul>
+                <li><Link to="/admin/users/list">用户列表</Link></li>
+                <li><Link to="/admin/users/add">用户添加</Link></li>
+              </ul>
+          </li>
           <li>
             <Link to="/admin/video" activeClassName="active">视频管理</Link>
             <ul>

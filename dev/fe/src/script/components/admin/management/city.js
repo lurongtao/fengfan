@@ -14,9 +14,9 @@ class City extends Component{
       info:{
         title:"城市管理",
         tip:"城市添加",
-        listUri:"/api/city/list",
-        addUri:"/api/city/add",
-        removeUri:"/api/city/remove"
+        listUri:"/mock/api/city/list",
+        addUri:"/mock/api/city/add",
+        removeUri:"/mock/api/city/remove"
       }
     }
   }

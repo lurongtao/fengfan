@@ -10,19 +10,15 @@ import { Provider } from 'react-redux'
 
 //index.js
 import Index from './components/Index'
-
 //index 主页面
 import IndexList from './components/index/indexList'
-
 //video 视频
 import VideoList from './components/video/List'
 import VideoDetail from './components/video/VideoDetail'
-
 //qanda 问答
 import QandaList from './components/qanda/qandaList'
 import QandaDetail from './components/qanda/qandaDetail'
 import QandaAdd from './components/qanda/qandaAdd'
-
 //admin 后台
 import Admin from './components/admin/admin'
 
@@ -42,20 +38,25 @@ import Classify from './components/admin/management/Classify'
 import Stage from './components/admin/management/stage'
 import City from './components/admin/management/city'
 
+import UserAdd from './components/admin/users/userAdd'
+import UserList from './components/admin/users/userList'
+import UserUpdate from './components/admin/users/userUpdate'
+
 //search 搜索
 import Search from './components/search/search'
 
+
+
 //job 招聘
+import interviewqDetail from './components/job/interviewqDetail'
 import JobList from './components/job/jobList'
 import JobDetail from './components/job/JobDetail'
-import interviewqDetail from './components/job/interviewqDetail'
 // import QandaDetail from './components/qanda/qandaDetail'
 
 import Users from './components/users/Users'
 import Signin from './components/users/Signin'
 import Forgotpwd from './components/users/Forgotpwd'
 import Resetpwd from './components/users/Resetpwd'
-import Favorite from './components/users/Favorite'
 
 //console.log(Users)
 
@@ -70,6 +71,7 @@ ReactDOM.render((
         <Route path="index">
           <Route path="list" component={IndexList}></Route>
         </Route>
+
 
         {/* 视频  video*/}
         <Route path="video">
@@ -105,16 +107,19 @@ ReactDOM.render((
         <Route path="search">
           <Route path="list(/:id)" component={Search}></Route>
         </Route>
-
-        {/* 用户收藏 */}
-        <Route path="favorite" component={Favorite}></Route>
-
       </Route>
+
 
       {/* 后台管理 admin*/}
       <Router path="admin" component={Admin}>
-        <IndexRedirect to="/admin/video" />
-
+        <IndexRedirect to="/admin/users" />
+        {/* 用户管理 */}
+        <Route path="users">
+          <IndexRedirect to="/admin/users/list" />
+          <Route path="list" component={UserList}></Route>
+          <Route path="add" component={UserAdd}></Route>
+          <Route path="update/:id" component={UserUpdate}></Route>
+        </Route>
         {/* 视频管理 */}
         <Route path="video">
           <IndexRedirect to="/admin/video/classify" />
@@ -125,7 +130,6 @@ ReactDOM.render((
           <Route path="add" component={Vadd}></Route>
           <Route path="update/:id" component={Vupdate}></Route>
         </Route>
-
         {/* 招聘管理 */}
         <Route path="job">
           <IndexRedirect to="/admin/job/list" />
@@ -133,7 +137,6 @@ ReactDOM.render((
           <Route path="add" component={JAdd}></Route>
           <Route path="update/:id" component={JobUpdate}></Route>
         </Route>
-
         {/* 面试题管理 */}
         <Route path="interviewq">
           <IndexRedirect to="/admin/interviewq/list" />
@@ -143,7 +146,7 @@ ReactDOM.render((
         </Route>
       </Router>
 
-      {/* 登录 users*/}
+       {/* 登录 users*/}
       <Route path="/users" component={Users}>
         <IndexRedirect to="signin" />
         <Route path="signin" component={Signin}></Route>

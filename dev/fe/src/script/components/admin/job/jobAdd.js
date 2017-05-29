@@ -10,12 +10,15 @@ class AdminRecruitAdd extends Component{
     }
   }
 
-
+  jump(){
+    //跳转操作
+    this.props.router.push("/admin/job/list")
+  }
 
   render(){
     return (
       <div className="m-recruitAdd add">
-        <Add title={this.state.title} uri={"/api/job/add"} tag={"job"}></Add>
+        <Add title={this.state.title} uri={"/api/job/add"} tag={"job"} jumpHandle={this.jump.bind(this)}></Add>
       </div>
     )
   }

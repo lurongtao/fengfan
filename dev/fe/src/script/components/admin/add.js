@@ -41,44 +41,48 @@ class Add extends Component{
     let uri = this.props.uri
 
     let callback = (res)=>{
-      console.log(res)
       let data = res.data.data
       if(data.status == "ok"){
-        message.success(data.msg)
         this.refs.title.value = ''
         this.refs.txt.refs.input.value = ''
+        message.success(data.msg,1,()=>{
+            this.props.jumpHandle()
+        })
       }else{
         message.error('提交失败，请重试')
       }
     }
     let tag = this.props.tag//区分招聘和面试题(发送数据不同)
     let params = {}
+    let cl//存放城市或者分类
     if(tag == "job"){
+      cl = this.state.cityValue
       params = {
         url:uri,
         method:"post",
         data:{
           uid: 4,
           title: title,
-          city: this.state.cityValue,
+          city: cl,
           content: txt,
         },
         callback:callback
       }
     }else if(tag == "interviewq"){
+      cl = this.state.classifyValue
       params = {
         url:uri,
         method:"post",
         data:{
           uid: 4,
           title: title,
-          tag: this.state.classifyValue,
+          tag: cl,
           content: txt
         },
         callback:callback
       }
     }
-    if(!title || !txt){
+    if(!title || !txt || !cl){
       message.warning('请填写完整')
     }else{
       axios.lgypost(params)

@@ -13,9 +13,9 @@ class VideoClassify extends Component{
       info:{
         title:"视频管理/分类管理",
         tip:"分类添加",
-        listUri:"/api/classify/list",
-        addUri:"/api/classify/add",
-        removeUri:"/api/classify/remove"
+        listUri:"/mock/api/classify/list",
+        addUri:"/mock/api/classify/add",
+        removeUri:"/mock/api/classify/remove"
       }
     }
   }

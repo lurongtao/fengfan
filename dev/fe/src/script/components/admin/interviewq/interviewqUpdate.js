@@ -19,7 +19,7 @@ class InterViewqUpdate extends Component{
   render(){
     return (
       <div className="m-update">
-        <Update title={this.state.title} id={this.props.params.id} uriUpdate={"/api/interviewq/update"} uriList={"/api/interviewq/list"} jumpHandle={this.jump.bind(this)} tag={"interviewq"}></Update>
+        <Update title={this.state.title} id={this.props.params.id} uriUpdate={"/api/interviewq/update"} uriDetail={"/api/interviewq/detail"} jumpHandle={this.jump.bind(this)} tag={"interviewq"}></Update>
       </div>
     )
   }

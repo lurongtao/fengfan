@@ -18,7 +18,7 @@ class JobUpdate extends Component{
   render(){
     return (
       <div className="m-update">
-        <Update title={this.state.title} id={this.props.params.id} uriUpdate={"/api/job/update"} uriList={"/api/job/list"} jumpHandle={this.jump.bind(this)} tag={"job"}></Update>
+        <Update title={this.state.title} id={this.props.params.id} uriUpdate={"/api/job/update"} uriDetail={"/api/job/detail"} jumpHandle={this.jump.bind(this)} tag={"job"}></Update>
       </div>
     )
   }

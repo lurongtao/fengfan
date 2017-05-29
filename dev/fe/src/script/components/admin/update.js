@@ -85,7 +85,7 @@ class Update extends Component{
     if(!title || !txt || !this.state.chooseValue){
       message.warning('请填写完整')
     }else{
-      axios.lgypost(params)
+      axios.all(params)
     }
 
   }

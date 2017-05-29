@@ -69,7 +69,7 @@ export default {
       title: '是否删除此项?',
       content: '确认请点击确认,否则请点击取消',
       onOk() {
-        axios.lgypost(params)
+        axios.all(params)
       }
     })
   },
@@ -90,7 +90,7 @@ export default {
       method:'get',
       callback:callback
     }
-    axios.lgypost(params)
+    axios.all(params)
   },
   //请求阶段数据
   stage:(that)=>{
@@ -109,7 +109,7 @@ export default {
       method:'get',
       callback:callback
     }
-    axios.lgypost(params)
+    axios.all(params)
   },
   //请求城市数据
   city:(that)=>{
@@ -128,7 +128,7 @@ export default {
       method:'get',
       callback:callback
     }
-    axios.lgypost(params)
+    axios.all(params)
   },
   //请求job和interview列表数据
   commonList:(uri,that)=>{

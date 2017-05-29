@@ -85,7 +85,7 @@ class Add extends Component{
     if(!title || !txt || !cl){
       message.warning('请填写完整')
     }else{
-      axios.lgypost(params)
+      axios.all(params)
     }
 
   }

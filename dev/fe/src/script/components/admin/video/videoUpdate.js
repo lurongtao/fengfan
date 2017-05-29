@@ -76,7 +76,7 @@ class VideoUpdate extends Component{
     if(!title || !desc || !imgUrl || !videoUrl || !classify ||!stage){
       message.warning('请填写完整')
     }else{
-      axios.lgypost(params)
+      axios.all(params)
     }
   }
 

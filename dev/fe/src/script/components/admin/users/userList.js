@@ -60,7 +60,7 @@ class UserList extends Component{
     return (
       <div className="m-usersList adList">
         <List columns={this.state.columns} uri={"/api/users/list"} title={this.state.title}
-        total={this.state.total} tag={"users"}></List>
+        total={this.state.total} tag={"users"} addUrl={"/admin/users/add"}></List>
       </div>
     )
   }

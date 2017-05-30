@@ -34,7 +34,7 @@ import Vlist from './components/admin/video/videoList'
 import Vadd from './components/admin/video/videoAdd'
 import Vupdate from './components/admin/video/videoUpdate'
 
-import Classify from './components/admin/management/Classify'
+import Classify from './components/admin/management/classify'
 import Stage from './components/admin/management/stage'
 import City from './components/admin/management/city'
 
@@ -121,10 +121,7 @@ ReactDOM.render((
         </Route>
         {/* 视频管理 */}
         <Route path="video">
-          <IndexRedirect to="/admin/video/classify" />
-          <Route path="classify" component={Classify}></Route>
-          <Route path="stage" component={Stage}></Route>
-          <Route path="city" component={City}></Route>
+          <IndexRedirect to="/admin/video/list" />
           <Route path="list" component={Vlist}></Route>
           <Route path="add" component={Vadd}></Route>
           <Route path="update/:id" component={Vupdate}></Route>
@@ -142,6 +139,12 @@ ReactDOM.render((
           <Route path="list" component={InterviewqList}></Route>
           <Route path="add" component={InterviewqAdd}></Route>
           <Route path="update/:id" component={InterViewqUpdate}></Route>
+        </Route>
+        <Route path="other">
+          <IndexRedirect to="/admin/other/classify" />
+          <Route path="classify" component={Classify}></Route>
+          <Route path="stage" component={Stage}></Route>
+          <Route path="city" component={City}></Route>
         </Route>
       </Router>
 

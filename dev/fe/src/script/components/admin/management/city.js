@@ -14,9 +14,9 @@ class City extends Component{
       info:{
         title:"城市管理",
         tip:"城市添加",
-        listUri:"/mock/api/city/list",
-        addUri:"/mock/api/city/add",
-        removeUri:"/mock/api/city/remove"
+        listUri:"/api/city/list",
+        addUri:"/api/city/add",
+        removeUri:"/api/city/remove"
       }
     }
   }
@@ -26,7 +26,7 @@ class City extends Component{
   render(){
     return (
       <div className="m-city management">
-        <Management info={this.state.info}></Management>
+        <Management info={this.state.info}  tag={"city"}></Management>
       </div>
     )
   }

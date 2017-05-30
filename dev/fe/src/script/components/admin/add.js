@@ -54,39 +54,45 @@ class Add extends Component{
     }
     let tag = this.props.tag//区分招聘和面试题(发送数据不同)
     let params = {}
-    let cl//存放城市或者分类
+    let city,classify//存放城市,分类
     if(tag == "job"){
-      cl = this.state.cityValue
+      city = this.state.cityValue
+      classify = this.state.classifyValue
       params = {
         url:uri,
         method:"post",
         data:{
-          uid: 4,
           title: title,
-          city: cl,
+          tag: classify,
+          city: city,
           content: txt,
         },
         callback:callback
       }
+      if(!title || !txt || !classify ||!city){
+        message.warning('请填写完整')
+      }else{
+        axios.all(params)
+      }
     }else if(tag == "interviewq"){
-      cl = this.state.classifyValue
+      classify = this.state.classifyValue
       params = {
         url:uri,
         method:"post",
         data:{
-          uid: 4,
           title: title,
-          tag: cl,
+          tag: classify,
           content: txt
         },
         callback:callback
       }
+      if(!title || !txt || !classify){
+        message.warning('请填写完整')
+      }else{
+        axios.all(params)
+      }
     }
-    if(!title || !txt || !cl){
-      message.warning('请填写完整')
-    }else{
-      axios.all(params)
-    }
+
 
   }
 
@@ -94,16 +100,29 @@ class Add extends Component{
     let tag = this.props.tag//区分招聘和面试题(显示城市或者分类)
     if(tag == "job"){
       return (
-        <div className="city">
-          <Select
-            ref="select"
-            size={this.state.size}
-            defaultValue="添加城市"
-            onChange={this.handleCityChange.bind(this)}
-            style={{ width: 300 }}
-          >
-          {this.state.city}
-         </Select>
+        <div>
+          <div className="city">
+            <Select
+              ref="select"
+              size={this.state.size}
+              defaultValue="添加城市"
+              onChange={this.handleCityChange.bind(this)}
+              style={{ width: 300 }}
+            >
+            {this.state.city}
+           </Select>
+          </div>
+          <div className="classify">
+            <Select
+              ref="classify"
+              size={this.state.size}
+              defaultValue="添加分类"
+              onChange={this.handleClassifyChange.bind(this)}
+              style={{ width: 300 }}
+            >
+            {this.state.classify}
+           </Select>
+          </div>
         </div>
       )
     }else if(tag == "interviewq"){
@@ -146,6 +165,8 @@ class Add extends Component{
     if(tag == "job"){
       //请求城市分类数据
       adminCommon.city(this)
+      //请求管理分类数据
+      adminCommon.classify(this)
     }else if(tag == "interviewq"){
       //请求管理分类数据
       adminCommon.classify(this)

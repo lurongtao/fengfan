@@ -416,4 +416,43 @@ class Users extends FengfanController {
 
 		return $this->corsjson($result);
     }
+
+    public function userList($condition="", $start="", $count="") {
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"记录开始值" => $start,
+			"返回记录条数" => $count,
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$user = new User;
+		$total = $user->where('username','like','%'. $condition .'%')->count();
+		$subjects = [];
+
+		if($total) {
+			$subjects = Db::query("
+				select a.id as uid, a.username, a.create_date as createDate
+				from users as a
+				where 
+				a.username like ? order by a.create_date desc
+				limit ?, ?", ["%". $condition ."%", $start, $count]);
+		}
+
+		$result["data"]	= [ // 数据内容
+			"start" => $start, //记录开始值 [数值：必填]
+			"count" => $count, //返回记录条数 [数值：必填]
+			"total" => $total, //总记录条数 [数值：必填]
+			"subjects" => $subjects
+		];
+
+		return $this->corsjson($result);
+    }
 }

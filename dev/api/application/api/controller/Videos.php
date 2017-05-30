@@ -192,12 +192,12 @@ class Videos extends FengfanController {
 		if(empty($condition)) {
 			$total = $video->count();
 			// 取得数据
-			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . " as category, a.createDate from videos as a, video_category as b where a.id = b.vid  limit ?, ?", 
+			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . " as category, a.createDate from videos as a, video_category as b where a.id = b.vid order by a.createDate desc limit ?, ?", 
 				[$start, $count]);
 		} else {
 			$total = $video->where('title','like','%'. $condition .'%')->count();
 			// 取得数据
-			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . "  as category, a.createDate from videos as a, video_category as b where a.title like ? and a.id = b.vid limit ?,?", 
+			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . "  as category, a.createDate from videos as a, video_category as b where a.title like ? and a.id = b.vid order by a.createDate desc limit ?,?", 
 				['%'.$condition.'%', $start, $count]);
 		}
 

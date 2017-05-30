@@ -52,10 +52,9 @@ class qandaList extends React.Component {
         data: listDa,
         filterData:listDa,
         total:res.data.data.total
-      });
-    });
-
-  };
+      })
+    })
+  }
 
   dataProcessingFirst(res){
     let listData = res.data.data.subjects.map((comment, index) => {
@@ -68,7 +67,7 @@ class qandaList extends React.Component {
         createDate: comment.createDate,
         action: comment.hits + '/' + comment.answers,
       }
-    });
+    })
     return listData
   }
 
@@ -93,6 +92,7 @@ class qandaList extends React.Component {
       // console.log(res.data.data);
       var listDa = this.dataProcessingFirst(res)
       var filterData = tagFilter.dataProcessing(listDa,tag)
+
       this.setState({
         data:listDa,
         filterData:filterData,
@@ -104,6 +104,7 @@ class qandaList extends React.Component {
 //分页更换数据
   pageChange(page){
     this.getData({
+      condition:this.state.curTag=="所有分类"?"":this.state.curTag,
       start: page*this.state.count,
       count: this.state.count
     })

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Input } from 'antd';
-import { Button } from 'antd';
+import { Button , message } from 'antd';
 import Axios from '../../utils/axios.util';
 import Content from './qandaDetailContent';
 
@@ -40,7 +40,6 @@ class qandAdd extends React.Component {
     Axios.post('/api/qanda/detail', {
       id: this.props.params.id
     }, (res)=>{
-      console.log(res.data.data);
 
     })
   };
@@ -111,14 +110,19 @@ class qandAdd extends React.Component {
       }
         return
     })
-    console.log(tags)
     Axios.post('/api/qanda/add', {
-      uid: 4, // 用户ID [数值：必填]
       tag: tags, // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
       title: title, //标题 [字符串：必填]
       content: content // 回帖内容：[字符串：必填]
     }, (res)=>{
-      console.log(res);
+      let data = res.data.data
+      if(data.status == "ok"){
+        message.success(data.msg,1,()=>{
+          this.props.router.push("/qanda/list")
+        })
+      }else{
+        message.error('提交失败，请重试')
+      }
     })
   }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input } from 'antd';
-import { Button } from 'antd';
+import { Button , message} from 'antd';
 import Content from '../qanda/qandaDetailContent';
 import Axios from '../../utils/axios.util'
 
@@ -50,6 +50,15 @@ class Comment extends React.Component {
     }, (res)=>{
       if(res.status == 200){
         that.props.refreshGetData()
+      }
+      let data = res.data.data
+      if(data.status == "ok"){
+
+        message.success(data.msg,1,()=>{
+          location.reload()
+        })
+      }else{
+        message.error('提交失败，请重试')
       }
     })
   }

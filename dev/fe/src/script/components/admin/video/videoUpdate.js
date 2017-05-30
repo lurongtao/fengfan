@@ -149,10 +149,10 @@ class VideoUpdate extends Component{
               this.refs.videoUrl.value = value.url //缺少字段
             }
           })
-          this.setState({
-            classifyValue:data.tag,
-            stageValue:data.stage
-          })
+          // this.setState({
+          //   classifyValue:data.tag,
+          //   stageValue:data.stage
+          // })
     }
     let uri='/api/video/list'
     adminCommon.videoList(uri,callback)

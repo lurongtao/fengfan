@@ -12,7 +12,7 @@ class Comment extends React.Component {
       data:[]
     }
   }
-  
+
   render(){
     let CommentNodes = null
     // console.log(this.props)
@@ -45,7 +45,6 @@ class Comment extends React.Component {
     // console.log(this.refs.inputContent.refs.input.value);s
     var that = this
     Axios.post(this.props.uri, {
-      uid: 34, // 用户ID [数值：必填]
       qid: 10, // 问题id：[数值：必填]
       content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
     }, (res)=>{

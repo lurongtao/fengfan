@@ -80,9 +80,13 @@ class qandaList extends React.Component {
 //通过点击标签来改变table中的数据源
   changeTag(tag,id){
     // console.log(this.state.data[0].tag)
+    this.setState({
+      current:1,
+      curTag:tag
+    })
     this.state.curTag = tag
     this.getData({
-      condition:tag,
+      condition:tag=="所有标签"?'':tag,
       start: 0,
       count: 10
     },(res)=>{
@@ -91,8 +95,6 @@ class qandaList extends React.Component {
       var filterData = tagFilter.dataProcessing(listDa,tag)
       this.setState({
         data:listDa,
-        current:1,
-        curTag:tag,
         filterData:filterData,
         total:res.data.data.total
       })

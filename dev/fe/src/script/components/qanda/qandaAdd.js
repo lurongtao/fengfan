@@ -38,7 +38,6 @@ class qandAdd extends React.Component {
 
   getData() {
     Axios.post('/api/qanda/detail', {
-      uid: 34,
       id: this.props.params.id
     }, (res)=>{
       console.log(res.data.data);

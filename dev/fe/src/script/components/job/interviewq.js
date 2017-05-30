@@ -76,7 +76,7 @@ class interviewq extends React.Component {
     changeTag(tag,index){
       this.state.curTag = tag
       this.getData({
-        condition:tag,
+        condition:tag=="所有标签"?'':tag,
           start: 0,
           count: 10
       },(res)=>{

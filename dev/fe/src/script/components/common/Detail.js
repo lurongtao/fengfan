@@ -25,15 +25,13 @@ class Detail extends React.Component {
     // 获取路由传参的id值
     let id = this.props.that.props.params.id
     Axios.get(this.props.uri, {
-      uid: 34,
       id:id
     }, (res)=>{
       // console.log(res.data.data);
       this.setState({
         question: res.data.data,
         answers: res.data.data.answers,
-      });
-
+      })
     })
   };
 

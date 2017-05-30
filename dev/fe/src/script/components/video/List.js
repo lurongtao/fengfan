@@ -17,7 +17,6 @@ class List extends Component {
       count: 9,
       curPage: 1,
       listAllData: null,
-
       tagData: [],
       tagData2: []
     }
@@ -30,7 +29,6 @@ class List extends Component {
         start: param.start,
         count: param.count
       }, (res)=>{
-        console.log(res);
         cb(res)
       })
     }
@@ -51,7 +49,7 @@ class List extends Component {
         this.dataProcessing()
       })
     }
-    
+
     changeTag2(step,index){
       this.setState({
         step:index

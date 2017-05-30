@@ -10,27 +10,30 @@ class ListContent extends Component {
     }
   }
 
+  
+
   render() {
     let List = null
     if(this.props.dataSource){
       List = this.props.dataSource.map((value,index)=>{
         return (
-          <ul>
-          <li>
-          <h1>{value.category.tag}</h1>
-          <Link to={"/video/detail/"+value.id}>
-            <img src={value.img} alt=""/>
-            <i></i>
+
+          <Link to={"/video/detail/"+value.id} className="video_wrap">
+            <dl>
+            <dt>
+              <img className="background" src={value.img}/>
+              <img className="video" src="./images/video.png" />
+              <img className="corner" src="./images/corner.png" />
+            </dt>
+            <dd className="vedio_title">{value.title}</dd>
+            <dd className="vedio_time">{value.createDate}</dd>
+            <dd className="vedio_decription">{value.summary}</dd>
+            </dl>
           </Link>
-          <h2>{value.title}</h2>
-          <h3>{value.createDate}</h3>
-          <p>{value.summary}</p>
-          </li>
-          </ul>
         )
       })
     }
-    
+
     return (
       <div className="m-list-content">
         {List}

@@ -17,7 +17,6 @@ class List extends Component {
       count: 9,
       curPage: 1,
       listAllData: null,
-
       tagData: [],
       tagData2: []
     }
@@ -30,7 +29,6 @@ class List extends Component {
         start: param.start,
         count: param.count
       }, (res)=>{
-        console.log(res);
         cb(res)
       })
     }
@@ -44,14 +42,18 @@ class List extends Component {
       //需重新设置状态值，否则下面函数访问不到set后的状态值
       this.state.curTag = tag
       this.getList({
-        condition: tag,
+        condition:tag=="所有分类"?'':tag,
         start: 0,
         count: this.state.count
-      },()=>{
+      },(res)=>{
+        this.setState({
+          listAllData:res.data.data
+        })
+        this.state.listAllData = res.data.data
         this.dataProcessing()
       })
     }
-    
+
     changeTag2(step,index){
       this.setState({
         step:index
@@ -77,6 +79,7 @@ class List extends Component {
         curPage: page
       })
       this.getList({
+        condition:this.state.curTag=="所有分类"?"":this.state.curTag,
         start: (page-1) * this.state.count,
         count: this.state.count
       },(res)=>{
@@ -214,6 +217,7 @@ class List extends Component {
     },(res)=>{
       this.setState({
         listAllData: res.data.data,
+        total:res.data.data.total,
         listData: res.data.data.subjects
       })
       this.dataProcessingAgain()

@@ -75,8 +75,11 @@ class interviewq extends React.Component {
   //通过点击标签来改变table中的数据源
     changeTag(tag,index){
       this.state.curTag = tag
+      this.setState({
+        curTag:tag
+      })
       this.getData({
-        condition:tag,
+        condition:tag=="所有标签"?'':tag,
           start: 0,
           count: 10
       },(res)=>{
@@ -85,17 +88,24 @@ class interviewq extends React.Component {
         this.setState({
           data: listDa,
           filterData:filterData,
-          total:res.data.data.total,
-          curTag:tag
-        });
-      });
+          total:res.data.data.total
+        })
+      })
     }
 
   //分页更换数据
     pageChange(page){
       this.getData({
+        condition:this.state.curTag=="所有标签"?"":this.state.curTag,
         start: page*this.state.count,
         count: this.state.count
+      },(res)=>{
+        let listDa = this.dataProcessingFirst(res)
+        let filterData = tagFilter.dataProcessing(listDa,tag)
+        this.setState({
+          data: listDa,
+          filterData:filterData,
+        })
       })
     }
 

@@ -24,7 +24,6 @@ class VideoDetail extends Component{
 
   getData() {
     Axios.post('/api/video/detail', {
-      uid: 34,
       id: this.props.params.id
     }, (res)=>{
       // console.log(res.data.data);

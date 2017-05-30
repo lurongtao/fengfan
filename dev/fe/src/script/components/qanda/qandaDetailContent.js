@@ -7,7 +7,6 @@ import Axios from '../../utils/axios.util';
 class qandaDetailContent extends React.Component {
 
   setBestAnswer(){
-    console.log(1)
   }
 
   render() {
@@ -38,7 +37,6 @@ class qandaDetailContent extends React.Component {
   }
 
   callback(key){
-    console.log(key);
   }
 
   componentDidMount() {

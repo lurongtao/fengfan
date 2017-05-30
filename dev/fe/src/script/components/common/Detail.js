@@ -14,26 +14,23 @@ class Detail extends React.Component {
       question: {},
       answers: null,
       CommentNodes: [1,2,3]
-    };
-
+    }
   // 获取数据
     this.getData();
-  };
+  }
 
 //获取详情页的数据
   getData() {
     // 获取路由传参的id值
     let id = this.props.that.props.params.id
     Axios.get(this.props.uri, {
-      uid: 34,
       id:id
     }, (res)=>{
       // console.log(res.data.data);
       this.setState({
         question: res.data.data,
         answers: res.data.data.answers,
-      });
-
+      })
     })
   };
 
@@ -43,7 +40,7 @@ class Detail extends React.Component {
 
 //点击收藏进行收藏帖子
   addFavorite(){
-    console.log(this.props.that.props.params.id)
+    // console.log(this.props.that.props.params.id)
   }
 
   render() {

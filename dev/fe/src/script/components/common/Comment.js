@@ -1,12 +1,8 @@
-
-
-
 import React from 'react'
 import { Input } from 'antd';
 import { Button } from 'antd';
 import Content from '../qanda/qandaDetailContent';
 import Axios from '../../utils/axios.util'
-
 
 class Comment extends React.Component {
 
@@ -16,6 +12,7 @@ class Comment extends React.Component {
       data:[]
     }
   }
+  
   render(){
     let CommentNodes = null
     // console.log(this.props)
@@ -57,7 +54,6 @@ class Comment extends React.Component {
       }
     })
   }
-
 
 }
 

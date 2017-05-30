@@ -6,8 +6,6 @@ import Axios from '../../utils/axios.util';
 
 import VideoComment from '../common/Comment';
 
-
-
 class VideoDetail extends Component{
 
   constructor(props) {
@@ -46,7 +44,7 @@ class VideoDetail extends Component{
             <img src="./images/Videodemo.jpg"/>
           </div>
         </div>
-        <VideoComment  detailDatas={this.state.answers?this.state.answers:null} uri="api/video/qanda"></VideoComment>
+        <VideoComment detailDatas={this.state.answers?this.state.answers:null} uri="api/video/qanda"></VideoComment>
       </div>
     )
   }

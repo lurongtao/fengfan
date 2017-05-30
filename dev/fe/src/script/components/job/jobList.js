@@ -22,7 +22,7 @@ class jobList extends React.Component {
   render() {
     return (
       <div className="m-qanda-list">
-        <Tabs defaultActiveKey="1" activeKey={this.state.activeKey} onChange={this.callback}>
+        <Tabs ref='tabs' activeKey={this.state.activeKey} defaultActiveKey="1" onChange={this.callback.bind(this)}>
           <TabPane tab="面试题" key="1">
             <Interviewq uri="api/interviewq/list" detailuri="interviewq/detail/"></Interviewq>
           </TabPane>
@@ -35,7 +35,9 @@ class jobList extends React.Component {
   }
 
   callback(key){
-    console.log(key);
+    this.setState({
+      activeKey: key
+    })
   }
 
   componentDidMount() {

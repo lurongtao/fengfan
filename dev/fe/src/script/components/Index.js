@@ -26,7 +26,9 @@ class Index extends Component {
     Axios.get('/api/users/hassignin', {}, (res) => {
       let data = res.data.data
       if (res.data.errcode != -1 && data.status == 'has') {
-        this.props.router.push('/index/list')
+        if (this.props.router.location.pathname == '/index/list') {
+          this.props.router.push('/index/list')
+        }
       } else {
         this.props.router.push('/users/signin')
       }

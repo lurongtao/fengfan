@@ -30,6 +30,7 @@ class ListContent extends Component {
         )
       })
     }
+    
     return (
       <div className="m-list-content">
         {List}

@@ -11,19 +11,19 @@ class IndexVideoList extends Component{
       data:[{}]
     }
   }
-  push(){
-    hashHistory.push('/video/detail/1')
+  push(id){
+    hashHistory.push(`/video/detail/${id}`)
   }
   indexVideo(list){
     return list.map((value,index)=>{
       if(index<6){
         return(
-          <div className="index_vedio">
-            <dl >
-            <dt onClick={this.push.bind(this)}>
+          <div onClick={this.push.bind(this, value.id)} className="index_vedio">
+            <dl>
+            <dt>
               <img className="background" src={value.img}/>
-              <img className="video" src="/images/video.png" />
-              <img className="corner" src="/images/corner.png" />
+              <img className="video" src="./images/video.png" />
+              <img className="corner" src="./images/corner.png" />
             </dt>
             <dd className="vedio_title">{value.title}</dd>
             <dd className="vedio_time">{value.createDate}</dd>
@@ -37,7 +37,7 @@ class IndexVideoList extends Component{
   render(){
     return(
       <div className="index_list">
-        <IndexCommonTitle title="推荐视频" path="video"/>
+        <IndexCommonTitle title="推荐视频" path="video/list"/>
         {this.indexVideo(this.state.data)}
       </div>
     )
@@ -45,7 +45,7 @@ class IndexVideoList extends Component{
   componentDidMount(){
     let that = this
     Axios({
-      url: "api/video/list?start=0&count=100",
+      url: "api/video/list?start=0&count=10",
       method: 'get',
       data: {
         start: 0,
@@ -53,10 +53,11 @@ class IndexVideoList extends Component{
       }
     })
     .then(function(res){
-      // console.log(res.data.data.subjects)
-      that.setState({
-        data:res.data.data.subjects
-      })
+      if (res.data.errcode != -1) {
+        that.setState({
+          data:res.data.data.subjects
+        })
+      }
     })
   }
 }

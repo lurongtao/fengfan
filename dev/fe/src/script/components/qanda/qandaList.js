@@ -121,7 +121,7 @@ class qandaList extends React.Component {
     return (
       <div className="m-qanda-list">
         <div className="go-q">
-          <Link to="/qanda/add"><img src="/images/goq.png" /></Link>
+          <Link to="/qanda/add"><img src="./images/goq.png" /></Link>
         </div>
         <div className="nav">
           <div className="cat">

@@ -15,13 +15,14 @@ class jobList extends React.Component {
 
     this.state = {
       data: [],
+      activeKey: '1'
     };
   }
 
   render() {
     return (
       <div className="m-qanda-list">
-        <Tabs defaultActiveKey="1" onChange={this.callback}>
+        <Tabs defaultActiveKey="1" activeKey={this.state.activeKey} onChange={this.callback}>
           <TabPane tab="面试题" key="1">
             <Interviewq uri="api/interviewq/list" detailuri="interviewq/detail/"></Interviewq>
           </TabPane>
@@ -38,7 +39,9 @@ class jobList extends React.Component {
   }
 
   componentDidMount() {
-
+    this.setState({
+      activeKey: this.props.location.query.activeKey
+    })
   }
 }
 

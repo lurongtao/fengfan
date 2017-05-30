@@ -14,7 +14,6 @@ class IndexList extends Component{
     )
   }
   componentDidMount(){
-    // console.log(localStorage.getItem('username'))
 
   }
 }

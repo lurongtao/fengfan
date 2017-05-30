@@ -3,8 +3,8 @@ import {hashHistory} from 'react-router'
 
 class IndexCommonTitle extends Component {
   go(path){
-    console.log(hashHistory)
-    hashHistory.push(`/${path}/list/`)
+    console.log(path);
+    hashHistory.push(`/${path}`)
   }
   render(){
     return(

@@ -5,7 +5,7 @@ export default ()=>{
   // Map Redux states to components props
   let mapStateToProps = (state)=>{
     return {
-      id: state.id
+      keywords: state.keywords
     }
   }
 
@@ -13,26 +13,16 @@ export default ()=>{
   // Map Redux actions to components props
   let mapDispatchToProps = (dispatch)=>{
     return {
-      onChangeId: (action)=>dispatch(action)
+      onChangeKeywords: (action)=>dispatch(action)
     }
   }
 
   // Reducer
-  let changer = (state={title: '《 电影《 豆瓣'}, action)=>{
+  let changer = (state={keywords: ''}, action)=>{
     switch (action.type) {
-      case 'SETTITLE':
+      case 'SET':
         return {
-          title: action.title
-        }
-      default:
-        return state
-    }
-  }
-  let changers = (state={id: ''}, action)=>{
-    switch (action.type) {
-      case 'SETTITLE':
-        return {
-          title: action.title
+          keywords: action.keywords
         }
       default:
         return state
@@ -40,7 +30,7 @@ export default ()=>{
   }
 
   // 创建store
-  const store = createStore(changers)
+  const store = createStore(changer)
 
   return {
     mapStateToProps,

@@ -19,6 +19,15 @@ class Header extends Component {
     }
   }
 
+  linkTo(that, value) {
+    that.props.onChangeKeywords({
+      type: 'SET',
+      keywords: value
+    })
+    that.refs.input.input.refs.input.value = ''
+    hashHistory.push(`/search/list`)
+  }
+
   render() {
     return (
       <div className="m-header">
@@ -44,8 +53,8 @@ class Header extends Component {
           <Search
             ref="input"
             placeholder="请输入关键字"
-            onSearch={value => this.props.link(value, this)}
-            />
+            onSearch={value => this.linkTo(this, value)}
+          />
         </a>
       </div>
     )
@@ -53,7 +62,7 @@ class Header extends Component {
 
   signin() {
     let that = this
-    Axios.get('/mock/hassignin', {}, function (res) {
+    Axios.get('/api/users/hassignin', {}, function (res) {
       let data = res.data.data
       if (data.status == 'has') {
         if (data.roles == '0') {
@@ -113,7 +122,7 @@ class Header extends Component {
     )
   }
 
-  componentDidUpdate(){
+  componentDidMount(){
 
   }
 }

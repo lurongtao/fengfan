@@ -45,8 +45,6 @@ import UserUpdate from './components/admin/users/userUpdate'
 //search 搜索
 import Search from './components/search/search'
 
-
-
 //job 招聘
 import interviewqDetail from './components/job/interviewqDetail'
 import JobList from './components/job/jobList'
@@ -58,20 +56,21 @@ import Signin from './components/users/Signin'
 import Forgotpwd from './components/users/Forgotpwd'
 import Resetpwd from './components/users/Resetpwd'
 
-//console.log(Users)
+import Home from './components/common/Home'
 
 ReactDOM.render((
   <Provider store={store().store}>
     <Router history={hashHistory}>
 
+      <Route path="/home" component={Home} />
+
       <Route path="/" component={Index}>
-        <IndexRedirect to="/index/list" />
+        <IndexRedirect to="/home" />
 
         {/* 主页面 index*/}
         <Route path="index">
           <Route path="list" component={IndexList}></Route>
         </Route>
-
 
         {/* 视频  video*/}
         <Route path="video">
@@ -90,7 +89,7 @@ ReactDOM.render((
 
         {/* 招聘 job + 面试题 interview*/}
         <Route path="job">
-          <IndexRedirect to="/job/list" />
+          <IndexRedirect to="/job/list?activeKey=1" />
           <Route path="list" component={JobList}></Route>
           <Route path="detail/:id" component={JobDetail}></Route>
           {/* <Route path="job/:id" component={QandaDetail}></Route> */}
@@ -98,7 +97,7 @@ ReactDOM.render((
 
         {/* 面试题 interview*/}
         <Route path="interviewq">
-          <IndexRedirect to="/job/list" />
+          <IndexRedirect to="/job/list?activeKey=1" />
           <Route path="detail/:id" component={interviewqDetail}></Route>
           {/* <Route path="job/:id" component={QandaDetail}></Route> */}
         </Route>

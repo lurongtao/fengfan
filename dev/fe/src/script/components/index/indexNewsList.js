@@ -11,8 +11,7 @@ class IndexNewsList extends Component{
     }
   }
   push(id){
-    // hashHistory.push(`/${this.props.tabs}/detail/${id}`)
-    hashHistory.push(`/qanda/detail/${id}`)
+    hashHistory.push(`/${this.props.tabs}/detail/${id}`)
   }
   indexNewsList(list){
     return list.map((value,index)=>{
@@ -31,7 +30,7 @@ class IndexNewsList extends Component{
   render(){
     return(
       <li className="news_list">
-        <IndexCommonTitle title={this.props.title} path={this.props.tabs}/>
+        <IndexCommonTitle title={this.props.title} path={this.props.path}/>
         <div className="news_content">
           {this.indexNewsList(this.state.data)}
         </div>
@@ -49,10 +48,11 @@ class IndexNewsList extends Component{
         count:10
       },
       callback:function(res){
-        // console.log(res)
-        that.setState({
-          data:res.data.data.subjects
-        })
+        if (res.data.errcode != -1) {
+          that.setState({
+            data:res.data.data.subjects
+          })
+        }
       }
     })
   }

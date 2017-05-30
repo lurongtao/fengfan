@@ -74,6 +74,7 @@ class UserAdd extends Component{
       }
     }
     axios.get(uri,pas,cb)
+    // axios.all(params)
   }
 
   // onChange(value){

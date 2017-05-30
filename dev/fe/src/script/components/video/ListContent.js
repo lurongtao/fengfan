@@ -2,9 +2,6 @@ import React, {Component} from 'react'
 
 import { Link } from 'react-router';
 
-
-
-
 class ListContent extends Component {
   constructor(props){
     super(props)

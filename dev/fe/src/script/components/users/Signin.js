@@ -33,7 +33,7 @@ export default class Signin extends Component {
 					message.info(res.data.errmsg)
       	} else {
 					//跳转首页
-					hashHistory.push("/")
+					hashHistory.push("/index/list")
       	}
       }
     )

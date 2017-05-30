@@ -3,36 +3,36 @@ import React, {Component} from 'react'
 import Header from './common/Header'
 import Footer from './common/Footer'
 
+import {hashHistory} from 'react-router'
+
+import Axios from '../utils/axios.util.js'
+
 class Index extends Component {
   constructor(props){
     super(props)
-    this.state= {
-      id: null
-    }
   }
-  linkTo(value,that){
-    that.props.onChangeId({
-      type: 'SETTITLE',
-      id: value
-    })
-    this.props.router.push(`/search/list/${value}`)
-    that.refs.input.input.refs.input.value = ''
-    this.setState({
-      id: value
-    })
-  }
+
   render() {
     return (
       <div className="m-index">
-        <Header parent={this} link={this.linkTo.bind(this)}/>
+        <Header parent={this} />
         {this.props.children}
         <Footer />
       </div>
     )
   }
-  componentDidMount() {
 
+  componentDidMount() {
+    Axios.get('/api/users/hassignin', {}, (res) => {
+      let data = res.data.data
+      if (res.data.errcode != -1 && data.status == 'has') {
+        this.props.router.push('/index/list')
+      } else {
+        this.props.router.push('/users/signin')
+      }
+    })
   }
+
   componentDidUpdate() {
 
   }

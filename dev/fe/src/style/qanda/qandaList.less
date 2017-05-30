@@ -1,8 +1,9 @@
 .m-qanda-list {
   width: 100%;
   box-sizing: border-box;
-  padding: 20px;
-  min-width: 1140px;
+  padding: 10px;
+  padding-top: 0;
+  min-width: @min-width;
   .go-q{
     img{
       width:100%;
@@ -13,7 +14,6 @@
     background: #fff;
     box-sizing: border-box;
     padding: 0 40px;
-    margin-top:20px;
     .cat {
       border-bottom: dashed 1px #e5e5e5;
       position: relative;
@@ -100,6 +100,37 @@
           border-color:#71c5ff;
         }
       }
+    }
+  }
+  .ant-tabs-bar {
+    margin: 20px 10px 0 10px;
+    background: #fff;
+  }
+
+  .ant-tabs-nav-scroll {
+    width: 100%;
+  }
+
+  .ant-tabs-line {
+    overflow: inherit;
+  }
+
+  .ant-tabs-nav-container {
+    overflow: inherit;
+  }
+
+  .ant-tabs-nav-wrap {
+    overflow: inherit;
+  }
+
+  .ant-tabs-nav {
+    padding: 10px 0;
+    font-size: 22px;
+    .ant-tabs-tab-active {
+      color: #ff8a0c;
+    }
+    .ant-tabs-ink-bar {
+      background-color: #ff8a0c;
     }
   }
 }

@@ -26,8 +26,8 @@ module.exports = {
     port: 7000,
     proxy: {
       '/api': {
-        // target: 'http://fengfangood.applinzi.com/',
-        target: 'http://localhost:9000',
+        target: 'http://fengfangood.applinzi.com/',
+        // target: 'http://localhost:9000',
         // target: 'http://fengfan.applinzi.com',
         changeOrigin: true
       },

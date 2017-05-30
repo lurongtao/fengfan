@@ -69,6 +69,7 @@ export default {
       title: '是否删除此项?',
       content: '确认请点击确认,否则请点击取消',
       onOk() {
+        console.log(params);
         axios.all(params)
       }
     })

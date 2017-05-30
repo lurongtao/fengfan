@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import { Table, Icon , Pagination} from 'antd'
+import {Link} from 'react-router'
 import Axios from '../../utils/axios.util'
 import adminCommon from '../../utils/adminCommon'
 
@@ -15,16 +16,28 @@ class List extends Component{
   }
 
   getData(params){
+
+    let tag = this.props.tag
     let callback = (res)=>{
       let subjects = res.data.data.subjects
       let data = []
-      subjects.map((value,index)=>{
-        data.push({
-          id:value.id,
-          name:value.title,
-          date:value.createDate
+      if(tag == "users"){
+        subjects.map((value,index)=>{
+          data.push({
+            id:value.id,
+            name:value.username,
+            date:value.createDate
+          })
         })
-      })
+      }else{
+        subjects.map((value,index)=>{
+          data.push({
+            id:value.id,
+            name:value.title,
+            date:value.createDate
+          })
+        })
+      }
       this.setState({
         data:data,
       })
@@ -47,6 +60,9 @@ class List extends Component{
     return (
         <div className="listContainer">
           <div className="tit">{this.props.title}</div>
+          <div className="addBtn">
+            <Link to={this.props.addUrl}>添加</Link>
+          </div>
           <div className="list"></div>
           <Table columns={this.props.columns} dataSource={this.state.data} pagination={false}/>
           <Pagination defaultCurrent={1} total={this.state.total?this.state.total:1}  onChange={this.pageChange.bind(this)} pageSize={6}/>

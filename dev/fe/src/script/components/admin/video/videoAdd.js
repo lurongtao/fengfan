@@ -56,7 +56,8 @@ class VideoAdd extends Component{
       img:imgUrl,
       summary:desc,
       category:{
-        step:stage,
+        // step:stage,
+        step:1,
         tag:classify
       }
     }
@@ -83,6 +84,7 @@ class VideoAdd extends Component{
   }
 
   handleStageChange(value){
+    console.log(value)
     //阶段
     this.state.stageValue = value
 

@@ -52,7 +52,7 @@ class recruitList extends Component{
   delete(id){
     let uri = '/api/job/remove'
     let tag = 'job'
-    adminCommon.delete(id,uri,job)
+    adminCommon.delete(id,uri,tag)
   }
 
 
@@ -60,7 +60,7 @@ class recruitList extends Component{
     return (
       <div className="m-jobList adList">
         <List columns={this.state.columns} uri={"/api/job/list"} title={this.state.title}
-        total={this.state.total} tag={"job"}></List>
+        total={this.state.total} tag={"job"} addUrl={"/admin/job/add"}></List>
       </div>
     )
   }

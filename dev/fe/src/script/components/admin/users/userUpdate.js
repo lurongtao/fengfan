@@ -23,8 +23,7 @@ class UserUpdate extends Component{
   submit(){
 
     let id = this.props.params.id
-    let username = this.refs.username.value//用户名
-    let pwd = this.refs.pwd.value//用户密码
+    let username = this.refs.updateName.value//用户名
     // let roles = this.state.rolesValue//用户角色
 
     let callback = (res)=>{
@@ -41,9 +40,7 @@ class UserUpdate extends Component{
     }
 
     let data = {
-      uid:id,
-      username:username,
-      password:pwd,
+      username:username
       // roles:roles
     }
     let params = {
@@ -53,7 +50,7 @@ class UserUpdate extends Component{
       callback:callback
     }
     // if(!roles || !pwd){
-    if(!pwd){
+    if(!username){
       message.warning('请填写完整')
     }else{
         axios.all(params)
@@ -80,7 +77,7 @@ class UserUpdate extends Component{
               <input type="text" placeholder="用户名" ref="username" disabled="disabled"/>
             </div>
             <div className="password">
-              <input type="text" placeholder="用户密码" ref="pwd"/>
+              <input type="text" placeholder="请修改用户名" ref="updateName"/>
             </div>
             <button className="subBtn"  onClick={this.submit.bind(this)}>提交</button>
           </div>
@@ -150,7 +147,6 @@ class UserUpdate extends Component{
       subjects.map((value,index)=>{
         if(value.uid == id){
           this.refs.username.value = value.username
-          this.refs.pwd.value = value.password
         }
       })
     }

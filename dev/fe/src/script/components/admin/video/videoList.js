@@ -59,7 +59,7 @@ class VideoList extends Component{
   render(){
     return (
       <div className="m-videoList adList">
-        <List columns={this.state.columns} uri={"/api/video/list"} title={this.state.title} total={this.state.total} tag={"video"}></List>
+        <List columns={this.state.columns} uri={"/api/video/list"} title={this.state.title} total={this.state.total} tag={"video"} addUrl={"/admin/video/add"}></List>
       </div>
     )
   }

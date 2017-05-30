@@ -62,7 +62,8 @@ class VideoUpdate extends Component{
       img:imgUrl,
       summary:desc,
       category:{
-        step:stage,
+        // step:stage,
+        step:1,
         tag:classify
       }
     }
@@ -93,7 +94,7 @@ class VideoUpdate extends Component{
               <Select
                 ref="classify"
                 size={this.state.size}
-                defaultValue="添加分类"
+                defaultValue={this.state.classifyValue}
                 onChange={this.handleClassifyChange.bind(this)}
                 style={{ width: 300 }}
               >
@@ -104,7 +105,7 @@ class VideoUpdate extends Component{
               <Select
                 ref="select"
                 size={this.state.size}
-                defaultValue="添加阶段"
+                defaultValue={this.state.stageValue}
                 onChange={this.handleStageChange.bind(this)}
                 style={{ width: 300 }}
               >
@@ -148,8 +149,12 @@ class VideoUpdate extends Component{
               this.refs.videoUrl.value = value.url //缺少字段
             }
           })
+          this.setState({
+            classifyValue:data.tag,
+            stageValue:data.stage
+          })
     }
-    let uri='/mock/api/video/list'
+    let uri='/api/video/list'
     adminCommon.videoList(uri,callback)
   }
 }

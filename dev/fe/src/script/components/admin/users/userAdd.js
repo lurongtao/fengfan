@@ -56,7 +56,10 @@ class UserAdd extends Component{
     //判断用户名是否存在
     let uri = '/api/users/list'
     let isHas = false
-    let pas = {}
+    let pas = {
+      start:0,
+      count:6
+    }
     let cb = (res)=>{
       let data = res.data.data.subjects
       data.map((value,index)=>{

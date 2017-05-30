@@ -24,7 +24,7 @@ export default {
     }
     let params={
       start:0,
-      count:10
+      count:6
     }
     axios.get(uri,params,callback)
   },
@@ -42,10 +42,12 @@ export default {
           let data = res.data.data
           if(data.status == "ok"){
             //删除成功
-            message.success(data.msg);
+            message.success(data.msg,1,()=>{
+            location.reload()
+            })
           }else{
             //删除失败
-            message.success('删除失败，请重试');
+            message.success('删除失败，请重试')
           }
         }
     let params
@@ -69,7 +71,6 @@ export default {
       title: '是否删除此项?',
       content: '确认请点击确认,否则请点击取消',
       onOk() {
-        console.log(params);
         axios.all(params)
       }
     })
@@ -99,7 +100,7 @@ export default {
     let callback = (res)=>{
       let arr = []
       res.data.data.subjects.map((value,i)=>{
-        arr.push(<Option key={value.step}>{value.title}</Option>)
+        arr.push(<Option key={value.id}>{value.title}</Option>)
       })
       that.setState({
         stage:arr

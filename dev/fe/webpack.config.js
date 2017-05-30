@@ -12,16 +12,16 @@ module.exports = {
 
   // 出口
   output: {
-    path: '/Users/Felix/Desktop/fengfan/dev/build',
-    // path: __dirname + '/build',
+    // path: '/Users/Felix/Desktop/fengfan/dev/build',
+    path: __dirname + '/build',
     // filename: 'app.js'
     filename: '[name]_[chunkhash:8].js'
   },
 
   // webserver服务器
   devServer: {
-    contentBase: '/Users/Felix/Desktop/fengfan/dev/build',
-    // contentBase: '../build',
+    // contentBase: '/Users/Felix/Desktop/fengfan/dev/build',
+    contentBase: '../build',
     host: 'localhost',
     port: 7000,
     proxy: {

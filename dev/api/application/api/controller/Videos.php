@@ -192,12 +192,12 @@ class Videos extends FengfanController {
 		if(empty($condition)) {
 			$total = $video->count();
 			// 取得数据
-			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . " as category, a.createDate from videos as a, video_category as b where a.id = b.vid order by a.createDate desc limit ?, ?", 
+			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . " as category, a.createDate, a.summary from videos as a, video_category as b where a.id = b.vid order by a.createDate desc limit ?, ?", 
 				[$start, $count]);
 		} else {
 			$total = $video->where('title','like','%'. $condition .'%')->count();
 			// 取得数据
-			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . "  as category, a.createDate from videos as a, video_category as b where a.title like ? and a.id = b.vid order by a.createDate desc limit ?,?", 
+			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . "  as category, a.createDate, a.summary from videos as a, video_category as b where a.title like ? and a.id = b.vid order by a.createDate desc limit ?,?", 
 				['%'.$condition.'%', $start, $count]);
 		}
 
@@ -237,7 +237,7 @@ class Videos extends FengfanController {
 		$this->addViewHistory($uid, "视频", $id);
 
 		// 取得数据
-		$data = Db::table("videos")->query("select a.title, a.img, a.url, " . $this->toJsonSQL . " as category, a.createDate from videos as a, video_category as b where a.id=? and a.id=b.vid", 
+		$data = Db::table("videos")->query("select a.title, a.img, a.url, " . $this->toJsonSQL . " as category, a.createDate, a.summary from videos as a, video_category as b where a.id=? and a.id=b.vid", 
 			[$id]);
 
 		if(!empty($data) && sizeof($data) > 0) {

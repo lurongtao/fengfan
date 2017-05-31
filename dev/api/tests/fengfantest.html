@@ -26,6 +26,10 @@
 	<span>完成</span>
 </div>
 <div>
+	<button onclick="userremove()">删除</button>
+	<span>完成</span>
+</div>
+<div>
 	<button onclick="forgotpwd()">忘记密码</button>
 	<span>完成</span>
 </div>
@@ -113,6 +117,10 @@
 <h2>面试题</h2>
 <div>
 	<button onclick="interviewqAdd()">添加</button>
+	<span>完成</span>
+</div>
+<div>
+	<button onclick="interviewqupdate()">修改</button>
 	<span>完成</span>
 </div>
 <div>
@@ -208,6 +216,34 @@
 </body>
 <script type="text/javascript">
 
+	function interviewqupdate() {
+		$.ajax({
+			url:"../api/interviewq/update",
+			type: "post",
+			data: {
+			  id: 1, // 面试题id [数值：必填]
+			  tag: "HTML5!!!###~", // 标签：[字符串：必填]
+			  title: "React dangerouslySetInnerHTML 怎么用？!!!###", //标题 [字符串：必填]
+			  content: "我在网上查的用dangerouslySetInnerHTML,可是我不会用!!!!###" //内容： [字符串：必填]"
+
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
+	function userremove() {
+		$.ajax({
+			url:"../api/users/remove",
+			type: "post",
+			data: {
+				uid: 10,
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
 	function userlist() {
 		$.ajax({
 			url:"../api/users/list",

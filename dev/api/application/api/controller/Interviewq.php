@@ -64,7 +64,6 @@ class Interviewq extends FengfanController {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
-
 		];
 
 		// 必须输入校验
@@ -78,10 +77,8 @@ class Interviewq extends FengfanController {
 			return $this->corsjson($checkresult);
 		}
 
-		$question = new InterviewQuestion;
-
 		// 保存到数据库
-		$cnt = Db::table("qa_question")->execute("UPDATE `qa_question`
+		$cnt = Db::table("interview_question")->execute("UPDATE `interview_question`
 			SET
 			`tag` = ?,
 			`title` = ?,

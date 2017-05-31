@@ -11,7 +11,6 @@ class Users extends FengfanController {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
-
 		];
 
 		// 必须输入校验
@@ -44,6 +43,38 @@ class Users extends FengfanController {
 				"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
 				"msg"=> '数据存取成功' // 附加信息：[字符串：选填]
 		];
+
+		return $this->corsjson($result);
+    }
+
+    public function remove($uid="") {
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"用户ID" => $uid,
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$rst = User::destroy(['id' => $uid]);
+
+		if($rst) {
+			$result["data"]	= [ // 数据内容
+			    "status" => "ok", // 存取状态：[字符串：必填] "ok" 成功 "fail" 失败
+			    "msg" => "数据删除成功" // 附加信息：[字符串：选填]
+			];
+		} else {
+			$result =  [
+	    		"errcode"=> -1, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+				"errmsg"=> "数据不存在或者已经被删除", // 错误信息：[字符串：默认为空]
+			];
+		}
+
 
 		return $this->corsjson($result);
     }

@@ -22,6 +22,10 @@
 	<span>完成</span>
 </div>
 <div>
+	<button onclick="userupdate()">用户更新</button>
+	<span>完成</span>
+</div>
+<div>
 	<button onclick="signin()">登录</button>
 	<span>完成</span>
 </div>
@@ -216,6 +220,22 @@
 </body>
 <script type="text/javascript">
 
+	function userupdate() {
+		$.ajax({
+			url:"../api/users/update",
+			type: "post",
+			data: {
+			  uid: 3,
+			  username: "zhangsan123", // [字符串：必填] `建议用户名不要修改`
+			  roles: "0", // 用户角色[字符串：必填] 0 管理员 1 讲师 2 学员【2-1未毕业（2-2-1 未毕业第1阶段 2-2-2 未毕业第2阶段 ... ） 2-2 已毕业 (2-2-1 已毕业过试用期 2-2-2 已毕业未过试用期)】
+			  password: "abc123", // [字符串：必填]
+			  email: "good@test.com"
+			},
+			success: function(res) {
+				console.log(res);
+			}
+		})
+	}
 	function interviewqupdate() {
 		$.ajax({
 			url:"../api/interviewq/update",

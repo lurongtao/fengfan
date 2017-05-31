@@ -5,19 +5,44 @@ use think\Response;
 use think\Db;
 use think\Session;
 use app\common\exception\TimeoutException;
+use app\common\exception\UnauthorizedException;
 
 class FengfanController extends Controller {
+	// 不需要做session校验的地址
+	protected $exceptUrls = [
+		'api/users/add',
+		'api/users/signin',
+		'api/users/forgotpwd',
+		'api/users/resetpwd',
+		'api/users/hassignin',
+		'api/users/signout'
+	];
+
     protected $beforeActionList = [
-        'userCheck',
+    	'userCheck',
+    	'authorizedCheck',
     ];
 
-	protected function userCheck() {
-		// 不需要做session校验的地址
-		$exceptUrls = [
-			'/api\\/users/'
-		];
+	protected function authorizedCheck() {
 		$urlpath = request()->path();
-		if(!$this->isMatchInArray($urlpath, $exceptUrls) && config("session_check")) {
+		// 只要不在$this->exceptUrls数组中的url地址都应该进行权限验证。
+		if(!in_array($urlpath, $this->exceptUrls)) {
+			// 管理员无需校验API权限
+			if(Session::get("roles") == "0") {
+				return;
+			}
+
+			$rolesConfig = config('roles.'. Session::get("roles"));
+			// 如果不在权限列表中，则抛出没有权限的异常
+			if(!in_array($urlpath, $rolesConfig)) {
+				throw new UnauthorizedException();
+			}
+		}
+	}
+
+	protected function userCheck() {
+		$urlpath = request()->path();
+		if(!in_array($urlpath, $this->exceptUrls) && config("session_check")) {
 			// 如果session不存在
 			if(empty(Session::get('username'))) {
 				throw new TimeoutException();

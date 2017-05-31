@@ -47,6 +47,57 @@ class Users extends FengfanController {
 		return $this->corsjson($result);
     }
 
+    public function update($uid="", $username="", $roles="", $password="", $email="") {
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"用户ID" => $uid,
+			"用户名" => $username,
+			"密码" => $password,
+			"用户角色" => $roles,
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$user = new User;
+
+		$rst = $user->where('username', $username)->find();
+		if($rst) {
+			$result["errcode"] = -1;
+			$result["errmsg"] = "该用户已经存在。";
+			return $this->corsjson($result);
+		}
+
+		// 保存到数据库
+		$updateData = [
+		    'username'  =>  $username,
+		    'password' =>  md5($password),
+		    'roles'  =>  $roles,
+		];
+		if(!empty($email)) {
+			$updateData["email"] = $email;
+		}
+		$rst = $user->save($updateData,['id' => $uid]);
+		if($rst) {
+			$result["data"]	= [ // 数据内容
+					"status"=>'ok', // 存取状态：[字符串：必填] 'ok' 成功 'fail' 失败
+					"msg"=> '数据存取成功' // 附加信息：[字符串：选填]
+			];
+		} else {
+			$result["errcode"] = -1;
+			$result["errmsg"] = "用户不存在或更新失败。";
+			return $this->corsjson($result);
+		}
+
+
+		return $this->corsjson($result);
+    }
+
     public function remove($uid="") {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误

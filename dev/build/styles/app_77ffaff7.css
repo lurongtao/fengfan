@@ -116,7 +116,7 @@ li {
 .m-video-list .nav {
   background: #fff;
   box-sizing: border-box;
-  padding: 0 40px;
+  padding: 10px 40px 40px 40px;
 }
 .m-video-list .nav .cat {
   border-bottom: dashed 1px #e5e5e5;
@@ -132,9 +132,10 @@ li {
 .m-video-list .nav .cat .content {
   line-height: 50px;
   padding-left: 100px;
+  padding-bottom: 15px;
 }
 .m-video-list .nav ul {
-  line-height: 104px;
+  padding-top: 25px;
 }
 .m-video-list .nav ul li {
   display: inline-block;
@@ -149,7 +150,6 @@ li {
 }
 .m-video-list .nav ul li i {
   font-style: normal;
-  line-height: 104px;
   padding: 10px 40px;
   cursor: pointer;
 }
@@ -161,7 +161,7 @@ li {
   background: #fff;
   box-sizing: border-box;
   margin-top: 20px;
-  padding-bottom: 150px;
+  padding-bottom: 50px;
 }
 .m-video-list .list .ant-tabs-nav {
   margin: 12px 0 0 40px;
@@ -172,6 +172,65 @@ li {
 }
 .m-video-list .list .ant-tabs-nav .ant-tabs-ink-bar {
   background-color: #ff8a0c;
+}
+.m-video-list .list .m-list-content .video_wrap {
+  float: left;
+  width: 325px;
+  margin: 20px 60px 0 0;
+  cursor: pointer;
+}
+.m-video-list .list .m-list-content .video_wrap dl {
+  margin-left: 3px;
+}
+.m-video-list .list .m-list-content .video_wrap dl dt {
+  position: relative;
+}
+.m-video-list .list .m-list-content .video_wrap dl dt .background {
+  width: 100%;
+  height: 267px;
+}
+.m-video-list .list .m-list-content .video_wrap dl dt .video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -45px;
+  margin-top: -45px;
+  cursor: pointer;
+}
+.m-video-list .list .m-list-content .video_wrap dl dt .corner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -9px;
+  margin-top: -15px;
+  cursor: pointer;
+}
+.m-video-list .list .m-list-content .video_wrap dl dd {
+  width: 338px;
+  font-family: PingFangSC-Regular;
+  text-align: left;
+}
+.m-video-list .list .m-list-content .video_wrap dl .vedio_title {
+  font-size: 24px;
+  color: #000000;
+  letter-spacing: 0.29px;
+}
+.m-video-list .list .m-list-content .video_wrap dl .vedio_time {
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #4b98f8;
+  letter-spacing: 0.19px;
+  text-align: left;
+}
+.m-video-list .list .m-list-content .video_wrap dl .vedio_decription {
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.19px;
+  text-align: left;
+}
+.m-video-list .list .m-list-content .index_vedio:last-of-type {
+  margin: 20px 0 0;
 }
 .m-video-list .ant-pagination {
   text-align: center;
@@ -291,8 +350,9 @@ li {
 .m-qanda-list {
   width: 100%;
   box-sizing: border-box;
-  padding: 20px;
-  min-width: 1140px;
+  padding: 10px;
+  padding-top: 0;
+  min-width: 1280px;
 }
 .m-qanda-list .go-q img {
   width: 100%;
@@ -302,7 +362,6 @@ li {
   background: #fff;
   box-sizing: border-box;
   padding: 0 40px;
-  margin-top: 20px;
 }
 .m-qanda-list .nav .cat {
   border-bottom: dashed 1px #e5e5e5;
@@ -389,6 +448,32 @@ li {
 }
 .m-qanda-list .list ul li:hover {
   border-color: #71c5ff;
+}
+.m-qanda-list .ant-tabs-bar {
+  margin: 20px 10px 0 10px;
+  background: #fff;
+}
+.m-qanda-list .ant-tabs-nav-scroll {
+  width: 100%;
+}
+.m-qanda-list .ant-tabs-line {
+  overflow: inherit;
+}
+.m-qanda-list .ant-tabs-nav-container {
+  overflow: inherit;
+}
+.m-qanda-list .ant-tabs-nav-wrap {
+  overflow: inherit;
+}
+.m-qanda-list .ant-tabs-nav {
+  padding: 10px 0;
+  font-size: 22px;
+}
+.m-qanda-list .ant-tabs-nav .ant-tabs-tab-active {
+  color: #ff8a0c;
+}
+.m-qanda-list .ant-tabs-nav .ant-tabs-ink-bar {
+  background-color: #ff8a0c;
 }
 .m-favorite-list .nav {
   margin-top: 0;
@@ -719,7 +804,7 @@ li {
   z-index: 100;
   top: 100px;
   width: 158px;
-  background: #f1f1f1 url('/images/nav_bg.png') no-repeat center top;
+  background: #f1f1f1 url('/build/images/nav_bg.png') no-repeat center top;
   padding-top: 47px;
 }
 .m-adminHeader .adminNav > li ul li {
@@ -776,6 +861,23 @@ li {
   line-height: 36px;
   text-align: left;
   margin-bottom: 24px;
+}
+.m-admin .adList .listContainer .addBtn {
+  width: 1010px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+.m-admin .adList .listContainer .addBtn a {
+  margin-right: 20px;
+  display: inline-block;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  width: 70px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+  text-align: center;
+  color: #4a4a4a;
 }
 .m-admin .adList .listContainer .ant-table {
   border-radius: 0;
@@ -984,6 +1086,9 @@ li {
   letter-spacing: 0.22px;
   text-align: left;
 }
+.management .container .ant-pagination {
+  padding-left: 300px;
+}
 .management .container .addTip {
   width: 244px;
   height: 28px;
@@ -1131,7 +1236,7 @@ li {
 .m-indexlist .banner {
   width: 100%;
   height: 450px;
-  background-image: url('/images/banner.png');
+  background-image: url('/build/images/banner.png');
   background-size: cover;
   padding-top: 38px;
 }
@@ -1197,12 +1302,13 @@ li {
 .m-indexlist .index_suggest {
   margin-top: 43px;
   overflow: hidden;
-  padding: 0 40px;
+  padding: 0 10px;
 }
 .m-indexlist .index_suggest .index_list .index_vedio {
   float: left;
   width: 325px;
   margin: 20px 60px 0 0;
+  cursor: pointer;
 }
 .m-indexlist .index_suggest .index_list .index_vedio dl {
   margin-left: 3px;
@@ -1258,7 +1364,7 @@ li {
   margin: 20px 0 0;
 }
 .m-indexlist .index_news {
-  margin-top: 80px;
+  margin-top: 20px;
   background: #f1f1f1;
   width: 100%;
   height: 700px;
@@ -1285,6 +1391,7 @@ li {
   color: rgba(0, 0, 0, 0.5);
   letter-spacing: 0.17px;
   text-align: left;
+  cursor: pointer;
 }
 .m-indexlist .index_news .news_list:nth-of-type(2n) .news_content .news_content_list .news_content_time {
   color: #ff8a0c;
@@ -1495,13 +1602,12 @@ li {
 }
 .m-search .search_content .search_list .ant-table-tbody tr td {
   padding: 0px;
-  height: 150px;
 }
 .m-search .search_content .search_list .ant-table-tbody tr td .search_inner {
+  cursor: pointer;
   display: block;
   width: 100%;
   height: 100%;
-  padding-top: 30px;
 }
 .m-search .search_content .search_list .ant-table-tbody tr td .search_inner .search_title {
   font-size: 18px;
@@ -1515,7 +1621,7 @@ li {
   color: #7f7f7f;
   letter-spacing: 0.15px;
   text-align: left;
-  height: 75px;
+  margin-bottom: 10px;
   overflow: hidden;
 }
 .signin {

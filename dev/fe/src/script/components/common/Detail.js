@@ -47,7 +47,7 @@ class Detail extends React.Component {
     return (
       <div className="m-qanda-detail">
         <div className="photo">
-          <img src="./images/uidPic.png" />
+          <img src="/build/images/uidPic.png" />
         </div>
         <div className="favorite" onClick={this.addFavorite.bind(this)}>
           <span>收藏</span>

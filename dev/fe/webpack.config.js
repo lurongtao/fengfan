@@ -12,8 +12,8 @@ module.exports = {
 
   // 出口
   output: {
-    // path: '/Users/Felix/Desktop/fengfan/dev/build',
-    path: __dirname + '/build',
+    path: '/Users/Felix/Desktop/fengfan/dev/build',
+    // path: __dirname + '/build',
     // filename: 'app.js'
     filename: '[name]_[chunkhash:8].js'
   },
@@ -110,20 +110,21 @@ module.exports = {
     // 2: 根据模板自动生成html
     new HtmlWebpackPlugin({
       template: './src/index.ejs',
-      filename: 'index.html',
+      // filename: __dirname + '/index.html',
+      filename: '/Users/Felix/Desktop/fengfan/dev/index.html',
       title: '锋帆',
       name: 'kailong'
     }),
 
     // 3: 压缩代码
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   },
-    //   output: {
-    //     comments: false
-    //   }
-    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      output: {
+        comments: false
+      }
+    }),
 
     // 4: 自动打开浏览器
     new OpenBrowserPlugin({

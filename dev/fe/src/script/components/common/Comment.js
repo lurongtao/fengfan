@@ -45,7 +45,7 @@ class Comment extends React.Component {
     // console.log(this.refs.inputContent.refs.input.value);s
     var that = this
     Axios.post(this.props.uri, {
-      qid: 10, // 问题id：[数值：必填]
+      id: this.props.id, // 问题id or 视频id：[数值：必填]
       content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
     }, (res)=>{
       if(res.status == 200){

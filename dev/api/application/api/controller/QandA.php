@@ -222,7 +222,7 @@ class QandA extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function reply($qid="", $content="") {
+    public function reply($id="", $content="") {
     	$uid = $this->uid();
 
     	$result =  [
@@ -233,7 +233,7 @@ class QandA extends FengfanController {
 		// 必须输入校验
 		$checkresult = $this->requiredCheck([
 			"用户id" => $uid,
-			"问题id" => $qid,
+			"问题id" => $id,
 			"回帖内容" => $content
 		]);
 		if($checkresult) {
@@ -244,7 +244,7 @@ class QandA extends FengfanController {
 
 		$rst = $answer->where([
 		    'uid'  =>  $uid,
-		    'qid'  =>  $qid,
+		    'qid'  =>  $id,
 		    'content'  =>  $content,
 		])->find();
 		if($rst) {
@@ -256,7 +256,7 @@ class QandA extends FengfanController {
 		// 保存回帖信息
 		$answer->data([
 		    'uid'  =>  $uid,
-		    'qid'  =>  $qid,
+		    'qid'  =>  $id,
 		    'content'  =>  $content,
 		]);
 		$rst = $answer->save();

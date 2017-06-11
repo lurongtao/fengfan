@@ -78,6 +78,8 @@ $students_level_2_1 = [
     // "api/job/setstatus",
 	// 收藏
     "api/job/favorite",
+	// 收藏共通
+    "api/favorite",
 	// 搜索
     "api/search",
 	// 分类添加
@@ -181,6 +183,8 @@ $students_level_2_2 = [
     // "api/job/setstatus",
 	// 收藏
     "api/job/favorite",
+	// 收藏共通
+    "api/favorite",
 	// 搜索
     "api/search",
 	// 分类添加
@@ -286,6 +290,8 @@ return [
 	    "api/job/setstatus",
 		// 收藏
 	    "api/job/favorite",
+		// 收藏共通
+	    "api/favorite",
 		// 搜索
 	    "api/search",
 		// 分类添加

@@ -277,6 +277,49 @@ class Videos extends FengfanController {
 		return $this->corsjson($result);
     }
 
+    public function commonfavorite($type="", $id="") {
+    	$uid = $this->uid();
+
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"收藏分类" => $type,
+			"视频id" => $id,
+			"用户id" => $uid
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$video = new Video;
+
+		// 添加用户浏览记录
+		$rst= $this->addFavorite($uid, $type, $id);
+
+		if($rst == "您已经收藏过了。") {
+			$result["data"] = [ // 数据内容
+			    "status" => "ok", // 存取状态：[字符串：必填] "ok" 成功 "fail" 失败
+			    "msg" => "您已经收藏过了。" // 附加信息：[字符串：选填]
+			];
+		} else if($rst) {
+			$result["data"] = [ // 数据内容
+			    "status" => "ok", // 存取状态：[字符串：必填] "ok" 成功 "fail" 失败
+			    "msg" => "收藏成功" // 附加信息：[字符串：选填]
+			];
+		} else {
+	    	$result =  [
+	    		"errcode"=> -1, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+				"errmsg"=> "收藏失败", // 错误信息：[字符串：默认为空]
+			];
+		}
+
+		return $this->corsjson($result);
+    }
+
     public function favorite($id="") {
     	$uid = $this->uid();
 

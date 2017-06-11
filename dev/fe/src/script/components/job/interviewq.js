@@ -23,7 +23,7 @@ class interviewq extends React.Component {
         title: '主题',
         dataIndex: 'title',
         key: 'title',
-        render: (text, record) => <Link to={`${this.props.detailuri}${record.id}`}>{record.id}-{text}</Link>
+        render: (text, record) => <Link to={`${this.props.detailuri}${record.id}`}>{text}</Link>
       }, {
         title: '作者',
         dataIndex: 'author',

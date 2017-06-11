@@ -14,6 +14,7 @@ class qandaList extends React.Component {
       data: [],
       curTag:"所有标签",
       count:10,
+      filterData: [],
       pagination:{
         pageSize:6
       },
@@ -23,7 +24,7 @@ class qandaList extends React.Component {
         dataIndex: 'title',
         key: 'title',
         // render: (text, record) => <a href="">{text},{record.id}</a>,
-        render: (text, record) => <Link to={`qanda/detail/${record.id}`}>{record.id}-{text}</Link>,
+        render: (text, record) => <Link to={`qanda/detail/${record.id}`}>{text}</Link>,
       }, {
         title: '作者',
         dataIndex: 'author',
@@ -48,9 +49,10 @@ class qandaList extends React.Component {
     },(res)=>{
       // console.log(res.data.data);
       let listDa = this.dataProcessingFirst(res)
+      var filterData = tagFilter.dataProcessing(listDa, '所有标签')
       this.setState({
         data: listDa,
-        filterData:filterData,
+        filterData: filterData,
         total:res.data.data.total
       })
     })
@@ -63,7 +65,7 @@ class qandaList extends React.Component {
         key: index,
         title: comment.title,
         author: comment.author,
-        tag:comment.tag,
+        tag: comment.tag,
         createDate: comment.createDate,
         action: comment.hits + '/' + comment.answers,
       }
@@ -96,7 +98,7 @@ class qandaList extends React.Component {
 
       this.setState({
         data:listDa,
-        filterData:filterData,
+        filterData: filterData,
         total:res.data.data.total
       })
     });

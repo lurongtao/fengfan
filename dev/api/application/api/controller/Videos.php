@@ -164,7 +164,7 @@ class Videos extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function videolist($condition="", $start="", $count="") {
+    public function videolist($condition="", $start="", $count="", $tag="") {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -179,37 +179,42 @@ class Videos extends FengfanController {
 			return $this->corsjson($checkresult);
 		}
 
-		$result["data"]	= $this->search($condition, $start, $count);
+		$result["data"]	= $this->search($condition, $start, $count, $tag);
 
 		return $this->corsjson($result);
     }
 
-    public function search($condition="", $start="", $count="") {
+    public function search($condition="", $start="", $count="", $tag="") {
 		$video = new Video;
 
 		$total = 0;
 		$subjects = [];
 		if(empty($condition)) {
-			$total = $video->count();
+			$total = Db::query("select count(1) as cnt from videos as a, video_category as b where a.id = b.vid and b.tag like ?", 
+				['%'.$tag.'%']);
 			// 取得数据
-			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . " as category, a.createDate, a.summary from videos as a, video_category as b where a.id = b.vid order by a.createDate desc limit ?, ?", 
-				[$start, $count]);
+			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . " as category, a.createDate, a.summary from videos as a, video_category as b where a.id = b.vid and b.tag like ? order by a.createDate desc limit ?, ?", 
+				['%'.$tag.'%', $start, $count]);
 		} else {
-			$total = $video->where('title','like','%'. $condition .'%')->count();
+			$total = Db::query("select count(1) as cnt from videos as a, video_category as b where a.title like ? and b.tag like ? and a.id = b.vid", 
+				['%'.$condition.'%', '%'.$tag.'%']);
 			// 取得数据
-			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . "  as category, a.createDate, a.summary from videos as a, video_category as b where a.title like ? and a.id = b.vid order by a.createDate desc limit ?,?", 
-				['%'.$condition.'%', $start, $count]);
+			$subjects = Db::query("select a.id, a.title, a.img, a.url, " . $this->toJsonSQL . "  as category, a.createDate, a.summary from videos as a, video_category as b where a.title like ? and b.tag like ? and a.id = b.vid order by a.createDate desc limit ?,?", 
+				['%'.$condition.'%', '%'.$tag.'%', $start, $count]);
 		}
 
 		// 处理category,category转为对象
 		foreach ($subjects as $key=>$st) {
 			$subjects[$key]["category"] = json_decode($st["category"]);
+			if($tag) {
+				$subjects[$key]["tag"] = $tag;
+			}
 		}
 
 		return [ // 数据内容
 			"start" => $start, //记录开始值 [数值：必填]
 			"count" => $count, //返回记录条数 [数值：必填]
-			"total" => $total, //总记录条数 [数值：必填]
+			"total" => $total[0]["cnt"], //总记录条数 [数值：必填]
 			"subjects" => $subjects
 		];
     }
@@ -267,6 +272,49 @@ class Videos extends FengfanController {
 					ORDER BY a.create_date", 
 				[$id]);
 			$result["data"]["QandA"] = $qandA;
+		}
+
+		return $this->corsjson($result);
+    }
+
+    public function commonfavorite($type="", $id="") {
+    	$uid = $this->uid();
+
+    	$result =  [
+    		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+			"errmsg"=> "", // 错误信息：[字符串：默认为空]
+		];
+
+		// 必须输入校验
+		$checkresult = $this->requiredCheck([
+			"收藏分类" => $type,
+			"视频id" => $id,
+			"用户id" => $uid
+		]);
+		if($checkresult) {
+			return $this->corsjson($checkresult);
+		}
+
+		$video = new Video;
+
+		// 添加用户浏览记录
+		$rst= $this->addFavorite($uid, $type, $id);
+
+		if($rst == "您已经收藏过了。") {
+			$result["data"] = [ // 数据内容
+			    "status" => "ok", // 存取状态：[字符串：必填] "ok" 成功 "fail" 失败
+			    "msg" => "您已经收藏过了。" // 附加信息：[字符串：选填]
+			];
+		} else if($rst) {
+			$result["data"] = [ // 数据内容
+			    "status" => "ok", // 存取状态：[字符串：必填] "ok" 成功 "fail" 失败
+			    "msg" => "收藏成功" // 附加信息：[字符串：选填]
+			];
+		} else {
+	    	$result =  [
+	    		"errcode"=> -1, // 错误代码：[数值：必填] 0 无错误 -1 有错误
+				"errmsg"=> "收藏失败", // 错误信息：[字符串：默认为空]
+			];
 		}
 
 		return $this->corsjson($result);

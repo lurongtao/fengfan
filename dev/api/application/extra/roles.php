@@ -78,24 +78,26 @@ $students_level_2_1 = [
     // "api/job/setstatus",
 	// 收藏
     "api/job/favorite",
+	// 收藏共通
+    "api/favorite",
 	// 搜索
     "api/search",
 	// 分类添加
     // "api/classify/add",
 	// 分类列表
-    // "api/classify/list",
+    "api/classify/list",
 	// 分类删除
     // "api/classify/remove",
 	// 阶段添加
     // "api/stage/add",
 	// 阶段列表
-    // "api/stage/list",
+    "api/stage/list",
 	// 阶段删除
     // "api/stage/remove",
 	// 城市添加
     // "api/city/add",
 	// 城市列表
-    // "api/city/list",
+    "api/city/list",
 	// 城市删除
     // "api/city/remove",
 	// 我的收藏
@@ -181,24 +183,26 @@ $students_level_2_2 = [
     // "api/job/setstatus",
 	// 收藏
     "api/job/favorite",
+	// 收藏共通
+    "api/favorite",
 	// 搜索
     "api/search",
 	// 分类添加
     // "api/classify/add",
 	// 分类列表
-    // "api/classify/list",
+    "api/classify/list",
 	// 分类删除
     // "api/classify/remove",
 	// 阶段添加
     // "api/stage/add",
 	// 阶段列表
-    // "api/stage/list",
+    "api/stage/list",
 	// 阶段删除
     // "api/stage/remove",
 	// 城市添加
     // "api/city/add",
 	// 城市列表
-    // "api/city/list",
+    "api/city/list",
 	// 城市删除
     // "api/city/remove",
 	// 我的收藏
@@ -286,6 +290,8 @@ return [
 	    "api/job/setstatus",
 		// 收藏
 	    "api/job/favorite",
+		// 收藏共通
+	    "api/favorite",
 		// 搜索
 	    "api/search",
 		// 分类添加

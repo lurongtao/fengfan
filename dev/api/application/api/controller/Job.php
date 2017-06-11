@@ -142,7 +142,7 @@ class Job extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function jobList($condition="", $start="", $count="") {
+    public function jobList($condition="", $start="", $count="", $tag="") {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -158,14 +158,14 @@ class Job extends FengfanController {
 			return $this->corsjson($checkresult);
 		}
 
-		$result["data"]	= $this->search($condition, $start, $count);
+		$result["data"]	= $this->search($condition, $start, $count, $tag);
 
 		return $this->corsjson($result);
     }
 
-    public function search($condition="", $start="", $count="") {
+    public function search($condition="", $start="", $count="", $tag="") {
 		$job = new JobM;
-		$total = $job->where('title','like','%'. $condition .'%')->where('close_flag',0)->count();
+		$total = $job->where('title','like','%'. $condition .'%')->where('tag','like','%'. $tag .'%')->where('close_flag',0)->count();
 		$subjects = [];
 
 		if($total) {
@@ -187,9 +187,15 @@ class Job extends FengfanController {
 				on a.uid = c.id
 				where 
 				a.title like ? 
+				and a.tag like ? 
 				and a.close_flag = 0
 				order by a.create_date desc
-				limit ?, ?", ["%". $condition ."%", $start, $count]);
+				limit ?, ?", ["%". $condition ."%", "%". $tag ."%", $start, $count]);
+			if($tag) {
+				foreach ($subjects as $key => $item) {
+					$subjects[$key]["tag"] = $tag;
+				}
+			}
 		}
 
 		return [ // 数据内容

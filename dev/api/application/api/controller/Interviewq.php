@@ -292,7 +292,7 @@ class Interviewq extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function reply($qid="", $content="") {
+    public function reply($id="", $content="") {
     	$uid = $this->uid();
 
     	$result =  [
@@ -303,7 +303,7 @@ class Interviewq extends FengfanController {
 		// 必须输入校验
 		$checkresult = $this->requiredCheck([
 			"用户id" => $uid,
-			"面试题id" => $qid,
+			"面试题id" => $id,
 			"回帖内容" => $content
 		]);
 		if($checkresult) {
@@ -314,7 +314,7 @@ class Interviewq extends FengfanController {
 
 		$rst = $answer->where([
 		    'uid'  =>  $uid,
-		    'qid'  =>  $qid,
+		    'qid'  =>  $id,
 		    'content'  =>  $content,
 		])->find();
 		if($rst) {
@@ -326,7 +326,7 @@ class Interviewq extends FengfanController {
 		// 保存回帖信息
 		$answer->data([
 		    'uid'  =>  $uid,
-		    'qid'  =>  $qid,
+		    'qid'  =>  $id,
 		    'content'  =>  $content,
 		]);
 		$rst = $answer->save();

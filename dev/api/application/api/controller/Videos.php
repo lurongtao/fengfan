@@ -326,7 +326,7 @@ class Videos extends FengfanController {
 		$checkresult = $this->requiredCheck([
 			"用户id" => $uid,
 			"视频id" => $id,
-			"标题" => $title,
+			// "标题" => $title,
 			"详细内容" => $content
 		]);
 		if($checkresult) {
@@ -362,6 +362,7 @@ class Videos extends FengfanController {
 				"id" => $id, // 视频ID [数值：必填]
 				"title" => $title, // 标题 [字符串：必填]
 				"content" => $content, // [字符串：必填]
+				"msg" => "数据提交成功", // 附加信息：[字符串：选填]
 				"createDate" => date("Y/m/d H:i:s")
 		];
 

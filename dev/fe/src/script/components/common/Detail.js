@@ -13,6 +13,7 @@ class Detail extends React.Component {
       // columns: [],
       question: {},
       answers: null,
+      bestAnswer: null,
       CommentNodes: [1,2,3]
     }
   // 获取数据
@@ -27,9 +28,22 @@ class Detail extends React.Component {
       id:id
     }, (res)=>{
       // console.log(res.data.data);
+
+      // 寻找最佳答案
+      let bestAnswer = null;
+      if(res.data.data.answers) {
+        for(let i in res.data.data.answers) {
+          if(res.data.data.answers[i].bestAnswer) {
+            bestAnswer = res.data.data.answers[i];
+            break;
+          }
+        }
+      }
+
       this.setState({
         question: res.data.data,
         answers: res.data.data.answers,
+        bestAnswer: bestAnswer
       })
     })
   };
@@ -69,11 +83,11 @@ class Detail extends React.Component {
             <div className="content">
               <div>最佳答案</div>
               <p>
-                超写实的图标，在设计中比较常见，案例中的写实图标，给初学者一个最好的借鉴。超写实的图标，在设计中比较常见案例中的写实图标，给初学者一个最好的鉴。在设计中比较常见，案例中的写实。超写实的图标，在设计中比较常见案例中的写实图标给初学者一个最好的借鉴。超写实的图标在设计中比较常见，案例中的写实图标，给初学者一个最好的鉴。在设计中比较常见，案例中的写超写实的图标，在设计中比较常见，案例中的写实图标，给初学者一个最好的借鉴。超写实的图标，在设计中比较常见，案例中的写实图标，给初学者一个最好的鉴。在设计中比较常见，案例中的写实。
+                {this.state.bestAnswer ? this.state.bestAnswer.content : ""}
               </p>
             </div>
           </div>
-          <Comment  detailDatas={this.state.answers} uri={this.props.replyuri} refreshGetData={this.reGetData.bind(this)}></Comment>
+          <Comment id={this.props.that.props.params.id}  detailDatas={this.state.answers} uri={this.props.replyuri} refreshGetData={this.reGetData.bind(this)}></Comment>
         </div>
 
       </div>

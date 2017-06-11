@@ -116,14 +116,14 @@ module.exports = {
     }),
 
     // 3: 压缩代码
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      output: {
-        comments: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   },
+    //   output: {
+    //     comments: false
+    //   }
+    // }),
 
     // 4: 自动打开浏览器
     new OpenBrowserPlugin({

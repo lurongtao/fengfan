@@ -10,8 +10,6 @@ class ListContent extends Component {
     }
   }
 
-  
-
   render() {
     let List = null
     if(this.props.dataSource){

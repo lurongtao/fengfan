@@ -55,6 +55,7 @@ import Users from './components/users/Users'
 import Signin from './components/users/Signin'
 import Forgotpwd from './components/users/Forgotpwd'
 import Resetpwd from './components/users/Resetpwd'
+import Favorite from './components/users/Favorite'
 
 import Home from './components/common/Home'
 
@@ -106,6 +107,9 @@ ReactDOM.render((
         <Route path="search">
           <Route path="list(/:id)" component={Search}></Route>
         </Route>
+
+        { /* 用户收藏 */}
+        <Route path="favorite" component={Favorite}></Route>
       </Route>
 
 
@@ -155,7 +159,6 @@ ReactDOM.render((
         <Route path="forgotpwd" component={Forgotpwd}></Route>
         <Route path="resetpwd" component={Resetpwd}></Route>
       </Route>
-
     </Router>
   </Provider>
 ), document.getElementById('root'))

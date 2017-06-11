@@ -32,7 +32,7 @@ class Header extends Component {
     return (
       <div className="m-header">
         <div className="logo">
-          <img src="/images/logo.png" alt="锋帆"/>
+          <a href="/"><img src="/images/logo.png" alt="锋帆"/></a>
         </div>
         <ul className="nav">
           <li><Link to="/index/list" activeClassName="active">首页</Link></li>
@@ -101,7 +101,7 @@ class Header extends Component {
   }
 
   gotoFavorite() {
-    this.props.parent.props.router.push('/users/favorite')
+    this.props.parent.props.router.push('/favorite')
   }
 
   signout() {

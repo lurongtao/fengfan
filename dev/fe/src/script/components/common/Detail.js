@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Input } from 'antd';
+import { Input, message } from 'antd';
 import { Button } from 'antd';
 import Axios from '../../utils/axios.util';
 import Comment from '../common/Comment';
@@ -54,7 +54,18 @@ class Detail extends React.Component {
 
 //点击收藏进行收藏帖子
   addFavorite(){
-    // console.log(this.props.that.props.params.id)
+    let type = this.props.that.props.router.location.pathname.split('/')[1]
+    Axios.post('/api/favorite', {
+      id: this.props.that.props.params.id, // 内容id
+      type: type
+    }, (res)=>{
+      let data = res.data.data
+      if(data.status == "ok"){
+        message.info(data.msg)
+      }else{
+        message.error('收藏失败，请重试')
+      }
+    })
   }
 
   render() {

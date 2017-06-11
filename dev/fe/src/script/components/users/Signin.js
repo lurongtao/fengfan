@@ -57,4 +57,13 @@ export default class Signin extends Component {
 		this.props.router.push(`/users/forgotpwd?username=${this.refs.username.value}`);
 	}
 
+	componentDidMount() {
+		var that = this
+		document.body.addEventListener('keypress', function(e){
+			if (e.keyCode == 13) {
+				that.signin()
+			}
+		})
+	}
+
 }

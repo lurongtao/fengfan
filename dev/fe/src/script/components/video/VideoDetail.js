@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import { Input } from 'antd';
+import { Input, message } from 'antd';
 import { Button } from 'antd';
 import Axios from '../../utils/axios.util';
 
@@ -34,11 +34,35 @@ class VideoDetail extends Component{
 
     })
   };
+
+  //点击收藏进行收藏帖子
+  addFavorite(){
+    let type = this.props.router.location.pathname.split('/')[1]
+    Axios.post('/api/favorite', {
+      id: this.props.params.id, // 内容id
+      type: type
+    }, (res)=>{
+      let data = res.data.data
+      if(data.status == "ok"){
+        message.info(data.msg)
+      }else{
+        message.error('收藏失败，请重试')
+      }
+    })
+  }
+
   render(){
     return (
       <div className="videoDetailSection">
         <div className="video-area">
-          <h2>如何做好一个拟物类图标</h2>
+          <h2>
+            <div>
+              {this.state.question.title}
+            </div>
+            <div className="favorite" onClick={this.addFavorite.bind(this)}>
+              <span>收藏</span>
+            </div>
+          </h2>
           <div className="video">
             <img src={this.state.question.img}/>
           </div>

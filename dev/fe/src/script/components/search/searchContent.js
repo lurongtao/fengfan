@@ -37,7 +37,7 @@ class SearchContent extends Component{
   }
 
   goto(id, city, str){
-    console.log(this.props.parent);
+    // console.log(this.props.parent);
     switch (str) {
       case '视频':
         this.props.parent.props.router.push(`/video/detail/${id}`)

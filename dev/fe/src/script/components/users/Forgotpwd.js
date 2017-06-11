@@ -56,6 +56,12 @@ export default class Forgotpwd extends Component {
   }
 
 	componentDidMount() {
+		let that = this
 		this.refs.username.value = this.state.username
+		document.body.addEventListener('keypress', function(e){
+			if (e.keyCode == 13) {
+				that.fotpwd()
+			}
+		})
 	}
 }

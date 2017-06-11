@@ -51,8 +51,8 @@ class interviewq extends React.Component {
 
     // 获取数据
     this.getData({
-      start: 0,
-      count: 10
+      // start: 0,
+      // count: 10
     },(res)=>{
       let listDa = this.dataProcessingFirst(res)
       this.setState({
@@ -63,13 +63,22 @@ class interviewq extends React.Component {
     });
   };
 
+  typeFilter(type) {
+    return {
+      'video': '视频',
+      'qanda': '问答',
+      'interviewq': '面试题',
+      'job': '招聘信息'
+    }[type]
+  }
+
   dataProcessingFirst(res){
     let listData = res.data.data.subjects.map((value, index) => {
       return {
         id: value.id,
         key: index,
         title: value.title,
-        type: value.type,
+        type: this.typeFilter(value.type),
         createDate: value.createDate,
       }
     });
@@ -83,10 +92,11 @@ class interviewq extends React.Component {
   //分页更换数据
   pageChange(page){
     this.getData({
-      start: page*this.state.count,
-      count: this.state.count
+      // start: page*this.state.count,
+      // count: this.state.count
     }, (res)=>{
       // 获取数据
+      console.log(res);
       let listDa = this.dataProcessingFirst(res)
       this.setState({
         data: listDa,

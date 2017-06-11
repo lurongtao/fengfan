@@ -11,7 +11,7 @@ class AdminHeader extends Component{
     return (
       <div className="m-adminHeader">
         <div className="logo">
-          <img src="/build/images/logo.png" alt="锋帆logo"/>
+          <img src="/images/logo.png" alt="锋帆logo"/>
         </div>
         <ul className="adminNav">
           <li>

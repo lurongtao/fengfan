@@ -20,7 +20,7 @@ module.exports = {
 
   // webserver服务器
   devServer: {
-    contentBase: '/Users/Felix/Desktop/fengfan/dev/build',
+    contentBase: '/Users/Felix/Desktop/fengfan/dev',
     // contentBase: '../build',
     host: 'localhost',
     port: 7000,

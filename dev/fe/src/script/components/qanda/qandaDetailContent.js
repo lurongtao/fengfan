@@ -41,7 +41,7 @@ class qandaDetailContent extends React.Component {
         <div className="content">
           <div className="item">
             <div className="uidPic">
-              <img src="/images/uidPic2.png" />
+              <img src="/build/images/uidPic2.png" />
             </div>
             <div className="uidAnswer">
               <div className="title">

@@ -14,7 +14,7 @@
             "id":1,
             "title": "场景的真实云彩手绘化",
             "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
-            "img": "/images/img.png",
+            "img": "/build/images/img.png",
             "category": {
               "step": 1,
               "tag": "JavaScript",
@@ -27,7 +27,7 @@
             "id":2,
             "title": "场景的真实云彩手绘化",
             "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
-            "img": "/images/img.png",
+            "img": "/build/images/img.png",
             "category": {
               "step": 1,
               "tag": "JavaScript",
@@ -40,7 +40,7 @@
             "id":3,
             "title": "场景的真实云彩手绘化",
             "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
-            "img": "/images/img.png",
+            "img": "/build/images/img.png",
             "category": {
               "step": 1,
               "tag": "JavaScript",

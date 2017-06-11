@@ -32,7 +32,7 @@ class Header extends Component {
     return (
       <div className="m-header">
         <div className="logo">
-          <a href="/"><img src="/images/logo.png" alt="锋帆"/></a>
+          <a href="/"><img src="/build/images/logo.png" alt="锋帆"/></a>
         </div>
         <ul className="nav">
           <li><Link to="/index/list" activeClassName="active">首页</Link></li>
@@ -44,7 +44,7 @@ class Header extends Component {
         <Popover placement="topRight" title={'用户设置'} content={this.state.content} trigger="click">
           <div className="user" onClick={this.signin.bind(this)}>
             <span>
-              <img src="/images/user-icon.png" />
+              <img src="/build/images/user-icon.png" />
             </span>
           </div>
         </Popover>
@@ -69,9 +69,9 @@ class Header extends Component {
           that.setState({
             content: (
               <div>
-                <p onClick={that.gotoAdmin.bind(that)}><img src="/images/user_admin.png" />后台管理</p>
-                <p onClick={that.gotoResetPwd.bind(that)}><img src="/images/user_set.png" />修改密码</p>
-                <p onClick={that.signout.bind(that)}><img src="/images/user_signout.png" />退出登录</p>
+                <p onClick={that.gotoAdmin.bind(that)}><img src="/build/images/user_admin.png" />后台管理</p>
+                <p onClick={that.gotoResetPwd.bind(that)}><img src="/build/images/user_set.png" />修改密码</p>
+                <p onClick={that.signout.bind(that)}><img src="/build/images/user_signout.png" />退出登录</p>
               </div>
             )
           })
@@ -79,9 +79,9 @@ class Header extends Component {
           that.setState({
             content: (
               <div>
-                <p onClick={that.gotoFavorite.bind(that)}><img src="/images/user_info.png" />我的收藏</p>
-                <p onClick={that.gotoResetPwd.bind(that)}><img src="/images/user_set.png" />修改密码</p>
-                <p onClick={that.signout.bind(that)}><img src="/images/user_signout.png" />退出登录</p>
+                <p onClick={that.gotoFavorite.bind(that)}><img src="/build/images/user_info.png" />我的收藏</p>
+                <p onClick={that.gotoResetPwd.bind(that)}><img src="/build/images/user_set.png" />修改密码</p>
+                <p onClick={that.signout.bind(that)}><img src="/build/images/user_signout.png" />退出登录</p>
               </div>
             )
           })

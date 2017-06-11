@@ -22,8 +22,8 @@ class IndexVideoList extends Component{
             <dl>
             <dt>
               <img className="background" src={value.img}/>
-              <img className="video" src="/images/video.png" />
-              <img className="corner" src="/images/corner.png" />
+              <img className="video" src="/build/images/video.png" />
+              <img className="corner" src="/build/images/corner.png" />
             </dt>
             <dd className="vedio_title">{value.title}</dd>
             <dd className="vedio_time">{value.createDate}</dd>

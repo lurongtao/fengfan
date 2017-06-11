@@ -79,7 +79,7 @@ class qandAdd extends React.Component {
             </div>
           </div>
           <div className="stopImage">
-            <img src="/images/stop_images.png"/>
+            <img src="/build/images/stop_images.png"/>
           </div>
       </div>
     )

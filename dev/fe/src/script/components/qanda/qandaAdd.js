@@ -14,21 +14,7 @@ class qandAdd extends React.Component {
       question: {},
       answers: [],
       CommentNodes: [1,2,3],
-      tagData:[{tag:"HTML/CSS"},
-              {tag:"JavaScript"},
-              {tag:"HTML5"},
-              {tag:"CSS3"},
-              {tag:"VUE"},
-              {tag:"HTML/CSS"},
-              {tag:"JavaScript"},
-              {tag:"HTML5"},
-              {tag:"CSS3"},
-              {tag:"VUE"},
-              {tag:"HTML/CSS"},
-              {tag:"JavaScript"},
-              {tag:"HTML5"},
-              {tag:"CSS3"},
-              {tag:"VUE"}],
+      tagData:[],
       isSelected:[],
       num:0
     }
@@ -68,9 +54,9 @@ class qandAdd extends React.Component {
   render() {
 
     let tagLi = this.state.tagData.map((value,index)=>{
-      this.state.isSelected.push({id:index,istrue:false,tag:value.tag})
+      this.state.isSelected.push({id:value.id,istrue:false,tag:value.title})
       return (
-        <li><i className={this.state.isSelected[index].istrue?"active":"" }tagId={index} onClick={this.selectTag.bind(this,value,index)}>{value.tag}</i></li>
+        <li><i className={this.state.isSelected[index].istrue?"active":"" }tagId={index} onClick={this.selectTag.bind(this,value,index)}>{value.title}</i></li>
       )
     })
 
@@ -80,7 +66,7 @@ class qandAdd extends React.Component {
             <p className="q-title">提问</p>
             <div className="reply">
               <Input placeholder="标题" ref="inputTitle"/>
-              <Input type="textarea" rows={4} placeholder="提问内容哦" ref="inputContent"/>
+              <Input type="textarea" rows={4} placeholder="提问内容" ref="inputContent"/>
               <div className="select-question">
                 <p>选择问题分类，最多可以选3个</p>
                 <ul>
@@ -108,10 +94,10 @@ class qandAdd extends React.Component {
       if(value.istrue){
         tags.push(value.tag)
       }
-        return
+      return
     })
     Axios.post('/api/qanda/add', {
-      tag: tags, // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
+      tag: tags.join(','), // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
       title: title, //标题 [字符串：必填]
       content: content // 回帖内容：[字符串：必填]
     }, (res)=>{
@@ -126,7 +112,18 @@ class qandAdd extends React.Component {
     })
   }
 
+  componentDidMount() {
+    Axios.get('/api/classify/list', {}, (res)=>{
+      if (res.data.errcode == -1) {
 
+      } else {
+        console.log(res.data.data.subjects);
+        this.setState({
+          tagData: res.data.data.subjects
+        })
+      }
+    })
+  }
 }
 
 export default qandAdd;

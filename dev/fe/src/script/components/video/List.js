@@ -18,7 +18,9 @@ class List extends Component {
       curPage: 1,
       listAllData: null,
       tagData: [],
-      tagData2: []
+      tagData2: [],
+
+      isShownav: false
     }
   }
 
@@ -170,7 +172,7 @@ class List extends Component {
   render() {
     return (
       <div className="m-video-list">
-        <div className="nav">
+        <div className={this.state.isShownav?'nav':'nav hidden'}>
           <div className="cat">
             <h1 className="title">分类</h1>
             <ul className="content">
@@ -199,15 +201,25 @@ class List extends Component {
 
   componentDidMount() {
     Axios.get('/api/classify/list', {}, (res)=>{
-      this.setState({
-        tagData: [{id:0, title:"所有分类"}].concat(res.data.data.subjects)
-      })
+      if (res.data.errcode == -1) {
+        this.state.isShownav = false;
+      } else {
+        this.setState({
+          isShownav: true,
+          tagData: [{id:0, title:"所有分类"}].concat(res.data.data.subjects)
+        })
+      }
     })
 
     Axios.get('/api/stage/list', {}, (res)=>{
-      this.setState({
-        tagData2: [{id:0, title:"所有阶段"}].concat(res.data.data.subjects)
-      })
+      if (res.data.errcode == -1) {
+        this.state.isShownav = false;
+      } else {
+        this.setState({
+          isShownav: true,
+          tagData2: [{id:0, title:"所有阶段"}].concat(res.data.data.subjects)
+        })
+      }
     })
 
     this.getList({

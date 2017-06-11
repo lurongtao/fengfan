@@ -50,7 +50,7 @@ class qandaList extends React.Component {
       let listDa = this.dataProcessingFirst(res)
       this.setState({
         data: listDa,
-        filterData:listDa,
+        filterData:filterData,
         total:res.data.data.total
       })
     })
@@ -85,7 +85,8 @@ class qandaList extends React.Component {
     })
     this.state.curTag = tag
     this.getData({
-      condition:tag=="所有标签"?'':tag,
+      // condition:tag=="所有标签"?'':tag,
+      tag: tag=="所有标签"?'':tag,
       start: 0,
       count: 10
     },(res)=>{
@@ -104,7 +105,8 @@ class qandaList extends React.Component {
 //分页更换数据
   pageChange(page){
     this.getData({
-      condition:this.state.curTag=="所有分类"?"":this.state.curTag,
+      // condition:this.state.curTag=="所有分类"?"":this.state.curTag,
+      tag: this.state.curTag=="所有分类"?"":this.state.curTag,
       start: page*this.state.count,
       count: this.state.count
     })
@@ -160,6 +162,8 @@ class qandaList extends React.Component {
         tagData: res.data.data.subjects
       })
     })
+
+    this.changeTag('所有标签')
   }
 
 }

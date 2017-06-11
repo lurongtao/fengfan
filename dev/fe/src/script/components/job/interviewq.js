@@ -14,6 +14,7 @@ class interviewq extends React.Component {
     this.state = {
       data: [],
       curTag:"所有标签",
+      tagData: [{id:0, title:"所有标签"}],
       count:10,
       pagination:{
         pageSize:6
@@ -79,9 +80,10 @@ class interviewq extends React.Component {
         curTag:tag
       })
       this.getData({
-        condition:tag=="所有标签"?'':tag,
-          start: 0,
-          count: 10
+        // condition:tag=="所有标签"?'':tag,
+        tag: tag=="所有标签"?'':tag,
+        start: 0,
+        count: 10
       },(res)=>{
         let listDa = this.dataProcessingFirst(res)
         let filterData = tagFilter.dataProcessing(listDa,tag)
@@ -96,7 +98,8 @@ class interviewq extends React.Component {
   //分页更换数据
     pageChange(page){
       this.getData({
-        condition:this.state.curTag=="所有标签"?"":this.state.curTag,
+        // condition: this.state.curTag=="所有标签"?"":this.state.curTag,
+        tag: this.state.curTag=="所有标签"?"":this.state.curTag,
         start: page*this.state.count,
         count: this.state.count
       },(res)=>{
@@ -110,10 +113,10 @@ class interviewq extends React.Component {
     }
 
     render() {
-      let tagData = [{id:0,tag:"所有标签"},{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JS"}]
-      let tagList = tagData.map((item,index)=>{
+      // let tagData = [{id:0,tag:"所有标签"},{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JS"}]
+      let tagList = this.state.tagData.map((item,index)=>{
         return (
-          <li><i id={index} className={this.state.curTag==item.tag?"active":""} onClick={this.changeTag.bind(this,item.tag,index)}>{item.tag}</i></li>
+          <li><i id={index} className={this.state.curTag==item.title?"active":""} onClick={this.changeTag.bind(this,item.title,index)}>{item.title}</i></li>
         )
       })
       return (
@@ -139,7 +142,18 @@ class interviewq extends React.Component {
   }
 
   componentDidMount() {
-
+    let that = this
+    Axios.get('/api/classify/list', {
+      method: 'get',
+      data: {
+        start: 0,
+        count: 10
+      }
+    }, function (res) {
+      that.setState({
+        tagData: that.state.tagData.concat(res.data.data.subjects)
+      })
+    })
   }
 }
 

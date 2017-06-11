@@ -101,7 +101,7 @@ class Interviewq extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function questionList($condition="", $start="", $count="") {
+    public function questionList($condition="", $start="", $count="", $tag="") {
     	$result =  [
     		"errcode"=> 0, // 错误代码：[数值：必填] 0 无错误 -1 有错误
 			"errmsg"=> "", // 错误信息：[字符串：默认为空]
@@ -118,7 +118,7 @@ class Interviewq extends FengfanController {
 		}
 
 		$question = new InterviewQuestion;
-		$total = $question->where('title','like','%'. $condition .'%')->count();
+		$total = $question->where('title','like','%'. $condition .'%')->where('tag','like','%'. $tag .'%')->count();
 		$subjects = [];
 
 		if($total) {
@@ -138,8 +138,15 @@ class Interviewq extends FengfanController {
 				left join users as c
 				on a.uid = c.id
 				where 
-				a.title like ? order by a.create_date desc
-				limit ?, ?", ["%". $condition ."%", $start, $count]);
+				a.title like ? 
+				and a.tag like ?
+				order by a.create_date desc
+				limit ?, ?", ["%". $condition ."%", "%". $tag ."%", $start, $count]);
+			if($tag) {
+				foreach ($subjects as $key => $item) {
+					$subjects[$key]["tag"] = $tag;
+				}
+			}
 		}
 
 		$result["data"]	= [ // 数据内容

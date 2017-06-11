@@ -261,7 +261,8 @@ class Job extends FengfanController {
 					    a.id,
 					    a.content,
 					    b.username AS author,
-					    a.create_date AS createDate
+					    a.create_date AS createDate,
+					    a.bestAnswer
 					FROM
 					    job_answer AS a
 					        LEFT JOIN
@@ -312,7 +313,7 @@ class Job extends FengfanController {
 		return $this->corsjson($result);
     }
 
-    public function reply($jid="", $content="") {
+    public function reply($id="", $content="") {
     	$uid = $this->uid();
 
     	$result =  [
@@ -323,7 +324,7 @@ class Job extends FengfanController {
 		// 必须输入校验
 		$checkresult = $this->requiredCheck([
 			"用户id" => $uid,
-			"职位id" => $jid,
+			"职位id" => $id,
 			"回帖内容" => $content
 		]);
 		if($checkresult) {
@@ -334,7 +335,7 @@ class Job extends FengfanController {
 
 		$rst = $answer->where([
 		    'uid'  =>  $uid,
-		    'jid'  =>  $jid,
+		    'jid'  =>  $id,
 		    'content'  =>  $content,
 		])->find();
 		if($rst) {
@@ -346,7 +347,7 @@ class Job extends FengfanController {
 		// 保存回帖信息
 		$answer->data([
 		    'uid'  =>  $uid,
-		    'jid'  =>  $jid,
+		    'jid'  =>  $id,
 		    'content'  =>  $content,
 		]);
 		$rst = $answer->save();

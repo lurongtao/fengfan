@@ -20,8 +20,8 @@ module.exports = {
 
   // webserver服务器
   devServer: {
-    // contentBase: '/Users/Felix/Desktop/fengfan/dev/build',
-    contentBase: '../build',
+    contentBase: '/Users/Felix/Desktop/fengfan/dev/build',
+    // contentBase: '../build',
     host: 'localhost',
     port: 7000,
     proxy: {
@@ -111,9 +111,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.ejs',
       // filename: __dirname + '/index.html',
-      filename: '/Users/Felix/Desktop/fengfan/dev/index.html',
-      title: '锋帆',
-      name: 'kailong'
+      filename: '/Users/Felix/Desktop/fengfan/dev/build/index.html',
+      title: '锋帆'
     }),
 
     // 3: 压缩代码

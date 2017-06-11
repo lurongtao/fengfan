@@ -5,7 +5,7 @@ class Footer extends Component {
     return (
       <div className="m-footer">
         <ul>
-          <li><img src="/build/images/qianfeng-logo.png" alt="千锋logo"/></li>
+          <li><img src="/images/qianfeng-logo.png" alt="千锋logo"/></li>
           <li>关于千锋</li>
           <li>联系我们</li>
           <li>企业合作</li>

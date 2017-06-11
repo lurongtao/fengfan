@@ -40,7 +40,7 @@ class VideoDetail extends Component{
         <div className="video-area">
           <h2>如何做好一个拟物类图标</h2>
           <div className="video">
-            <img src="/build/images/Videodemo.jpg"/>
+            <img src="/images/Videodemo.jpg"/>
           </div>
         </div>
         <VideoComment detailDatas={this.state.answers?this.state.answers:null} uri="api/video/qanda"></VideoComment>

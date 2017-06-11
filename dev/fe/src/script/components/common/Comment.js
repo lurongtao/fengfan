@@ -19,7 +19,7 @@ class Comment extends React.Component {
     if(this.props.detailDatas){
        CommentNodes= this.props.detailDatas.map((comment, index) => {
         return (
-          <Content answer={comment}></Content>
+          <Content qid={this.props.id} besturi={this.props.besturi} answer={comment}></Content>
         )
       })
     }

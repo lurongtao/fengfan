@@ -7,7 +7,7 @@ class interviewqDetail extends Component {
   render(){
     return (
       <div>
-        <Detail uri="api/interviewq/detail" replyuri="api/interviewq/reply" that={this}></Detail>
+        <Detail uri="api/interviewq/detail" besturi="api/interviewq/setbest" replyuri="api/interviewq/reply" that={this}></Detail>
       </div>
     )
   }

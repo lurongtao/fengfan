@@ -87,7 +87,7 @@ class Detail extends React.Component {
               </p>
             </div>
           </div>
-          <Comment id={this.props.that.props.params.id}  detailDatas={this.state.answers} uri={this.props.replyuri} refreshGetData={this.reGetData.bind(this)}></Comment>
+          <Comment id={this.props.that.props.params.id}  detailDatas={this.state.answers} uri={this.props.replyuri} besturi={this.props.besturi} refreshGetData={this.reGetData.bind(this)}></Comment>
         </div>
 
       </div>

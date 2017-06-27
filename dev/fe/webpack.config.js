@@ -23,7 +23,7 @@ module.exports = {
     contentBase: '/Users/Felix/Desktop/fengfan/dev',
     // contentBase: '../build',
     host: 'localhost',
-    port: 7000,
+    port: 7007,
     proxy: {
       '/api': {
         target: 'http://fengfangood.applinzi.com/',

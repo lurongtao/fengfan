@@ -147,6 +147,10 @@ class VideoUpdate extends Component{
               this.refs.desc.refs.input.value = value.summary
               this.refs.imgUrl.value = value.img
               this.refs.videoUrl.value = value.url //缺少字段
+              this.setState({
+                stageValue: value.category.step,
+                classifyValue: value.category.tag
+              })
             }
           })
           // this.setState({

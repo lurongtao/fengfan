@@ -13,14 +13,11 @@ export default class Resetpwd extends Component {
 
 	//修改密码功能
 	repwd(){
+		let username = this.refs.username.value
 		let newpwd = this.refs.newpwd.value
 		let confirmpwd = this.refs.confirmpwd.value
 
-		if (newpwd != '' && newpwd == confirmpwd) {
-			let data = {
-				newpwd: newpwd
-			}
-
+		if (username !='' && newpwd != '' && newpwd == confirmpwd) {
 			utilAxios.post('/api/users/getresettoken', {}, function (res) {
 				let data = res.data.data
 				if (res.data.errcode != -1 && data.status == 'ok') {
@@ -28,7 +25,8 @@ export default class Resetpwd extends Component {
 					utilAxios.post(
 						'/api/users/resetpwd',
 						{
-							newpwd: data.newpwd,
+							username: username,
+							newpwd: newpwd,
 							token: token
 						},
 						function (res) {
@@ -44,7 +42,7 @@ export default class Resetpwd extends Component {
 			})
 
 		} else {
-			message.info('新密码不能为空 或 两次输入不一致')
+			message.info('用户名及新密码不能为空 或 两次输入不一致')
 		}
 
 	}
@@ -53,6 +51,8 @@ export default class Resetpwd extends Component {
     return (
       <div className="resetpwd">
       	<p>修改密码</p>
+      	<input type="text" ref="username" placeholder="请输入用户名"/>
+      	<span className="signin_xian"></span>
       	<input type="password" ref="newpwd" placeholder="请输入新密码"/>
       	<span className="signin_xian"></span>
       	<input type="password" ref="confirmpwd" placeholder="重新输入新密码"/>

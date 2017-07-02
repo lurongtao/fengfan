@@ -1,12 +1,12 @@
 .m-video-list {
-  width: 100%;
+  width: 1064px;
+  margin: 0 auto;
   box-sizing: border-box;
-  padding: 20px;
-  min-width: @min-width;
+  padding-top: 20px;
   .nav {
     background: #fff;
     box-sizing: border-box;
-    padding: 10px 40px 40px 40px;
+    padding: 0 20px 20px 20px;
     &.hidden {
       display: none;
     }
@@ -14,38 +14,48 @@
       border-bottom: dashed 1px #e5e5e5;
       position: relative;
       .title {
-        top: 34px;
+        top: 20px;
+        width: 120px;
+        height: 44px;
+        text-align: center;
         position: absolute;
         width: 100px;
-        color: #7f7f7f;
-        font-weight: normal;
+        color: #fff;
+        font-weight: 100;
+        font-size: 20px;
+        line-height: 44px;
+        background: #819ac3;
       }
       .content {
         line-height: 50px;
         padding-left: 100px;
-        padding-bottom: 15px;
+        padding-top: 18px;
       }
     }
     ul {
-      padding-top: 25px;
+      padding-top: 15px;
       li {
         display: inline-block;
-        color: #7f7f7f;
-        width: 200px;
-        font-size: 24px;
+        font-size: 20px;
         text-align: center;
         &.title {
-          text-align: left;
+          width: 120px;
+          height: 44px;
+          text-align: center;
           width: 100px;
+          color: #fff;
+          font-weight: 100;
+          font-size: 20px;
+          line-height: 44px;
+          background: #819ac3;
         }
         i {
+          color: #666;
           font-style: normal;
           padding: 10px 40px;
           cursor:pointer;
           &.active{
-            background: @base-color;
-            color: #fff;
-
+            color: #819ac3;
           }
         }
       }
@@ -57,7 +67,7 @@
     margin-top: 20px;
     padding-bottom: 50px;
     .ant-tabs-nav {
-      margin: 12px 0 0 40px;
+      margin: 12px 0 0 20px;
       font-size: 22px;
       .ant-tabs-tab-active {
         color: #ff8a0c;
@@ -69,31 +79,34 @@
     .m-list-content{
       .video_wrap{
         float:left;
-        width:325px;
-        margin:20px 60px 0 0;
+        width: 237px;
+        margin-right: 24px;
         cursor: pointer;
         dl{
-          margin-left:3px;
           dt{
             position:relative;
             .background{
               width:100%;
-              height:267px;
+              height: 160px;
             }
             .video{
               position:absolute;
-              top:50%;
-              left:50%;
-              margin-left:-45px;
-              margin-top:-45px;
+              width: 52px;
+              height: 52px;
+              top: 50%;
+              left: 50%;
+              margin-left:-26px;
+              margin-top:-26px;
               cursor:pointer;
             }
             .corner{
               position:absolute;
-              top:50%;
-              left:50%;
-              margin-left:-9px;
-              margin-top:-15px;
+              width: 15px;
+              height: 20px;
+              top: 50%;
+              left: 50%;
+              margin-left: -7.5px;
+              margin-top: -10px;
               cursor:pointer;
             }
           }
@@ -103,43 +116,42 @@
             text-align:left;
           }
           .vedio_title{
-            font-size:24px;
-            color:#000000;
-            letter-spacing:0.29px;
+            font-size: 18px;
+            color: #000;
+            letter-spacing: 0.29px;
+            padding-top: 5px;
           }
           .vedio_time{
             font-family:PingFangSC-Regular;
-            font-size:16px;
-            color:#4b98f8;
+            font-size:14px;
+            color: #9b9b9b;
             letter-spacing:0.19px;
             text-align:left;
           }
           .vedio_decription{
             font-family:PingFangSC-Regular;
-            font-size:16px;
-            color:rgba(0,0,0,0.50);
-            letter-spacing:0.19px;
-            text-align:left;
+            font-size: 14px;
+            color: #6f6f6f;
+            letter-spacing: 0.19px;
+            text-align: left;
+            padding-top: 3px;
+            padding-bottom: 30px;
           }
         }
-      }
-      .index_vedio:last-of-type{
-        margin:20px 0 0;
       }
     }
   }
   .ant-pagination{
     text-align:center;
-    margin-top:47px;
-    margin-bottom:67px;
+    margin-top: 25px;
     li{
       background:#f1f1f1;
       &.ant-pagination-item-active{
-        background-color:#71c5ff;
-        border-color:#71c5ff;
+        background-color: #ff8a0c;;
+        border-color: #ff8a0c;;
       }
       &:hover{
-        border-color:#71c5ff;
+        border-color: #ff8a0c;;
       }
     }
   }

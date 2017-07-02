@@ -15,10 +15,7 @@ class interviewq extends React.Component {
       data: [],
       curTag:"所有标签",
       tagData: [{id:0, title:"所有标签"}],
-      count:10,
-      pagination:{
-        pageSize:6
-      },
+      count: 10,
       columns : [{
         title: '主题',
         dataIndex: 'title',
@@ -43,7 +40,7 @@ class interviewq extends React.Component {
     // 获取数据
     this.getData({
         start: 0,
-        count: 10
+        count: this.state.count
     },(res)=>{
       let listDa = this.dataProcessingFirst(res)
       this.setState({
@@ -83,7 +80,7 @@ class interviewq extends React.Component {
         // condition:tag=="所有标签"?'':tag,
         tag: tag=="所有标签"?'':tag,
         start: 0,
-        count: 10
+        count: this.state.count
       },(res)=>{
         let listDa = this.dataProcessingFirst(res)
         let filterData = tagFilter.dataProcessing(listDa,tag)
@@ -100,11 +97,11 @@ class interviewq extends React.Component {
       this.getData({
         // condition: this.state.curTag=="所有标签"?"":this.state.curTag,
         tag: this.state.curTag=="所有标签"?"":this.state.curTag,
-        start: page*this.state.count,
+        start: (page-1) * this.state.count,
         count: this.state.count
-      },(res)=>{
+      }, (res)=>{
         let listDa = this.dataProcessingFirst(res)
-        let filterData = tagFilter.dataProcessing(listDa,tag)
+        let filterData = tagFilter.dataProcessing(listDa, this.state.curTag)
         this.setState({
           data: listDa,
           filterData:filterData,
@@ -131,7 +128,7 @@ class interviewq extends React.Component {
           </div>
           <div className="list">
             <Table columns={this.state.columns} dataSource={this.state.filterData} pagination={false} />
-            <Pagination defaultCurrent={1} total={this.state.total?this.state.total:1}  onChange={this.pageChange.bind(this)} />
+            <Pagination defaultPageSize={this.state.count} defaultCurrent={1} total={this.state.total?this.state.total:1} onChange={this.pageChange.bind(this)} />
           </div>
         </div>
       )
@@ -147,7 +144,7 @@ class interviewq extends React.Component {
       method: 'get',
       data: {
         start: 0,
-        count: 10
+        count: this.state.count
       }
     }, function (res) {
       that.setState({

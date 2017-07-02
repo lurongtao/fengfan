@@ -1,10 +1,10 @@
 .m-qanda-list {
-  width: 100%;
+  width: 1064px;
   box-sizing: border-box;
-  padding: 10px;
-  padding-top: 0;
-  min-width: @min-width;
+  margin: 0 auto;
+  margin-top: 20px;
   .go-q{
+    height: 148px;
     img{
       width:100%;
       height:100%;
@@ -13,55 +13,67 @@
   .nav {
     background: #fff;
     box-sizing: border-box;
-    padding: 0 40px;
+    margin-top: 20px;
+    padding: 0 20px;
     .cat {
-      border-bottom: dashed 1px #e5e5e5;
       position: relative;
       .title {
-        top: 34px;
+        top: 20px;
+        width: 120px;
+        height: 44px;
+        text-align: center;
         position: absolute;
         width: 100px;
-        color: #7f7f7f;
-        font-style:normal;
-        font-size:24px;
+        color: #fff;
+        font-weight: 100;
+        font-size: 20px;
+        line-height: 44px;
+        background: #819ac3;
       }
       .content {
         line-height: 50px;
-        padding: 20px 0 20px 100px;
+        padding-left: 100px;
+        padding-top: 18px;
       }
     }
     ul {
-      line-height: 104px;
+      padding-top: 15px;
       li {
         display: inline-block;
-        color: #7f7f7f;
-        width: 200px;
-        font-size: 24px;
+        font-size: 20px;
         text-align: center;
         &.title {
-          text-align: left;
+          width: 120px;
+          height: 44px;
+          text-align: center;
           width: 100px;
+          color: #fff;
+          font-weight: 100;
+          font-size: 20px;
+          line-height: 44px;
+          background: #819ac3;
         }
         i {
+          color: #666;
           font-style: normal;
-          line-height: 60px;
           padding: 10px 40px;
           cursor:pointer;
           &.active{
-            background: @base-color;
-            color: #fff;
+            color: #819ac3;
           }
         }
-
       }
     }
   }
   .list {
     box-sizing: border-box;
+    background: #fff;
     .ant-table{
       background: #fff;
-      padding-left:40px;
-      padding-right:38px;
+      padding: 0 20px;
+    }
+    .ant-table-placeholder {
+      margin-bottom: 40px;
     }
     table{
       border-left:1px solid #d3d9dd;
@@ -69,42 +81,42 @@
       margin-bottom:42px;
       thead {
         width:1360px;
-        height:80px;
+        height: 50px;
         th {
           text-align: center;
           color: #ffffff;
-          background-color: #71c5ff;
+          background-color: #a8b4c9;
           font-size: 20px;
-          height:80px;
+          height: 50px;
         }
       }
       tbody {
         text-align: center;
         td{
           font-size: 18px;
-          height:80px;
+          height: 50px;
         }
       }
     }
     ul{
-      width:100%;
-      text-align:center;
-      margin:32px 0;
-      li{
+      width: 100%;
+      text-align: center;
+      padding-bottom: 42px;
+      li {
         background:#f1f1f1;
         &.ant-pagination-item-active{
-          background-color:#71c5ff;
-          border-color:#71c5ff;
+          background-color: #ff8a0c;
+          border-color: #ff8a0c;
         }
         &:hover{
-          border-color:#71c5ff;
+          border-color: #ff8a0c;
         }
       }
     }
   }
   .ant-tabs-bar {
-    margin: 20px 10px 0 10px;
     background: #fff;
+    margin-bottom: 0;
   }
 
   .ant-tabs-nav-scroll {

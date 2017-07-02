@@ -16,6 +16,7 @@ class SearchContent extends Component{
          title: `${dataSource[i].title}`,
          id: `${dataSource[i].id}`,
          city: `${dataSource[i].city}`,
+         url: `${dataSource[i].url}`,
        })
     }
     return NewDataSource
@@ -27,7 +28,7 @@ class SearchContent extends Component{
       dataIndex: 'name',
       key: 'name',
       render:(text,record)=>(
-       <span className="search_inner" onClick={this.goto.bind(this, record.id, record.city, str)}>
+       <span className="search_inner" onClick={this.goto.bind(this, record.id, record.city, record.url, str)}>
         <div className="search_title">{record.title}</div>
         <a className="search_article">{record.name}</a>
        </span>
@@ -36,11 +37,12 @@ class SearchContent extends Component{
     return columns
   }
 
-  goto(id, city, str){
+  goto(id, city, url, str){
     // console.log(this.props.parent);
     switch (str) {
       case '视频':
-        this.props.parent.props.router.push(`/video/detail/${id}`)
+        // this.props.parent.props.router.push(`/video/detail/${id}`)
+        location.href=url
         break
       case '问答':
         this.props.parent.props.router.push(`/qanda/detail/${id}`)

@@ -80,6 +80,7 @@ class interviewq extends React.Component {
         title: value.title,
         type: this.typeFilter(value.type),
         createDate: value.createDate,
+        url: value.url
       }
     });
     return listData

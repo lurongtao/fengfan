@@ -3,6 +3,10 @@
   width: 100%;
   min-width: @min-width;
   background: #fff;
+  .wrap {
+    width: 1064px;
+    margin: 0 auto;
+  }
   .logo {
     float: left;
     margin-right: 30px;
@@ -17,21 +21,21 @@
         display:inline-block;
         width: 95px;
         height: 100%;
-        line-height: 100px;
+        line-height: 98px;
         text-align: center;
         font-size: 24px;
         margin: 0 10px;
         box-sizing: border-box;
         &.active {
-          border-top: solid 2px @base-color;
-          line-height: 96px;
+          border-bottom: solid 2px @base-color;
+          line-height: 98px;
           color: @base-color;
         }
       }
     }
   }
   .search {
-    width: 309px;
+    width: 249px;
     height: 100%;
     float: right;
     line-height: 100px;
@@ -39,6 +43,7 @@
       height: 49px;
       border-radius: 25px;
       font-size: 16px;
+      font-weight: 100;
     }
     .ant-input-search-icon {
       font-size: 26px;

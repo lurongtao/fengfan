@@ -1,25 +1,26 @@
 .m-admin{
   min-width: @min-width;
   .adList{
-    padding:20px;
     margin: 0 auto;
+    width: 1064px;
     .listContainer{
       background:#fff;
-      padding:35px 0 25px 40px;
+      position: relative;
       .tit{
-        width: 312px;
         height: 36px;
         font-size:20px;
         color:#71c5ff;
-        letter-spacing:0.24px;
         line-height:36px;
-        text-align:left;
-        margin-bottom: 24px;
+        text-align: left;
+        position: absolute;
+        left: 20px;
+        top: 20px;
       }
       .addBtn{
-        width: 1010px;
         text-align: right;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        position: relative;
+        top: 20px;
         a{
           margin-right: 20px;
           display: inline-block;
@@ -36,23 +37,24 @@
       .ant-table{
         border-radius:0;
         .ant-table-body{
-          width: 1010px;
+          padding: 20px;
           table{
             // width: 1010px;
             border-radius:0;
             text-align: center;
             .ant-table-thead{
               tr{
+                height: 50px;
                 th{
                   // &:nth-child(1){
                   //     margin-left: 96px;
                   // }
-                  height: 80px;
                   background:#71c5ff;
-                  font-size:20px;
+                  font-size: 18px;
                   color:#ffffff;
                   letter-spacing:0.24px;
                   text-align:center;
+                  padding: 10px 8px;
                 }
               }
             }
@@ -60,9 +62,12 @@
         }
         .ant-table-tbody{
           tr{
+            height: 50px;
             td{
-              font-size:18px;
+              font-size: 16px;
+              font-weight: 100;
               color:#4a4a4a;
+              padding: 10px 8px;
               &:nth-child(1){
                 a{
                   display: block;
@@ -97,18 +102,19 @@
         }
       }
       .ant-pagination{
-        float: none;
-        margin: 25px 0 0 657px;
+        text-align: center;
+        padding: 40px 0;
       }
     }
   }
 
   .add,.m-update{
-    padding:20px;
     margin: 0 auto;
     .container{
       background:#fff;
       padding:35px 0 67px 40px;
+      width: 1064px;
+      margin: 0 auto;
       .tit{
         width: 312px;
         height: 36px;
@@ -160,7 +166,7 @@
         border-radius: 0;
         width: 144px;
         height: 49px;
-        border:2px solid #e0e0e0;
+        border: 1px solid #e0e0e0;
         margin-top: 40px;
         background:#f3f3f3;
         span{

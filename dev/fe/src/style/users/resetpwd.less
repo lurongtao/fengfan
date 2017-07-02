@@ -1,72 +1,76 @@
 .resetpwd{
     width:100%;
-    min-width: @min-width;
     overflow: hidden;
     >p{
-        width:91px;
-        margin:0 auto;
-        margin-top:69px;
-        text-align: center;
-        line-height: 1;
-        font-size:22px;
-        letter-spacing:0.26px;
-        color: white;
+      width:91px;
+      margin:0 auto;
+      margin-top: 69px;
+      margin-bottom: 54px;
+      text-align: center;
+      line-height: 1;
+      font-size: 16px;
+      letter-spacing:0.26px;
+      color: white;
+      font-weight: 100;
     }
-     input[type="password"]{
-        width:173px;
-//      height:24px;
-        font-size:24px;
-        display: block;
-        margin:0 auto;
-        border: 0;
-        outline: none;
-        color: white;
-        line-height: 1;
-//      opacity: 0.5;
-        background: @base-color;
-        letter-spacing:0.29px;
-        text-align: center;
-        margin-top: 55px;
+     input[type="password"],
+     input[type="text"]{
+       width: 261px;
+       font-size: 16px;
+       display: block;
+       margin:0 auto;
+       border: 0;
+       outline: none;
+       color: white;
+       line-height: 1;
+       background: @base-color;
+       letter-spacing:0.29px;
+       text-align: center;
+       margin-top: 20px;
+       font-weight: 100;
     }
-    input[type="password"]::-webkit-input-placeholder{
+    input[type="password"]::-webkit-input-placeholder,
+    input[type="text"]::-webkit-input-placeholder{
         color: white;
 //      font-weight: normal;
         opacity: 0.5;
     }
-    input[type="password"]::-ms-input-placeholder{
+    input[type="password"]::-ms-input-placeholder,
+    input[type="text"]::-ms-input-placeholder{
         color: white;
         opacity: 0.5;
     }
-    input[type="password"]::-moz-placeholder{
+    input[type="password"]::-moz-placeholder,
+    input[type="text"]::-moz-placeholder{
         color: white;
         opacity: 0.5;
     }
     .signin_xian{
-        width:401px;
-        height:3px;
-        background: white;
-        display: block;
-        margin:0 auto;
-        margin-top:20px;
-        opacity: 0.5;
+      width: 261px;
+      height: 2px;
+      background: white;
+      display: block;
+      margin:0 auto;
+      margin-top: 10px;
+      opacity: 0.5;
     }
      .resetpwd_btn{
-        width:400px;
-        height:80px;
-        border:1px solid rgba(255,255,255,0.5);
-        border-radius:4px;
-        margin:0 auto;
-        margin-top:59px;
-        text-align: center;
-        line-height: 80px;
-        letter-spacing:0.43px;
-        font-size:36px;
-        color: white;
-        background: @base-color;
-        outline: none;
-        display: block;
-         cursor: pointer;
-         margin-bottom: 88px;
+       width: 258px;
+       height: 46px;
+       border: 1px solid rgba(255,255,255,0.5);
+       border-radius:4px;
+       margin:0 auto;
+       margin-top: 59px;
+       text-align: center;
+       line-height: 20px;
+       letter-spacing: 0.43px;
+       font-size: 20px;
+       color: white;
+       background: @base-color;
+       outline: none;
+       display: block;
+       cursor: pointer;
+       font-weight: 100;
     }
-    
+
 }

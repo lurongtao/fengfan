@@ -31,31 +31,33 @@ class Header extends Component {
   render() {
     return (
       <div className="m-header">
-        <div className="logo">
-          <a href="/"><img src="/build/images/logo.png" alt="锋帆"/></a>
-        </div>
-        <ul className="nav">
-          <li><Link to="/index/list" activeClassName="active">首页</Link></li>
-          <li><Link to="/video" activeClassName="active">视频</Link></li>
-          <li><Link to="/qanda" activeClassName="active">问答</Link></li>
-          <li><Link to={"/job"||"/interviewq"} activeClassName="active">招聘</Link></li>
-        </ul>
-
-        <Popover placement="topRight" title={'用户设置'} content={this.state.content} trigger="click">
-          <div className="user" onClick={this.signin.bind(this)}>
-            <span>
-              <img src="/build/images/user-icon.png" />
-            </span>
+        <div className="wrap">
+          <div className="logo">
+            <a href="/"><img src="/build/images/logo.png" alt="锋帆"/></a>
           </div>
-        </Popover>
+          <ul className="nav">
+            <li><Link to="/index/list" activeClassName="active">首页</Link></li>
+            <li><Link to="/video" activeClassName="active">视频</Link></li>
+            <li><Link to="/qanda" activeClassName="active">问答</Link></li>
+            <li><Link to={"/job"||"/interviewq"} activeClassName="active">招聘</Link></li>
+          </ul>
 
-        <a className="search">
-          <Search
-            ref="input"
-            placeholder="请输入关键字"
-            onSearch={value => this.linkTo(this, value)}
-          />
-        </a>
+          <Popover placement="topRight" title={'用户设置'} content={this.state.content} trigger="click">
+            <div className="user" onClick={this.signin.bind(this)}>
+              <span>
+                <img src="/build/images/user-icon.png" />
+              </span>
+            </div>
+          </Popover>
+
+          <a className="search">
+            <Search
+              ref="input"
+              placeholder="请输入关键字"
+              onSearch={value => this.linkTo(this, value)}
+              />
+          </a>
+        </div>
       </div>
     )
   }

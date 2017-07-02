@@ -14,7 +14,7 @@ class List extends Component {
     this.state={
       curTag: "所有分类",
       step: 0,
-      count: 9,
+      count: 12,
       curPage: 1,
       listAllData: null,
       tagData: [],
@@ -193,8 +193,8 @@ class List extends Component {
               <ListContent dataSource={this.state.listData}></ListContent>
             </TabPane>
           </Tabs>
+          <Pagination defaultPageSize={this.state.count} total={this.state.listAllData?this.state.listAllData.total:1} current={this.state.curPage} onChange={this.pageChange.bind(this)}/>
         </div>
-        <Pagination total={this.state.listAllData?this.state.listAllData.total:1} current={this.state.curPage} onChange={this.pageChange.bind(this)}/>
       </div>
     )
   }

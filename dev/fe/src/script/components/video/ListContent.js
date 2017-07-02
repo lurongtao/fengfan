@@ -15,8 +15,8 @@ class ListContent extends Component {
     if(this.props.dataSource){
       List = this.props.dataSource.map((value,index)=>{
         return (
-
-          <Link to={"/video/detail/"+value.id} className="video_wrap">
+          // <Link to={"/video/detail/"+value.id} className="video_wrap">
+          <a href={value.url} className="video_wrap">
             <dl>
             <dt>
               <img className="background" src={value.img}/>
@@ -27,7 +27,8 @@ class ListContent extends Component {
             <dd className="vedio_time">{value.createDate}</dd>
             <dd className="vedio_decription">{value.summary}</dd>
             </dl>
-          </Link>
+          </a>
+          // </Link>
         )
       })
     }

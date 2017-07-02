@@ -13,12 +13,9 @@ class qandaList extends React.Component {
     this.state = {
       data: [],
       curTag:"所有标签",
-      count:10,
+      count: 10,
       filterData: [],
-      pagination:{
-        pageSize:6
-      },
-      current:1,
+      current: 1,
       columns : [{
         title: '主题',
         dataIndex: 'title',
@@ -45,7 +42,7 @@ class qandaList extends React.Component {
     //调用方法获取数据
     this.getData({
       start: 0,
-      count: 10
+      count: this.state.count,
     },(res)=>{
       // console.log(res.data.data);
       let listDa = this.dataProcessingFirst(res)
@@ -90,7 +87,7 @@ class qandaList extends React.Component {
       // condition:tag=="所有标签"?'':tag,
       tag: tag=="所有标签"?'':tag,
       start: 0,
-      count: 10
+      count: this.state.count,
     },(res)=>{
       // console.log(res.data.data);
       var listDa = this.dataProcessingFirst(res)
@@ -107,14 +104,19 @@ class qandaList extends React.Component {
 //分页更换数据
   pageChange(page){
     this.getData({
-      // condition:this.state.curTag=="所有分类"?"":this.state.curTag,
-      tag: this.state.curTag=="所有分类"?"":this.state.curTag,
-      start: page*this.state.count,
+      // condition:this.state.curTag=="所有标签"?"":this.state.curTag,
+      tag: this.state.curTag=="所有标签"?"":this.state.curTag,
+      start: (page-1) * this.state.count,
       count: this.state.count
+    }, (res)=>{
+      let listDa = this.dataProcessingFirst(res)
+      let filterData = tagFilter.dataProcessing(listDa, this.state.curTag)
+      this.setState({
+        data: listDa,
+        filterData:filterData,
+      })
     })
-    this.setState({
-      current:page
-    })
+
   }
 
   render() {
@@ -141,7 +143,7 @@ class qandaList extends React.Component {
         </div>
         <div className="list">
           <Table columns={this.state.columns} dataSource={this.state.filterData} pagination={false}/>
-          <Pagination defaultCurrent={1} total={this.state.total?this.state.total:1} current={this.state.current} onChange={this.pageChange.bind(this)} />
+          <Pagination defaultCurrent={1} defaultPageSize={this.state.count} total={this.state.total?this.state.total:1} onChange={this.pageChange.bind(this)} />
         </div>
       </div>
     )
@@ -157,7 +159,7 @@ class qandaList extends React.Component {
       method: 'get',
       data: {
         start: 0,
-        count: 10
+        count: this.state.count
       }
     }, function (res) {
       that.setState({

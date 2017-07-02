@@ -11,14 +11,15 @@ class IndexVideoList extends Component{
       data:[{}]
     }
   }
-  push(id){
-    hashHistory.push(`/video/detail/${id}`)
+  push(id, url){
+    // hashHistory.push(`/video/detail/${id}`)
+    location.href = url
   }
   indexVideo(list){
     return list.map((value,index)=>{
-      if(index<6){
+      if(index<8){
         return(
-          <div onClick={this.push.bind(this, value.id)} className="index_vedio">
+          <div onClick={this.push.bind(this, value.id, value.url)} className="index_vedio">
             <dl>
             <dt>
               <img className="background" src={value.img}/>

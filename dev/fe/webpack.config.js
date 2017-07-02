@@ -127,7 +127,7 @@ module.exports = {
 
     // 4: 自动打开浏览器
     new OpenBrowserPlugin({
-      url: 'http://localhost:7000'
+      url: 'http://localhost:7007'
     }),
 
     // 5: 更改环境变量
